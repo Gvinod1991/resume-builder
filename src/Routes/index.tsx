@@ -1,8 +1,8 @@
 import { BrowserRouter } from "react-router-dom";
 import { Layout } from '../Layout';
 import { RouteWithLayout } from "../components/RouteWithLayout";
-import Profile from "../pages/Profile";
-import Resume from "../pages/Resume";
+import Profile from "../Pages/Profile";
+import Resume from "../Pages/Resume";
 
 export const AppRoutes = () => {
   return (
