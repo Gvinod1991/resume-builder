@@ -1,2 +1,2 @@
 export * from './sideNav';
-export * from './TopNav';
+export * from './topNav';

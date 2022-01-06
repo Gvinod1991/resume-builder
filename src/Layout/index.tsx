@@ -1,5 +1,5 @@
 import React, { ReactChild, ReactChildren } from 'react';
-import { SideNav, TopNav } from '../components/Navigation';
+import { SideNav, TopNav } from '../Components';
 
 export interface SideBarProps {
   children: ReactChild | ReactChildren
