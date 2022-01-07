@@ -1,11 +1,14 @@
 import { useState, ReactChild, ReactChildren } from 'react';
 import RcTabs, { TabPane } from 'rc-tabs';
 import './tabs.css';
+
 interface TabsProps {
   children: ReactChild | ReactChildren
   className: string,
 }
+
 export { TabPane };
+
 export const Tabs = ({ children, className }: TabsProps) => {
   const [activeKey, setActiveKey] = useState<string>('1');
   return <RcTabs
