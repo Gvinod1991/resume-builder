@@ -4,3 +4,4 @@ export { Button } from './Button';
 export { Tabs, TabPane } from './Tabs';
 export { Input } from './Input';
 export { Card } from './Card';
+export { TextArea } from './TextArea'
