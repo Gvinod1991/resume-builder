@@ -6,3 +6,6 @@ export { Input } from './Input';
 export { Card } from './Card';
 export { TextArea } from './TextArea';
 export { Select } from './Select';
+export { Wrapper } from './Wrapper';
+export { Typography } from './Typography';
+export { Divider } from './Divider';
