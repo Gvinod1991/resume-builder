@@ -13,14 +13,14 @@ interface optionType {
 
 export const Select = ({ label, handleChange, options }: selectProps) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col p-1">
       <label>{label}</label>
       <select
-        className="mt-1 block w-full rounded-md bg-gray-100 focus:border-indigo-600 border-2 focus:bg-white focus:ring-0"
+        className="w-full rounded-md shadow-sm bg-gray-100 focus:border-indigo-500 focus:bg-white focus:ring-indigo-500"
         placeholder={label}
         onChange={handleChange}>
         {options.map((option: optionType) => (
-          <option value={option.optionKey}>{option.optionValue}</option>
+          <option key={option.optionKey} value={option.optionKey}>{option.optionValue}</option>
         ))}
       </select>
     </div>
