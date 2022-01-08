@@ -1,5 +1,3 @@
-import { ReactChild, ReactChildren } from 'react';
-
 interface TextAreaProps {
   textAreaValue: string,
   textAreLabel: string,
