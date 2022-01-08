@@ -17,22 +17,27 @@ export default function Profile() {
             <About />
           </Card>
         </TabPane>
-        <TabPane tab={"Side Projects"} key={3}>
-          <Card>
-            Side Projects
-          </Card>
-        </TabPane>
-        <TabPane tab={"Skills"} key={4}>
+        <TabPane tab={"Skills"} key={3}>
           <Card>
             Skills
           </Card>
         </TabPane>
-        <TabPane tab={"Achievements"} key={5}>
+        <TabPane tab={"Work Experience"} key={4}>
+          <Card>
+            Work Experience
+          </Card>
+        </TabPane>
+        <TabPane tab={"Side Projects"} key={5}>
+          <Card>
+            Side Projects
+          </Card>
+        </TabPane>
+        <TabPane tab={"Achievements"} key={6}>
           <Card>
             Achievements
           </Card>
         </TabPane>
-        <TabPane tab={"Education"} key={6}>
+        <TabPane tab={"Education"} key={7}>
           <Card>
             Education
           </Card>
