@@ -4,6 +4,6 @@ interface DividerProps {
 }
 export const Divider = ({ className }: DividerProps) => {
   return (
-    <div className={`border border-gray-100`} ></div>
+    <div className={`border border-gray-100 ${className}`} ></div>
   )
 }
