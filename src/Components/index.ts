@@ -9,3 +9,4 @@ export { Select } from './Select';
 export { Wrapper } from './Wrapper';
 export { Typography } from './Typography';
 export { Divider } from './Divider';
+export { TagsInput } from './TagsInput';
