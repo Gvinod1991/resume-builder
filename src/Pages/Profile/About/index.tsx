@@ -48,7 +48,7 @@ export const About = () => {
                   </>
                 </Wrapper>
                 <Wrapper className='p-2'>
-                  <Input inputLabel='Your Location' handleChange={() => { }} />
+                  <Input inputLabel='Your Location' />
                 </Wrapper>
                 <Wrapper className='p-2'>
                   <Select
@@ -77,22 +77,29 @@ export const About = () => {
                     inputLabel='Email Id'
                     value='venkat.godti3@gmail.com'
                     disabled={true}
-                    handleChange={() => { }} />
+                  />
                 </Wrapper>
                 <Wrapper className='p-2'>
-                  <Input inputLabel='Contact Number (With country code)' handleChange={() => { }} />
+                  <Input inputLabel='Contact Number'
+                    placeholder='Contact Number(With country code)'
+                  />
                 </Wrapper>
                 <Wrapper className='p-2'>
-                  <Input inputLabel='Website' handleChange={() => { }} />
+                  <Input
+                    inputLabel='Website'
+                    placeholder='Website' />
                 </Wrapper>
                 <Wrapper className='p-2'>
-                  <Input inputLabel='LinkedIn' handleChange={() => { }} />
+                  <Input
+                    inputLabel='LinkedIn'
+                    placeholder='LinkedIn'
+                  />
                 </Wrapper>
                 <Wrapper className='p-2'>
-                  <Input inputLabel='GitHub' handleChange={() => { }} />
+                  <Input inputLabel='GitHub' placeholder='GitHub' />
                 </Wrapper>
                 <Wrapper className='p-2'>
-                  <Input inputLabel='Twitter' handleChange={() => { }} />
+                  <Input inputLabel='Twitter' placeholder='Twitter' />
                 </Wrapper>
               </>
             </Wrapper>
