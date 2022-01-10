@@ -1,7 +1,7 @@
 import { ReactChild, ReactChildren } from 'react';
 
 interface WrapperProps {
-  className: string,
+  className?: string,
   children?: ReactChild | ReactChildren
 }
 
