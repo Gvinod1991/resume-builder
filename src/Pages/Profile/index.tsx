@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tabs, TabPane } from '../../Components';
 import { About } from './About';
+import { Skills } from './Skills';
 import { Card } from '../../Components';
 
 export default function Profile() {
@@ -19,7 +20,7 @@ export default function Profile() {
         </TabPane>
         <TabPane tab={"Skills"} key={3}>
           <Card>
-            Skills
+            <Skills />
           </Card>
         </TabPane>
         <TabPane tab={"Work Experience"} key={4}>
