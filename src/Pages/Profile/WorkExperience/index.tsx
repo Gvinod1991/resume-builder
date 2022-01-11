@@ -1,34 +1,10 @@
 import {
   Card, Wrapper, Typography,
-  Divider, Button, Input, Select, TextArea
+  Divider, Button, Input, Modal, CustomDatePicker, TextArea
 } from "../../../Components";
 import { PlusIcon } from "@heroicons/react/solid";
-import { Modal } from "../../../Components";
 import { useState } from "react";
-const options = [{
-  optionKey: '1',
-  optionValue: 'FrontEnd Engineer'
-}, {
-  optionKey: '2',
-  optionValue: 'Backend Engineer'
-}
-]
-const yearOptions = [{
-  optionKey: '1',
-  optionValue: '<1 Year'
-}, {
-  optionKey: '2',
-  optionValue: '1 Year'
-},
-{
-  optionKey: '3',
-  optionValue: '2 Years'
-},
-{
-  optionKey: '4',
-  optionValue: '3 Years'
-}
-]
+
 export const WorkExperience = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
@@ -38,27 +14,7 @@ export const WorkExperience = () => {
         <Wrapper className='flex flex-col ml-2 px-4 w-8/12'>
           <>
             <Wrapper className='flex flex-row justify-end z-0'>
-              <>
-                <Button onClick={() => setIsOpen(true)} leftIcon={<PlusIcon className="h-5" />} className="w-fit" title="Add work experience" />
-                <Modal title="Add Work Experience" className="w-6/12" open={isOpen} onClose={() => setIsOpen(false)} >
-                  <>
-                    <Wrapper className='p-2'>
-                      <Input inputLabel='Your Location' />
-                    </Wrapper>
-                    <Wrapper className='p-2'>
-                      <Select
-                        label='Select Designation/Role' handleChange={() => { }} options={options} />
-                    </Wrapper>
-                    <Wrapper className='p-2'>
-                      <Select
-                        label='Years of Experience' handleChange={() => { }} options={yearOptions} />
-                    </Wrapper>
-                    <Wrapper className='p-2'>
-                      <TextArea textAreaValue='' textAreLabel='Professional Intro' handleChange={() => { }} />
-                    </Wrapper>
-                  </>
-                </Modal>
-              </>
+              <Button onClick={() => setIsOpen(true)} leftIcon={<PlusIcon className="h-5" />} className="w-fit" title="Add work experience" />
             </Wrapper>
             <Card>
               <Wrapper className="flex flex-col w-full">
@@ -100,6 +56,28 @@ export const WorkExperience = () => {
             </Card>
           </>
         </Wrapper>
+        <Modal title="Add Work Experience" className="w-6/12" open={isOpen} onClose={() => setIsOpen(false)} >
+          <>
+            <Wrapper className='p-2'>
+              <Input inputLabel='Title' placeholder="Ex: FrontEnd Engineer" />
+            </Wrapper>
+            <Wrapper className='p-2'>
+              <Input inputLabel='Company Name' placeholder="Ex: Infosys" />
+            </Wrapper>
+            <Wrapper className='p-2'>
+              <Input inputLabel='Location' placeholder="Ex: Bengaluru,India" />
+            </Wrapper>
+            <Wrapper className='p-2'>
+              <CustomDatePicker pickerLabel="Stat Date" />
+            </Wrapper>
+            <Wrapper className='p-2'>
+              <CustomDatePicker pickerLabel="End Date" />
+            </Wrapper>
+            <Wrapper className='p-2'>
+              <TextArea textAreaValue='' textAreLabel='Description' handleChange={() => { }} />
+            </Wrapper>
+          </>
+        </Modal>
       </>
     </Wrapper>
   )
