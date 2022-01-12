@@ -3,6 +3,9 @@ import { Tabs, TabPane } from '../../Components';
 import { About } from './About';
 import { Skills } from './Skills';
 import { WorkExperience } from './WorkExperience';
+import { Education } from './Education';
+import { Projects } from './Projects';
+import { Achievements } from './Achievements';
 import { Card } from '../../Components';
 
 export default function Profile() {
@@ -31,17 +34,17 @@ export default function Profile() {
         </TabPane>
         <TabPane tab={"Side Projects"} key={5}>
           <Card>
-            Side Projects
+            <Projects />
           </Card>
         </TabPane>
         <TabPane tab={"Achievements"} key={6}>
           <Card>
-            Achievements
+            <Achievements />
           </Card>
         </TabPane>
         <TabPane tab={"Education"} key={7}>
           <Card>
-            Education
+            <Education />
           </Card>
         </TabPane>
       </>

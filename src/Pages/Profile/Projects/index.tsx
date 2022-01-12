@@ -6,17 +6,17 @@ import { PlusIcon, } from "@heroicons/react/solid";
 import { PencilAltIcon } from '@heroicons/react/outline';
 import { useState } from "react";
 
-export const WorkExperience = () => {
+export const Projects = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const workExperiences = [1, 2, 3];
   return (
     <Wrapper className="flex flex-row w-full">
       <>
-        <Typography variant="h2" className="w-3/12 text-lg text-gray-600">Your work experience</Typography>
+        <Typography variant="h2" className="w-3/12 text-lg text-gray-600">Side Projects</Typography>
         <Wrapper className='flex flex-col ml-2 px-4 w-8/12'>
           <>
             <Wrapper className='flex flex-row justify-end z-0'>
-              <Button onClick={() => setIsOpen(true)} leftIcon={<PlusIcon className="h-5" />} className="w-fit" title="Add work experience" />
+              <Button onClick={() => setIsOpen(true)} leftIcon={<PlusIcon className="h-5" />} className="w-fit" title="Add Projects" />
             </Wrapper>
             {workExperiences.map((exp) => (
               <Wrapper key={exp}>
@@ -26,12 +26,12 @@ export const WorkExperience = () => {
                       <>
                         <Wrapper className="flex flex-row justify-between">
                           <>
-                            <Typography variant="h1" className="text-xl">Lead FrontEnd Developer</Typography>
+                            <Typography variant="h1" className="text-xl">Resume Builder</Typography>
                             <PencilAltIcon className="h-5 cursor-pointer text-gray-500" />
                           </>
                         </Wrapper>
-                        <Typography variant="h4" className="text-md text-gray-300">FROST</Typography>
-                        <Typography variant="h5" className="text-md text-gray-300">Apr 2021 to Present</Typography>
+                        <Typography variant="h4" className="text-md text-gray-300">Frontend Developer</Typography>
+                        <Typography variant="h5" className="text-md text-gray-300">Tech Stack ReactJs React Native</Typography>
                         <Typography variant="p">
                           FROST is an ed-tech startup that provides recorded as well as live classes to engineering students who want to appear GATE exam and other engineering-related entrance tests for Engineering jobs.
                         </Typography>
