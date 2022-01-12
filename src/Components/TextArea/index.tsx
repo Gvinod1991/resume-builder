@@ -1,10 +1,11 @@
 interface TextAreaProps {
   textAreaValue: string,
-  textAreLabel: string,
+  textAreLabel?: string,
   placeholder?: string,
+  rows?: number,
   handleChange: () => void
 }
-export const TextArea = ({ textAreaValue, textAreLabel, placeholder, handleChange }: TextAreaProps) => {
+export const TextArea = ({ textAreaValue, textAreLabel, placeholder, rows, handleChange }: TextAreaProps) => {
   return (
     <div className="flex flex-col p-1">
       <label>{textAreLabel}</label>
@@ -13,6 +14,7 @@ export const TextArea = ({ textAreaValue, textAreLabel, placeholder, handleChang
         onChange={handleChange}
         value={textAreaValue}
         placeholder={placeholder}
+        rows={rows ? rows : 3}
       />
     </div>
   )
