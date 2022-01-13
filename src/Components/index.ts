@@ -12,3 +12,4 @@ export { Divider } from './Divider';
 export { TagsInput } from './TagsInput';
 export { Modal } from './Modal';
 export { CustomDatePicker } from './DatePicker';
+export { CheckBox } from './CheckBox';
