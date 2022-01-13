@@ -35,25 +35,22 @@ export const Education = () => {
             <Divider className="border-8 border-white" />
           </>
         </Wrapper>
-        <Modal title="Add Work Experience" className="w-6/12" open={isOpen} onClose={() => setIsOpen(false)} >
+        <Modal title="Education" className="w-6/12" open={isOpen} onClose={() => setIsOpen(false)} >
           <>
             <Wrapper className='p-2'>
-              <Input inputLabel='Title' placeholder="Ex: FrontEnd Engineer" />
+              <Input inputLabel='College/University' placeholder="Ex: VSSUT,Burla,Sambalpur,Odisha,India" />
             </Wrapper>
             <Wrapper className='p-2'>
-              <Input inputLabel='Company Name' placeholder="Ex: Infosys" />
+              <Input inputLabel='Degree' placeholder="Ex:Bachelor in Engineering" />
             </Wrapper>
             <Wrapper className='p-2'>
-              <Input inputLabel='Location' placeholder="Ex: Bengaluru,India" />
+              <Input inputLabel='Field of study' placeholder="Ex:Information Technology" />
             </Wrapper>
             <Wrapper className='p-2'>
               <CustomDatePicker pickerLabel="Stat Date" />
             </Wrapper>
             <Wrapper className='p-2'>
               <CustomDatePicker pickerLabel="End Date" />
-            </Wrapper>
-            <Wrapper className='p-2'>
-              <TextArea textAreaValue='' textAreLabel='Description' handleChange={() => { }} />
             </Wrapper>
           </>
         </Modal>

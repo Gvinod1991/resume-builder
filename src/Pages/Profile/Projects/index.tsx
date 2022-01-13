@@ -1,6 +1,6 @@
 import {
   Card, Wrapper, Typography,
-  Divider, Button, Input, Modal, CustomDatePicker, TextArea
+  Divider, Button, Input, Modal, TagsInput, TextArea
 } from "../../../Components";
 import { PlusIcon, } from "@heroicons/react/solid";
 import { PencilAltIcon } from '@heroicons/react/outline';
@@ -9,6 +9,9 @@ import { useState } from "react";
 export const Projects = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const workExperiences = [1, 2, 3];
+  const selectedSkills = () => {
+
+  }
   return (
     <Wrapper className="flex flex-row w-full">
       <>
@@ -44,25 +47,19 @@ export const Projects = () => {
             ))}
           </>
         </Wrapper>
-        <Modal title="Add Work Experience" className="w-6/12" open={isOpen} onClose={() => setIsOpen(false)} >
+        <Modal title="Project Details" className="w-6/12" open={isOpen} onClose={() => setIsOpen(false)} >
           <>
             <Wrapper className='p-2'>
-              <Input inputLabel='Title' placeholder="Ex: FrontEnd Engineer" />
+              <Input inputLabel='Title' placeholder="" />
             </Wrapper>
             <Wrapper className='p-2'>
-              <Input inputLabel='Company Name' placeholder="Ex: Infosys" />
-            </Wrapper>
-            <Wrapper className='p-2'>
-              <Input inputLabel='Location' placeholder="Ex: Bengaluru,India" />
-            </Wrapper>
-            <Wrapper className='p-2'>
-              <CustomDatePicker pickerLabel="Stat Date" />
-            </Wrapper>
-            <Wrapper className='p-2'>
-              <CustomDatePicker pickerLabel="End Date" />
+              <Input inputLabel='Role in the project' placeholder="Ex:Frontend Developer" />
             </Wrapper>
             <Wrapper className='p-2'>
               <TextArea textAreaValue='' textAreLabel='Description' handleChange={() => { }} />
+            </Wrapper>
+            <Wrapper className='flex flex-col w-full'>
+              <TagsInput tagLabel="Type and hit enter key to add Technology used" selectedTags={selectedSkills} />
             </Wrapper>
           </>
         </Modal>
