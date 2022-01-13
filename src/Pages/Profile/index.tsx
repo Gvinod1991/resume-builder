@@ -1,5 +1,5 @@
-import React from 'react';
 import { Tabs, TabPane } from '../../Components';
+import { Preview } from './Preview';
 import { About } from './About';
 import { Skills } from './Skills';
 import { WorkExperience } from './WorkExperience';
@@ -13,9 +13,7 @@ export default function Profile() {
     <Tabs className="sm:block sm:ml-6">
       <>
         <TabPane tab={"OverView"} key={1}>
-          <Card>
-            Overview
-          </Card>
+          <Preview />
         </TabPane>
         <TabPane tab={"About"} key={2}>
           <Card>
