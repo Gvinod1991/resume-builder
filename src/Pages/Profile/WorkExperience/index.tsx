@@ -1,6 +1,7 @@
 import {
   Card, Wrapper, Typography,
-  Divider, Button, Input, Modal, CustomDatePicker, TextArea
+  Divider, Button, Input, Modal, CustomDatePicker,
+  TextArea, CheckBox
 } from "../../../Components";
 import { PlusIcon, } from "@heroicons/react/solid";
 import { PencilAltIcon } from '@heroicons/react/outline';
@@ -8,6 +9,7 @@ import { useState } from "react";
 
 export const WorkExperience = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isChecked, setIsChecked] = useState<boolean>(false);
   const workExperiences = [1, 2, 3];
   return (
     <Wrapper className="flex flex-row w-full">
@@ -56,11 +58,16 @@ export const WorkExperience = () => {
               <Input inputLabel='Location' placeholder="Ex: Bengaluru,India" />
             </Wrapper>
             <Wrapper className='p-2'>
-              <CustomDatePicker pickerLabel="Stat Date" />
+              <>
+                <CustomDatePicker pickerLabel="Stat Date" />
+                <CheckBox onChange={() => setIsChecked(!isChecked)} inputLabel="Currently works here" />
+              </>
             </Wrapper>
-            <Wrapper className='p-2'>
-              <CustomDatePicker pickerLabel="End Date" />
-            </Wrapper>
+            {!isChecked &&
+              <Wrapper className='p-2'>
+                <CustomDatePicker pickerLabel="End Date" />
+              </Wrapper>
+            }
             <Wrapper className='p-2'>
               <TextArea textAreaValue='' textAreLabel='Description' handleChange={() => { }} />
             </Wrapper>
