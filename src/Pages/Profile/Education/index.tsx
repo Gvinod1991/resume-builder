@@ -1,6 +1,6 @@
 import {
   Card, Wrapper, Typography,
-  Divider, Button, Input, Modal, CustomDatePicker, TextArea
+  Divider, Button, Input, Modal, CustomDatePicker
 } from "../../../Components";
 import { PlusIcon } from "@heroicons/react/solid";
 import { PencilAltIcon } from '@heroicons/react/outline'
