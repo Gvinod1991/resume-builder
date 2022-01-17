@@ -12,7 +12,7 @@ export default function Profile() {
   return (
     <Tabs className="sm:block sm:ml-6">
       <>
-        <TabPane tab={"OverView"} key={1}>
+        <TabPane tab={"Overview"} key={1}>
           <Preview />
         </TabPane>
         <TabPane tab={"About"} key={2}>
