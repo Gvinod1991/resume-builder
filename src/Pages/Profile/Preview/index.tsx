@@ -34,18 +34,25 @@ export const Preview = () => {
       </Wrapper>
       <div id="print-section">
         <Card className='rounded-sm border' >
-          <Wrapper className='flex flex-row justify-between w-full'>
+          <Wrapper className='flex flex-row justify-between w-full flex-wrap'>
             <>
-              <Wrapper className='flex flex-row'>
+              <Wrapper className='flex flex-col'>
                 <>
-                  <img className="object-cover h-20 rounded-full mt-3" src="https://photos.angel.co/users/6513194-medium_jpg?1564405222" alt="" />
-                  <Wrapper className='flex-column'>
+                  <Wrapper className='flex flex-row'>
                     <>
-                      <Typography variant='h2' className="text-2xl text-indigo-500">Vinod Godti</Typography>
-                      <Typography variant='h2' className="text-xl text-gray-500">Lead Frontend Developer</Typography>
-                      <Typography variant='p' className="text-xl text-gray-500">5 Years of experience</Typography>
+                      <img className="object-cover h-20 rounded-full mt-3" src="https://photos.angel.co/users/6513194-medium_jpg?1564405222" alt="" />
+                      <Wrapper className='flex-column'>
+                        <>
+                          <Typography variant='h2' className="text-2xl text-indigo-500">Vinod Godti</Typography>
+                          <Typography variant='h2' className="text-xl text-gray-500">Lead Frontend Developer</Typography>
+                          <Typography variant='p' className="text-xl text-gray-500">6 Years of experience</Typography>
+                        </>
+                      </Wrapper>
                     </>
                   </Wrapper>
+                  <Typography variant="h1" className="text-gray-600">
+                    Senior Frontend developer with 6+ years of experience in web & mobile app development using React Js and React Native.
+                  </Typography>
                 </>
               </Wrapper>
               <>
@@ -77,14 +84,9 @@ export const Preview = () => {
             </>
           </Wrapper>
         </Card>
-        <Wrapper className='flex gap-4 p-0' >
+        <Wrapper className='flex flex-wrap gap-4 p-0' >
           <>
-            <div className='w-9/12'>
-              <Card className='mt-2 border rounded-sm' title="Resume Highlights" titleClassName='text-indigo-500'>
-                <Typography variant="h1" className="text-gray-600">
-                  Senior Frontend developer with 6+ years of experience in web & mobile app development using React Js and React Native.
-                </Typography>
-              </Card>
+            <div className='w-12/12 sm:lg:w-8/12'>
               <Card className='mt-2 border rounded-sm' title="Experience" titleClassName='text-indigo-500'>
                 <>
                   <Wrapper>
@@ -251,7 +253,7 @@ export const Preview = () => {
                 </>
               </Card>
             </div>
-            <div className='w-3/12'>
+            <div className='w-12/12 lg:w-3/12'>
               <Card className='mt-2 border rounded-sm' title="Skills" titleClassName='text-indigo-500'>
                 <div className='flex gap-2 flex-wrap'>
                   <Pill title='React Js' />
