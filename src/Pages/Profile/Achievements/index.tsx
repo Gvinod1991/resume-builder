@@ -1,6 +1,6 @@
 import {
   TextArea,
-  Wrapper, Typography,
+  Wrapper, Typography, Button
 } from '../../../Components';
 
 export const Achievements = () => {
@@ -15,8 +15,10 @@ export const Achievements = () => {
                 rows={8}
                 placeholder='Your Achievements' handleChange={() => { }} />
             </Wrapper>
-            <Wrapper className='w-2/12'></Wrapper>
           </>
+        </Wrapper>
+        <Wrapper className='flex justify-end'>
+          <Button title='Save' className='w-fit'></Button>
         </Wrapper>
       </>
     </Wrapper>

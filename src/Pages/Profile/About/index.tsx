@@ -61,6 +61,9 @@ export const About = () => {
                 <Wrapper className='p-2'>
                   <TextArea textAreaValue='' textAreLabel='Professional Intro' handleChange={() => { }} />
                 </Wrapper>
+                <Wrapper className='flex justify-end'>
+                  <Button title='Save' className='w-fit'></Button>
+                </Wrapper>
               </>
             </Wrapper>
             <Wrapper className='w-2/12'></Wrapper>
@@ -100,6 +103,9 @@ export const About = () => {
                 </Wrapper>
                 <Wrapper className='p-2'>
                   <Input inputLabel='Twitter' placeholder='Twitter' />
+                </Wrapper>
+                <Wrapper className='flex justify-end'>
+                  <Button title='Save' className='w-fit'></Button>
                 </Wrapper>
               </>
             </Wrapper>
