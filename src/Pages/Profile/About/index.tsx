@@ -31,10 +31,10 @@ export const About = () => {
   return (
     <Wrapper className="flex flex-col w-full">
       <>
-        <Wrapper className="flex flex-row">
+        <Wrapper className="flex flex-row flex-wrap sm:flex-nowrap">
           <>
-            <Typography variant='h1' className="w-3/12 text-lg text-gray-500">About your self</Typography>
-            <Wrapper className='flex flex-col ml-2 px-4 w-10/12'>
+            <Typography variant='h1' className="w-12/12 sm:w-3/12 text-lg text-gray-500">About your self</Typography>
+            <Wrapper className='flex flex-col ml-2 px-4 w-12/12 sm:w-10/12'>
               <>
                 <Wrapper className='p-2'>
                   <>
@@ -66,14 +66,14 @@ export const About = () => {
                 </Wrapper>
               </>
             </Wrapper>
-            <Wrapper className='w-2/12'></Wrapper>
+            <Wrapper className='w-12/12 sm:w-2/12 '></Wrapper>
           </>
         </Wrapper>
         <Divider />
-        <Wrapper className='flex flex-row'>
+        <Wrapper className='flex flex-row flex-wrap sm:flex-nowrap'>
           <>
-            <Typography variant='h1' className="w-3/12 text-lg text-gray-500">Contact Details</Typography>
-            <Wrapper className='flex flex-col ml-2 px-4 w-10/12'>
+            <Typography variant='h1' className="w-12/12 sm:w-3/12 text-lg text-gray-500">Contact Details</Typography>
+            <Wrapper className='flex flex-col ml-2 px-4 w-12/12 sm:w-10/12'>
               <>
                 <Wrapper className='p-2'>
                   <Input
@@ -109,7 +109,7 @@ export const About = () => {
                 </Wrapper>
               </>
             </Wrapper>
-            <Wrapper className='w-2/12'></Wrapper>
+            <Wrapper className='w-12/12 sm:w-2/12'></Wrapper>
           </>
         </Wrapper>
       </>

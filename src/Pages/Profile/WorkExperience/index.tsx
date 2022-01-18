@@ -12,10 +12,10 @@ export const WorkExperience = () => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const workExperiences = [1, 2, 3];
   return (
-    <Wrapper className="flex flex-row w-full">
+    <Wrapper className="flex flex-row flex-wrap sm:flex-nowrap">
       <>
-        <Typography variant="h2" className="w-3/12 text-lg text-gray-600">Your work experience</Typography>
-        <Wrapper className='flex flex-col ml-2 px-4 w-8/12'>
+        <Typography variant="h2" className="w-12/12 sm:w-3/12 text-lg text-gray-600">Your work experience</Typography>
+        <Wrapper className='flex flex-col ml-2 px-4 w-12/12 sm:w-8/12'>
           <>
             <Wrapper className='flex flex-row justify-end z-0'>
               <Button onClick={() => setIsOpen(true)} leftIcon={<PlusIcon className="h-5" />} className="w-fit" title="Add work experience" />
@@ -46,7 +46,7 @@ export const WorkExperience = () => {
             ))}
           </>
         </Wrapper>
-        <Modal title="Add Work Experience" className="w-6/12" open={isOpen} onClose={() => setIsOpen(false)} >
+        <Modal title="Add Work Experience" className="w-10/12 sm:w-6/12" open={isOpen} onClose={() => setIsOpen(false)} >
           <>
             <Wrapper className='p-2'>
               <Input inputLabel='Title' placeholder="Ex: FrontEnd Engineer" />

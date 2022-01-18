@@ -26,7 +26,7 @@ const printResume = () => {
 export const Preview = () => {
   return (
     <>
-      <Wrapper className='flex justify-end gap-3'>
+      <Wrapper className='flex justify-end gap-6'>
         <>
           <Button leftIcon={<PrinterIcon className='h-5 mr-1' />} title='Print' onClick={() => printResume()}></Button>
           <Button leftIcon={<RefreshIcon className='h-5 mr-1' />} title='Change Template' onClick={() => printResume()}></Button>
@@ -34,7 +34,7 @@ export const Preview = () => {
       </Wrapper>
       <div id="print-section">
         <Card className='rounded-sm border' >
-          <Wrapper className='flex flex-row justify-between w-full flex-wrap'>
+          <Wrapper className='flex flex-row justify-between flex-wrap sm:flex-nowrap'>
             <>
               <Wrapper className='flex flex-col'>
                 <>
@@ -84,9 +84,9 @@ export const Preview = () => {
             </>
           </Wrapper>
         </Card>
-        <Wrapper className='flex flex-wrap gap-4 p-0' >
+        <Wrapper className='flex flex-wrap sm:flex-nowrap justify-between gap-3 p-0' >
           <>
-            <div className='w-12/12 sm:lg:w-8/12'>
+            <div className='w-12/12 lg:w-9/12'>
               <Card className='mt-2 border rounded-sm' title="Experience" titleClassName='text-indigo-500'>
                 <>
                   <Wrapper>
@@ -228,7 +228,7 @@ export const Preview = () => {
                       </Wrapper>
                     </>
                   </Wrapper>
-                  <Divider className='border-indigo-400 h mt-2' />
+                  <Divider className='border-indigo-400 mt-2' />
                   <Wrapper>
                     <>
                       <a className='text-indigo-400 active:text-indigo-800 text-2xl' href="https://keen-roentgen-c0e229.netlify.app/">Resume Builder </a>
@@ -253,7 +253,7 @@ export const Preview = () => {
                 </>
               </Card>
             </div>
-            <div className='w-12/12 lg:w-3/12'>
+            <div className='w-12/12 sm:w-3/12'>
               <Card className='mt-2 border rounded-sm' title="Skills" titleClassName='text-indigo-500'>
                 <div className='flex gap-2 flex-wrap'>
                   <Pill title='React Js' />

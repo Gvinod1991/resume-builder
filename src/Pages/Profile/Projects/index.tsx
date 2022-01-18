@@ -13,10 +13,10 @@ export const Projects = () => {
 
   }
   return (
-    <Wrapper className="flex flex-row w-full">
+    <Wrapper className="flex flex-row flex-wrap sm:flex-nowrap ">
       <>
-        <Typography variant="h2" className="w-3/12 text-lg text-gray-600">Side Projects</Typography>
-        <Wrapper className='flex flex-col ml-2 px-4 w-8/12'>
+        <Typography variant="h2" className="w-12/12 sm:w-3/12 text-lg text-gray-600">Side Projects</Typography>
+        <Wrapper className='flex flex-col ml-2 px-4 w-12/12 sm:w-8/12'>
           <>
             <Wrapper className='flex flex-row justify-end z-0'>
               <Button onClick={() => setIsOpen(true)} leftIcon={<PlusIcon className="h-5" />} className="w-fit" title="Add Projects" />
@@ -47,7 +47,7 @@ export const Projects = () => {
             ))}
           </>
         </Wrapper>
-        <Modal title="Project Details" className="w-6/12" open={isOpen} onClose={() => setIsOpen(false)} >
+        <Modal title="Project Details" className="w-10/12 sm:w-6/12" open={isOpen} onClose={() => setIsOpen(false)} >
           <>
             <Wrapper className='p-2'>
               <Input inputLabel='Title' placeholder="" />

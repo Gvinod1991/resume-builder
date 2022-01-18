@@ -9,10 +9,10 @@ import { useState } from "react";
 export const Education = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-    <Wrapper className="flex flex-row w-full">
+    <Wrapper className="flex flex-row flex-wrap sm:flex-nowrap">
       <>
-        <Typography variant="h2" className="w-3/12 text-lg text-gray-600">Education</Typography>
-        <Wrapper className='flex flex-col ml-2 px-4 w-8/12'>
+        <Typography variant="h2" className="w-12/12 sm:w-3/12 text-lg text-gray-600">Education</Typography>
+        <Wrapper className='flex flex-col ml-2 px-4 w-12/12 sm:w-8/12'>
           <>
             <Wrapper className='flex flex-row justify-end z-0'>
               <Button onClick={() => setIsOpen(true)} leftIcon={<PlusIcon className="h-5" />} className="w-fit" title="Add Education" />
@@ -35,7 +35,7 @@ export const Education = () => {
             <Divider className="border-8 border-white" />
           </>
         </Wrapper>
-        <Modal title="Education" className="w-6/12" open={isOpen} onClose={() => setIsOpen(false)} >
+        <Modal title="Education" className="w-10/12 sm:w-6/12" open={isOpen} onClose={() => setIsOpen(false)} >
           <>
             <Wrapper className='p-2'>
               <Input inputLabel='College/University' placeholder="Ex: VSSUT,Burla,Sambalpur,Odisha,India" />
