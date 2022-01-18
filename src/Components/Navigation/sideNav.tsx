@@ -2,7 +2,7 @@ import { Logo } from '../../Components';
 import { SideNavList } from './sideNavList';
 export const SideNav = () => {
   return (
-    <aside className="h-screen sticky top-0 flex">
+    <aside className="hidden sm:flex h-screen sticky top-0">
       <nav className="bg-gray-800">
         <Logo />
         <SideNavList />

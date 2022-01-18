@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { UserCircleIcon } from '@heroicons/react/solid'
+import { UserCircleIcon, MenuAlt1Icon } from '@heroicons/react/solid'
 
 export const TopNav = () => {
   const [menuOpen, setMenuOpen] = useState<Boolean>(false);
 
   return (
-    <nav className="bg-slate-100 flex-1 flex-row px-4">
-      <div className="relative flex items-center justify-end h-16">
+    <nav className="bg-slate-100">
+
+      <div className="relative flex  justify-between sm:justify-end h-16">
+        <MenuAlt1Icon className="h-5 mt-5 sm:hidden" />
         <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-          <div className="ml-3 relative">
+          <div className="ml-3">
             <button onClick={() => setMenuOpen(!menuOpen)} type="button" className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
               <span className="sr-only">Open user menu</span>
               <UserCircleIcon className="h-8 w-8 rounded-full" />
