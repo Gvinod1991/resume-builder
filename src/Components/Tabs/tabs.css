@@ -1,5 +1,14 @@
 @tailwind components;
 @layer components {
+  .rc-tabs{
+    @apply border-0;
+  }
+ .custom-tab-bar > .rc-tabs-nav {
+    @apply max-w-sm sm:max-w-full mb-2;
+  }
+  .custom-tab-bar > .rc-tabs-nav > .rc-tabs-nav-wrap{
+    @apply overflow-hidden whitespace-nowrap;
+  }
   .custom-tab-bar > .rc-tabs-nav > .rc-tabs-nav-wrap > .rc-tabs-nav-list {
     @apply flex border-b m-0 border-indigo-300 cursor-pointer;
   }
