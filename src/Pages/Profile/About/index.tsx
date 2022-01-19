@@ -42,7 +42,7 @@ export const About = () => {
                     <Wrapper className='flex flex-row flex-auto'>
                       <>
                         <img className="object-cover h-20 rounded-full" src="https://photos.angel.co/users/6513194-medium_jpg?1564405222" alt="" />
-                        <Button title='Change profile picture' className="m-5 h-10 align-middle"></Button>
+                        <Button title='Change' className="m-5 h-10 align-middle"></Button>
                       </>
                     </Wrapper>
                   </>

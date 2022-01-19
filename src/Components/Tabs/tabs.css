@@ -3,11 +3,31 @@
   .rc-tabs{
     @apply border-0 text-base;
   }
-  .rc-tabs-nav-more{
+  .custom-tab-bar > .rc-tabs-nav> .rc-tabs-nav-operations > .rc-tabs-nav-more{
     border:none;
   }
  .custom-tab-bar > .rc-tabs-nav {
     @apply max-w-sm sm:max-w-full mb-2;
+  }
+  .custom-tab-bar > .rc-tabs-nav >.rc-tabs-nav-wrap-ping-left::before{
+    content:'';
+    border:0;
+    margin-top:1rem;
+    width: 0; 
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right:10px solid black; 
+  }
+  .custom-tab-bar > .rc-tabs-nav >.rc-tabs-nav-wrap-ping-right::after{
+    content:'';
+    border:0;
+    margin-top:1rem;
+    width: 0; 
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left:10px solid black;
   }
   .custom-tab-bar > .rc-tabs-nav > .rc-tabs-nav-wrap{
     @apply overflow-hidden whitespace-nowrap;
