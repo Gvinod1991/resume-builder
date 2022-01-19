@@ -5,7 +5,7 @@ import { SideBarProps } from '../../Layout/index';
 interface RouteWithLayoutProps {
   path: string,
   Component: React.FunctionComponent,
-  Layout: React.FunctionComponent<SideBarProps>
+  Layout?: React.FunctionComponent<SideBarProps>
 }
 
 export const RouteWithLayout = ({ path, Component, Layout, ...rest }: RouteWithLayoutProps) => {
@@ -13,9 +13,11 @@ export const RouteWithLayout = ({ path, Component, Layout, ...rest }: RouteWithL
     <Routes>
       <Route path={path}
         element={
-          <Layout>
+          Layout ? <Layout>
             <Component />
           </Layout>
+            :
+            <Component />
         }
         {...rest}
       />
