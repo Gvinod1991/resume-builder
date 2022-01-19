@@ -34,7 +34,7 @@ export const Preview = () => {
       </Wrapper>
       <div id="print-section">
         <Card className='rounded-sm border' >
-          <Wrapper className='flex flex-row justify-between flex-wrap sm:flex-nowrap'>
+          <Wrapper className='flex flex-row justify-between flex-wrap sm:flex-nowrap print:flex-nowrap'>
             <>
               <Wrapper className='flex flex-col'>
                 <>
@@ -84,7 +84,7 @@ export const Preview = () => {
             </>
           </Wrapper>
         </Card>
-        <Wrapper className='flex flex-wrap sm:flex-nowrap justify-between gap-3 p-0' >
+        <Wrapper className='flex flex-wrap sm:flex-nowrap justify-between gap-3 p-0 print:flex-nowrap' >
           <>
             <div className='w-12/12 lg:w-9/12'>
               <Card className='mt-2 border rounded-sm' title="Experience" titleClassName='text-indigo-500'>
