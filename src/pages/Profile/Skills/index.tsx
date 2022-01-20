@@ -1,4 +1,4 @@
-import { TagsInput, Wrapper, Typography, Button } from "../../../Components";
+import { TagsInput, Wrapper, Typography, Button } from "../../../components";
 
 export const Skills = () => {
   const selectedTags = (tags: Array<string>) => {

@@ -2,7 +2,7 @@ import {
   Card, Wrapper,
   Typography,
   Button, Pill, Divider
-} from '../../../Components';
+} from '../../../components';
 import {
   GlobeAltIcon, PhoneIcon, MailIcon,
   LocationMarkerIcon, PrinterIcon, RefreshIcon

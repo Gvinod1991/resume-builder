@@ -1,10 +1,10 @@
 import React from 'react';
-import { AppRoutes } from "./Routes";
+import { AppRoutes } from "./routes";
 
 function App() {
   return (
     <React.Fragment>
-      <AppRoutes/>
+      <AppRoutes />
     </React.Fragment>
   );
 }

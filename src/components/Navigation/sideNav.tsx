@@ -1,4 +1,4 @@
-import { Logo } from '../../Components';
+import { Logo } from '..';
 import { SideNavList } from './sideNavList';
 export const SideNav = () => {
   return (

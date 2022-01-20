@@ -1,7 +1,7 @@
 import {
   Input, Button, TextArea,
   Select, Wrapper, Typography, Divider
-} from '../../../Components';
+} from '../../../components';
 
 export const About = () => {
   const options = [{

@@ -1,7 +1,7 @@
 import {
   Card, Wrapper, Typography,
   Divider, Button, Input, Modal, CustomDatePicker
-} from "../../../Components";
+} from "../../../components";
 import { PlusIcon } from "@heroicons/react/solid";
 import { PencilAltIcon } from '@heroicons/react/outline'
 import { useState } from "react";

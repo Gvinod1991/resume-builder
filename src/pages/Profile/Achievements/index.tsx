@@ -1,7 +1,7 @@
 import {
   TextArea,
   Wrapper, Typography, Button
-} from '../../../Components';
+} from '../../../components';
 
 export const Achievements = () => {
   return (

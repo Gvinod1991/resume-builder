@@ -1,4 +1,4 @@
-import { Tabs, TabPane } from '../../Components';
+import { Tabs, TabPane } from '../../components';
 import { Preview } from './Preview';
 import { About } from './About';
 import { Skills } from './Skills';
@@ -6,7 +6,7 @@ import { WorkExperience } from './WorkExperience';
 import { Education } from './Education';
 import { Projects } from './Projects';
 import { Achievements } from './Achievements';
-import { Card } from '../../Components';
+import { Card } from '../../components';
 
 export default function Profile() {
   return (

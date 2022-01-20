@@ -1,9 +1,9 @@
 import { BrowserRouter } from "react-router-dom";
-import { Layout } from '../Layout';
-import { RouteWithLayout } from "../Components/RouteWithLayout";
-import Profile from "../Pages/Profile";
-import Resume from "../Pages/Resume";
-import Login from "../Pages/Login";
+import { Layout } from '../layout';
+import { RouteWithLayout } from "../components/RouteWithLayout";
+import Profile from "../pages/Profile";
+import Resume from "../pages/Resume";
+import Login from "../pages/Login";
 
 export const AppRoutes = () => {
   return (
