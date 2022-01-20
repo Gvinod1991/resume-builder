@@ -1,6 +1,6 @@
 import { Card, Wrapper, Typography, Button } from '../../components';
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth } from '../../Utils/firebase';
+import { auth } from '../../utils/firebase';
 
 export default function Login() {
   const googleLogin = () => {
@@ -15,14 +15,6 @@ export default function Login() {
         console.log(user, token)
       }).catch((error) => {
         console.log(error)
-        // Handle Errors here.
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        // // The email of the user's account used.
-        // const email = error.email;
-        // // The AuthCredential type that was used.
-        // const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
       });
   }
   return (
