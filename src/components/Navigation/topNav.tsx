@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { UserCircleIcon, MenuAlt1Icon } from '@heroicons/react/solid'
+import { UserCircleIcon, MenuAlt1Icon } from '@heroicons/react/solid';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../utils/firebase';
 
 export const TopNav = () => {
   const [menuOpen, setMenuOpen] = useState<Boolean>(false);
@@ -35,7 +37,7 @@ export const TopNav = () => {
             {menuOpen ?
               <div className="origin-top-right absolute z-10 right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button">
                 <Link to="/settings" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" id="user-menu-item-1">Settings</Link>
-                <Link to="/sign-out" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" id="user-menu-item-2">Sign out</Link>
+                <button onClick={() => signOut(auth)} className="block px-4 py-2 text-sm text-gray-700 focus:outline-none" role="menuitem" id="user-menu-item-2">Sign out</button>
               </div>
               : null
             }
