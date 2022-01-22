@@ -14,3 +14,4 @@ export { Modal } from './Modal';
 export { CustomDatePicker } from './DatePicker';
 export { CheckBox } from './CheckBox';
 export { Pill } from './Pill';
+export { Loader } from './Loader';
