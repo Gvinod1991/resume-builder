@@ -3,6 +3,7 @@ import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { SideBarProps } from '../../layout/index';
 import { auth } from '../../utils/firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
+import { Loader } from '..';
 
 
 interface RouteWithLayoutProps {
@@ -14,8 +15,7 @@ function RequireAuth({ children }: { children: JSX.Element }) {
   let location = useLocation();
   const [user, loading] = useAuthState(auth);
   if (loading) {
-    //Trigger loading here TODO
-    return <></>
+    return <Loader />
   }
   if (!user) {
     return <Navigate to="/login" state={{ from: location }} replace />;

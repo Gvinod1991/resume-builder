@@ -5,6 +5,7 @@ import { LoginRequest } from '../../store/actions';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from '../../utils/firebase';
+import { Loader } from '../../components';
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -14,13 +15,9 @@ export default function Login() {
   const [user, loading] = useAuthState(auth);
 
   useEffect(() => {
-    if (loading) {
-      // maybe trigger a loading screen
-      return;
-    }
     if (user) navigate(from, { replace: true });
-  }, [user, loading, from, navigate]);
-
+  }, [user, from, navigate]);
+  if (loading) return <Loader />;
   return (
     <Card className={`fixed bg-gray-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-fit`}>
       <>
