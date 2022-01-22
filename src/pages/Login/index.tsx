@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Card, Wrapper, Typography, Button } from '../../components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { LoginRequest } from '../../store/actions';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -11,7 +11,7 @@ export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
 
   useEffect(() => {
     if (loading) {
@@ -19,7 +19,7 @@ export default function Login() {
       return;
     }
     if (user) navigate(from, { replace: true });
-  }, [user, loading]);
+  }, [user, loading, from, navigate]);
 
   return (
     <Card className={`fixed bg-gray-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-fit`}>

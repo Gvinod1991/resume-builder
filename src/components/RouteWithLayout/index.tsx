@@ -12,7 +12,11 @@ interface RouteWithLayoutProps {
 }
 function RequireAuth({ children }: { children: JSX.Element }) {
   let location = useLocation();
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
+  if (loading) {
+    //Trigger loading here TODO
+    return <></>
+  }
   if (!user) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
