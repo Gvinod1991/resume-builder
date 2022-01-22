@@ -2,7 +2,6 @@ import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILED } from '../types';
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from '../../utils/firebase';
 import { AppThunk } from '../rootReducer';
-import { Notify } from '../../utils/toast';
 
 const provider = new GoogleAuthProvider();
 export const LoginRequest = (): AppThunk => (dispatch) => {
@@ -17,7 +16,6 @@ export const LoginRequest = (): AppThunk => (dispatch) => {
         window.localStorage.setItem('firebaseToken', token);
       }
       const user = result.user;
-      Notify({ title: 'Login successful!' })
       dispatch({
         type: LOGIN_SUCCESS,
         payload: user
