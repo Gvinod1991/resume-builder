@@ -3,9 +3,27 @@ import 'react-toastify/dist/ReactToastify.css';
 
 interface toastProps {
   title: string,
+  type?: string
 }
-export const Notify = ({ title }: toastProps) => {
-  return toast.success(title, {
-    position: toast.POSITION.TOP_CENTER
-  });
+toast.configure();
+
+export const toastTypes = toast.TYPE;
+
+export const Notify = ({ title, type }: toastProps) => {
+  if (type === toast.TYPE.SUCCESS)
+    return toast.success(title, {
+      position: toast.POSITION.TOP_RIGHT
+    });
+  if (type === toast.TYPE.WARNING)
+    return toast.warning(title, {
+      position: toast.POSITION.TOP_RIGHT
+    });
+  if (type === toast.TYPE.INFO)
+    return toast.info(title, {
+      position: toast.POSITION.TOP_RIGHT
+    });
+  if (type === toast.TYPE.ERROR)
+    return toast.error(title, {
+      position: toast.POSITION.TOP_RIGHT
+    });
 }
