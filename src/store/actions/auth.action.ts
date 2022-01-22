@@ -5,7 +5,7 @@ import { AppThunk } from '../rootReducer';
 import { Notify } from '../../utils/toast';
 
 const provider = new GoogleAuthProvider();
-export const LoginRequest = (navigate: any): AppThunk => (dispatch) => {
+export const LoginRequest = (): AppThunk => (dispatch) => {
   dispatch({
     type: LOGIN_REQUEST
   })
@@ -22,7 +22,6 @@ export const LoginRequest = (navigate: any): AppThunk => (dispatch) => {
         type: LOGIN_SUCCESS,
         payload: user
       })
-      navigate('/');
     }).catch((error) => {
       dispatch({
         type: LOGIN_FAILED,
