@@ -1,5 +1,4 @@
 import { BrowserRouter } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { Layout } from '../layout';
 import { RouteWithLayout, PrivateRouteWithLayout } from "../components/RouteWithLayout";
 import Profile from "../pages/Profile";
