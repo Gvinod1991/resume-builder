@@ -23,10 +23,10 @@ export default function Login() {
       <>
         <Typography variant="h2" className="text-xl text-indigo-500" >Login Here</Typography>
         <Wrapper className="flex flex-row justify-end">
-          <Button onClick={() => dispatch(LoginRequest())} className="m-1" title="Login with google"></Button>
+          <Button onClick={() => dispatch(LoginRequest('google'))} className="m-1" title="Login with google"></Button>
         </Wrapper>
         <Wrapper className="flex flex-row justify-end">
-          <Button onClick={() => { }} className="m-1" title="Login with Github"></Button>
+          <Button onClick={() => dispatch(LoginRequest('github'))} className="m-1" title="Login with Github"></Button>
         </Wrapper>
       </>
     </Card>
