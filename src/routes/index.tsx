@@ -1,17 +1,23 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
 import { Layout } from '../layout';
-import { RouteWithLayout, PrivateRouteWithLayout } from "../components/RouteWithLayout";
-import Profile from "../pages/Profile";
-import Resume from "../pages/Resume";
-import Login from "../pages/Login";
+import {
+  RouteWithLayout,
+  PrivateRouteWithLayout,
+} from '../components/RouteWithLayout';
+import Profile from '../pages/Profile';
+import Resume from '../pages/Resume';
+import Login from '../pages/Login';
 
 export const AppRoutes = () => {
-
   return (
     <BrowserRouter>
-      <PrivateRouteWithLayout path="/" Component={Profile} Layout={Layout} />
-      <PrivateRouteWithLayout path="/resume" Component={Resume} Layout={Layout} />
-      <RouteWithLayout path="/login" Component={Login} />
+      <PrivateRouteWithLayout path='/' Component={Profile} Layout={Layout} />
+      <PrivateRouteWithLayout
+        path='/resume'
+        Component={Resume}
+        Layout={Layout}
+      />
+      <RouteWithLayout path='/login' Component={Login} />
     </BrowserRouter>
-  )
-}
+  );
+};

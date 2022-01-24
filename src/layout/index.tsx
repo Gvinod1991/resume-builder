@@ -2,19 +2,17 @@ import React, { ReactChild, ReactChildren } from 'react';
 import { SideNav, TopNav } from '../components';
 
 export interface SideBarProps {
-  children: ReactChild | ReactChildren
+  children: ReactChild | ReactChildren;
 }
 
 export const Layout: React.VFC<SideBarProps> = ({ children }: SideBarProps) => {
   return (
-    <div className="flex">
+    <div className='flex'>
       <SideNav />
       <main className='flex-1'>
         <TopNav />
-        <div className='p-2'>
-          {children}
-        </div>
+        <div className='p-2'>{children}</div>
       </main>
     </div>
-  )
-}
+  );
+};

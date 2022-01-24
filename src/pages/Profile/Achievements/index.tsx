@@ -1,19 +1,24 @@
-import {
-  TextArea,
-  Wrapper, Typography, Button
-} from '../../../components';
+import { TextArea, Wrapper, Typography, Button } from '../../../components';
 
 export const Achievements = () => {
   return (
-    <Wrapper className="flex flex-col w-full">
+    <Wrapper className='flex flex-col w-full'>
       <>
-        <Wrapper className="flex flex-row flex-wrap sm:flex-nowrap">
+        <Wrapper className='flex flex-row flex-wrap sm:flex-nowrap'>
           <>
-            <Typography variant='h1' className="w-12/12 sm:w-3/12  text-lg text-gray-500">Achievements</Typography>
+            <Typography
+              variant='h1'
+              className='w-12/12 sm:w-3/12  text-lg text-gray-500'
+            >
+              Achievements
+            </Typography>
             <Wrapper className='flex flex-col ml-2 px-4 w-12/12 sm:w-8/12 '>
-              <TextArea textAreaValue=''
+              <TextArea
+                textAreaValue=''
                 rows={8}
-                placeholder='Your Achievements' handleChange={() => { }} />
+                placeholder='Your Achievements'
+                handleChange={() => {}}
+              />
             </Wrapper>
           </>
         </Wrapper>
@@ -22,5 +27,5 @@ export const Achievements = () => {
         </Wrapper>
       </>
     </Wrapper>
-  )
-}
+  );
+};

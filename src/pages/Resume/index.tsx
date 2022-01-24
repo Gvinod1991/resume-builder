@@ -5,5 +5,5 @@ export default function Resume() {
     <React.Fragment>
       <p>Resume page</p>
     </React.Fragment>
-  )
+  );
 }
