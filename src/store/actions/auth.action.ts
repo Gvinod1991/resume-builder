@@ -8,12 +8,12 @@ import { auth } from '../../utils/firebase';
 import { AppThunk } from '../rootReducer';
 import { Notify, toastTypes } from '../../utils/toast';
 
-const getProviderInstance = (providerType: string) => {
+const getProviderInstance = (providerType: string): any => {
   if (providerType === 'github') return new GithubAuthProvider();
   return new GoogleAuthProvider();
 };
 
-const provider = (providerType: string) => {
+const provider = (providerType: string): any => {
   if (providerType === 'github') return GithubAuthProvider;
   return GoogleAuthProvider;
 };

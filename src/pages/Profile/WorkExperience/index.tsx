@@ -14,7 +14,7 @@ import { PlusIcon } from '@heroicons/react/solid';
 import { PencilAltIcon } from '@heroicons/react/outline';
 import { useState } from 'react';
 
-export const WorkExperience = () => {
+export const WorkExperience = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const workExperiences = [1, 2, 3];
@@ -31,7 +31,7 @@ export const WorkExperience = () => {
           <>
             <Wrapper className='flex flex-row justify-end z-0'>
               <Button
-                onClick={() => setIsOpen(true)}
+                onClick={(): void => setIsOpen(true)}
                 leftIcon={<PlusIcon className='h-5' />}
                 className='w-fit'
                 title='Add work experience'
@@ -82,7 +82,7 @@ export const WorkExperience = () => {
           title='Add Work Experience'
           className='w-10/12 sm:w-6/12'
           open={isOpen}
-          onClose={() => setIsOpen(false)}
+          onClose={(): void => setIsOpen(false)}
         >
           <>
             <Wrapper className='p-2'>
@@ -98,7 +98,7 @@ export const WorkExperience = () => {
               <>
                 <CustomDatePicker pickerLabel='Stat Date' />
                 <CheckBox
-                  onChange={() => setIsChecked(!isChecked)}
+                  onChange={(): void => setIsChecked(!isChecked)}
                   inputLabel='Currently works here'
                 />
               </>
@@ -112,7 +112,7 @@ export const WorkExperience = () => {
               <TextArea
                 textAreaValue=''
                 textAreLabel='Description'
-                handleChange={() => {}}
+                handleChange={(): void => {}}
               />
             </Wrapper>
           </>

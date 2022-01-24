@@ -6,16 +6,19 @@ interface TagsInputProps {
   tagLabel: string;
   selectedTags: (tags: Array<string>) => void;
 }
-export const TagsInput = ({ tagLabel, selectedTags }: TagsInputProps) => {
+export const TagsInput = ({
+  tagLabel,
+  selectedTags,
+}: TagsInputProps): JSX.Element => {
   const [tags, setTags] = useState<Array<string>>([]);
-  const addTags = (e: KeyboardEvent<HTMLInputElement>) => {
+  const addTags = (e: KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter' && e.currentTarget.value !== '') {
       setTags([...tags, e.currentTarget.value]);
       selectedTags([...tags, e.currentTarget.value]);
       e.currentTarget.value = '';
     }
   };
-  const removeTags = (index: Number) => {
+  const removeTags = (index: Number): void => {
     setTags([...tags.filter((tag) => tags.indexOf(tag) !== index)]);
   };
   return (
@@ -28,7 +31,7 @@ export const TagsInput = ({ tagLabel, selectedTags }: TagsInputProps) => {
           <span>{tag}</span>
           <XIcon
             className='inline h-6 w-5 text-white cursor-pointer'
-            onClick={() => removeTags(index)}
+            onClick={(): void => removeTags(index)}
           />
         </li>
       ))}

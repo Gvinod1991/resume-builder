@@ -9,7 +9,7 @@ toast.configure();
 
 export const toastTypes = toast.TYPE;
 
-export const Notify = ({ title, type }: toastProps) => {
+export const Notify = ({ title, type }: toastProps): any => {
   if (type === toast.TYPE.SUCCESS)
     return toast.success(title, {
       position: toast.POSITION.TOP_RIGHT,

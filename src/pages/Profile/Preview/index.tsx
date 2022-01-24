@@ -15,7 +15,7 @@ import {
   RefreshIcon,
 } from '@heroicons/react/outline';
 
-const printResume = () => {
+const printResume = (): void => {
   const data = document.getElementById('print-section')?.innerHTML;
   let myWindow = window.open('Resume');
   myWindow?.document.write('<html><head><title>Resume</title>');
@@ -26,13 +26,13 @@ const printResume = () => {
   myWindow?.document.write(data ? data : '');
   myWindow?.document.write('</body></html>');
   myWindow?.document.close(); // necessary for IE >= 10
-  myWindow!.onload = () => {
+  myWindow!.onload = (): void => {
     myWindow?.focus();
     myWindow?.print();
     myWindow?.close();
   };
 };
-export const Preview = () => {
+export const Preview = (): JSX.Element => {
   return (
     <>
       <Wrapper className='flex justify-end gap-6'>
@@ -40,12 +40,12 @@ export const Preview = () => {
           <Button
             leftIcon={<PrinterIcon className='h-5 mr-1' />}
             title='Print'
-            onClick={() => printResume()}
+            onClick={(): void => printResume()}
           ></Button>
           <Button
             leftIcon={<RefreshIcon className='h-5 mr-1' />}
             title='Change Template'
-            onClick={() => printResume()}
+            onClick={(): void => printResume()}
           ></Button>
         </>
       </Wrapper>

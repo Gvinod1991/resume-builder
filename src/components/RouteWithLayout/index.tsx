@@ -10,7 +10,7 @@ interface RouteWithLayoutProps {
   Component: React.FunctionComponent;
   Layout?: React.FunctionComponent<SideBarProps>;
 }
-function RequireAuth({ children }: { children: JSX.Element }) {
+function RequireAuth({ children }: { children: JSX.Element }): JSX.Element {
   let location = useLocation();
   const [user, loading] = useAuthState(auth);
   if (loading) {
@@ -26,7 +26,7 @@ export const RouteWithLayout = ({
   Component,
   Layout,
   ...rest
-}: RouteWithLayoutProps) => {
+}: RouteWithLayoutProps): JSX.Element => {
   return (
     <Routes>
       <Route
@@ -50,7 +50,7 @@ export const PrivateRouteWithLayout = ({
   Component,
   Layout,
   ...rest
-}: RouteWithLayoutProps) => {
+}: RouteWithLayoutProps): JSX.Element => {
   return (
     <Routes>
       <Route

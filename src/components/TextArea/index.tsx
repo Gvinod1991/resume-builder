@@ -11,7 +11,7 @@ export const TextArea = ({
   placeholder,
   rows,
   handleChange,
-}: TextAreaProps) => {
+}: TextAreaProps): JSX.Element => {
   return (
     <div className='flex flex-col p-1'>
       <label>{textAreLabel}</label>

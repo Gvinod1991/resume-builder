@@ -18,7 +18,7 @@ export const Modal = ({
   title,
   className,
   onClose,
-}: ModalProps) => {
+}: ModalProps): JSX.Element | null => {
   if (!open) return null;
   return createPortal(
     <>

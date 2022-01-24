@@ -10,6 +10,6 @@ export const Typography = ({
   variant,
   children,
   className,
-}: TypographyProps) => {
+}: TypographyProps): JSX.Element => {
   return React.createElement(variant, { className }, children);
 };

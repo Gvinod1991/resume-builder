@@ -8,7 +8,7 @@ import { Projects } from './Projects';
 import { Achievements } from './Achievements';
 import { Card } from '../../components';
 
-export default function Profile() {
+export default function Profile(): JSX.Element {
   return (
     <Tabs className='sm:block sm:ml-6'>
       <>

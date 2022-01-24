@@ -5,7 +5,7 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-export const TopNav = () => {
+export const TopNav = (): JSX.Element => {
   const [menuOpen, setMenuOpen] = useState<Boolean>(false);
   const [openLeftMenu, setOpenLeftMenu] = useState<Boolean>(false);
   const [user] = useAuthState(auth);
@@ -21,7 +21,7 @@ export const TopNav = () => {
     <nav className='bg-slate-100'>
       <div className='relative flex justify-between sm:justify-end h-16'>
         <MenuAlt1Icon
-          onClick={() => setOpenLeftMenu(!openLeftMenu)}
+          onClick={(): void => setOpenLeftMenu(!openLeftMenu)}
           className='h-5 mt-5 sm:hidden'
         />
         {openLeftMenu ? (
@@ -51,7 +51,7 @@ export const TopNav = () => {
         <div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
           <div className='ml-3'>
             <button
-              onClick={() => setMenuOpen(!menuOpen)}
+              onClick={(): void => setMenuOpen(!menuOpen)}
               type='button'
               className='flex text-sm rounded-full p-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-300 focus:ring-white'
               id='user-menu-button'
@@ -90,7 +90,7 @@ export const TopNav = () => {
                   Settings
                 </Link>
                 <button
-                  onClick={() => signOut(auth)}
+                  onClick={(): Promise<void> => signOut(auth)}
                   className='block px-4 py-2 text-sm text-gray-700 focus:outline-none'
                   role='menuitem'
                   id='user-menu-item-2'

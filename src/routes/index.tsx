@@ -8,7 +8,7 @@ import Profile from '../pages/Profile';
 import Resume from '../pages/Resume';
 import Login from '../pages/Login';
 
-export const AppRoutes = () => {
+export const AppRoutes = (): JSX.Element => {
   return (
     <BrowserRouter>
       <PrivateRouteWithLayout path='/' Component={Profile} Layout={Layout} />

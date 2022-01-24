@@ -5,7 +5,11 @@ interface inputProps extends InputHTMLAttributes<HTMLInputElement> {
   name?: string;
 }
 
-export const Input = ({ inputLabel, name, ...rest }: inputProps) => {
+export const Input = ({
+  inputLabel,
+  name,
+  ...rest
+}: inputProps): JSX.Element => {
   return (
     <div className='flex flex-col p-1'>
       <label>{inputLabel}</label>

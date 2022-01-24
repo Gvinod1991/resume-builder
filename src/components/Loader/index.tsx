@@ -1,4 +1,4 @@
-export const Loader = () => {
+export const Loader = (): JSX.Element => {
   return (
     <>
       <div className='fixed top-0 left-0 right-0 bottom-0 bg-gray-100 opacity-70 z-50' />

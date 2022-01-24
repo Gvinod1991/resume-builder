@@ -1,6 +1,6 @@
 import { TextArea, Wrapper, Typography, Button } from '../../../components';
 
-export const Achievements = () => {
+export const Achievements = (): JSX.Element => {
   return (
     <Wrapper className='flex flex-col w-full'>
       <>
@@ -17,7 +17,7 @@ export const Achievements = () => {
                 textAreaValue=''
                 rows={8}
                 placeholder='Your Achievements'
-                handleChange={() => {}}
+                handleChange={(): void => {}}
               />
             </Wrapper>
           </>

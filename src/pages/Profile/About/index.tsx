@@ -8,7 +8,7 @@ import {
   Divider,
 } from '../../../components';
 
-export const About = () => {
+export const About = (): JSX.Element => {
   const options = [
     {
       optionKey: '1',
@@ -76,14 +76,14 @@ export const About = () => {
                 <Wrapper className='p-2'>
                   <Select
                     label='Select Designation/Role'
-                    handleChange={() => {}}
+                    handleChange={(): void => {}}
                     options={options}
                   />
                 </Wrapper>
                 <Wrapper className='p-2'>
                   <Select
                     label='Years of Experience'
-                    handleChange={() => {}}
+                    handleChange={(): void => {}}
                     options={yearOptions}
                   />
                 </Wrapper>
@@ -91,7 +91,7 @@ export const About = () => {
                   <TextArea
                     textAreaValue=''
                     textAreLabel='Professional Intro'
-                    handleChange={() => {}}
+                    handleChange={(): void => {}}
                   />
                 </Wrapper>
                 <Wrapper className='flex justify-end'>

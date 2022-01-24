@@ -6,8 +6,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../utils/firebase';
 import { Loader } from '../../components';
+import { AppThunk } from '../../store/rootReducer';
 
-export default function Login() {
+export default function Login(): JSX.Element {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -30,14 +31,14 @@ export default function Login() {
         </Typography>
         <Wrapper className='flex flex-row justify-end'>
           <Button
-            onClick={() => dispatch(LoginRequest('google'))}
+            onClick={(): AppThunk<void> => dispatch(LoginRequest('google'))}
             className='m-1'
             title='Login with google'
           ></Button>
         </Wrapper>
         <Wrapper className='flex flex-row justify-end'>
           <Button
-            onClick={() => dispatch(LoginRequest('github'))}
+            onClick={(): AppThunk<void> => dispatch(LoginRequest('github'))}
             className='m-1'
             title='Login with Github'
           ></Button>

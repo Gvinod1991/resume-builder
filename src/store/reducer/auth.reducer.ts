@@ -13,7 +13,10 @@ const initialState: AuthState = {
   userDetails: {},
 };
 
-export const AuthReducer = (state = initialState, action: AnyAction) => {
+export const AuthReducer = (
+  state = initialState,
+  action: AnyAction
+): AuthState => {
   switch (action.type) {
   case LOGIN_REQUEST: {
     return {

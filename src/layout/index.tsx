@@ -5,7 +5,9 @@ export interface SideBarProps {
   children: ReactChild | ReactChildren;
 }
 
-export const Layout: React.VFC<SideBarProps> = ({ children }: SideBarProps) => {
+export const Layout: React.VFC<SideBarProps> = ({
+  children,
+}: SideBarProps): JSX.Element => {
   return (
     <div className='flex'>
       <SideNav />

@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { TagsInput, Wrapper, Typography, Button } from '../../../components';
 
-export const Skills = () => {
-  const selectedTags = (tags: Array<string>) => {
-    console.log(tags);
+export const Skills = (): JSX.Element => {
+  const [, setSkillList] = useState<Array<string>>([]);
+  const selectedTags = (tags: Array<string>): void => {
+    setSkillList(tags);
   };
   return (
     <>

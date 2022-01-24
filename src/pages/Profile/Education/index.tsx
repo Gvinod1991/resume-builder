@@ -12,7 +12,7 @@ import { PlusIcon } from '@heroicons/react/solid';
 import { PencilAltIcon } from '@heroicons/react/outline';
 import { useState } from 'react';
 
-export const Education = () => {
+export const Education = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <Wrapper className='flex flex-row flex-wrap sm:flex-nowrap'>
@@ -27,7 +27,7 @@ export const Education = () => {
           <>
             <Wrapper className='flex flex-row justify-end z-0'>
               <Button
-                onClick={() => setIsOpen(true)}
+                onClick={(): void => setIsOpen(true)}
                 leftIcon={<PlusIcon className='h-5' />}
                 className='w-fit'
                 title='Add Education'
@@ -63,7 +63,7 @@ export const Education = () => {
           title='Education'
           className='w-10/12 sm:w-6/12'
           open={isOpen}
-          onClose={() => setIsOpen(false)}
+          onClose={(): void => setIsOpen(false)}
         >
           <>
             <Wrapper className='p-2'>

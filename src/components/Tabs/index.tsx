@@ -4,25 +4,27 @@ import RcTabs, { TabPane } from 'rc-tabs';
 import './tabs.css';
 
 interface TabsProps {
-  children: ReactChild | ReactChildren
-  className: string,
+  children: ReactChild | ReactChildren;
+  className: string;
 }
 
 export { TabPane };
 
-export const Tabs = ({ children, className }: TabsProps) => {
+export const Tabs = ({ children, className }: TabsProps): JSX.Element => {
   const [activeKey, setActiveKey] = useState<string>('1');
-  return <RcTabs
-    className={`custom-tab-bar ${className}`}
-    direction={'ltr'}
-    moreIcon={<DotsCircleHorizontalIcon className="h-5 hidden" />}
-    activeKey={activeKey}
-    onChange={key => {
-      if (activeKey !== undefined) {
-        setActiveKey(key);
-      }
-    }}
-  >
-    {children}
-  </RcTabs>
-}
+  return (
+    <RcTabs
+      className={`custom-tab-bar ${className}`}
+      direction={'ltr'}
+      moreIcon={<DotsCircleHorizontalIcon className='h-5 hidden' />}
+      activeKey={activeKey}
+      onChange={(key): void => {
+        if (activeKey !== undefined) {
+          setActiveKey(key);
+        }
+      }}
+    >
+      {children}
+    </RcTabs>
+  );
+};

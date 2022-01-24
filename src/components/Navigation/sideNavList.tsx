@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 
-export const SideNavList = () => {
+export const SideNavList = (): JSX.Element => {
   const navList = [
     { key: 1, path: '/', navName: 'Profile' },
     { key: 2, path: '/resume', navName: 'Resume' },

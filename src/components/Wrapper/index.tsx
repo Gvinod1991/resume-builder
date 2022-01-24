@@ -5,7 +5,11 @@ interface WrapperProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactChild | ReactChildren;
 }
 
-export const Wrapper = ({ children, className, ...rest }: WrapperProps) => {
+export const Wrapper = ({
+  children,
+  className,
+  ...rest
+}: WrapperProps): JSX.Element => {
   return (
     <div className={`p-1 ${className}`} {...rest}>
       {children}
