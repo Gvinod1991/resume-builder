@@ -72,6 +72,6 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,md,html,css}": "yarn prettier:fix",
-    "*.{js,jsx,ts,tsx}": "yarn lint"
+    "*.{js,jsx,ts,tsx}": "yarn lint-and-fix"
   }
 }
