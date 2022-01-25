@@ -7,8 +7,11 @@ import {
   Typography,
   Divider,
 } from '../../../components';
+import { auth } from '../../../utils/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 export const About = (): JSX.Element => {
+  const [user] = useAuthState(auth);
   const options = [
     {
       optionKey: '1',
@@ -53,13 +56,13 @@ export const About = (): JSX.Element => {
                 <Wrapper className='p-2'>
                   <>
                     <Typography variant='h2' className='text-2xl'>
-                      Vinod Godti
+                      {user && user.displayName ? user?.displayName : ''}
                     </Typography>
                     <Wrapper className='flex flex-row flex-auto'>
                       <>
                         <img
                           className='object-cover h-20 rounded-full'
-                          src='https://photos.angel.co/users/6513194-medium_jpg?1564405222'
+                          src={user && user.photoURL ? user?.photoURL : ''}
                           alt=''
                         />
                         <Button
@@ -71,7 +74,7 @@ export const About = (): JSX.Element => {
                   </>
                 </Wrapper>
                 <Wrapper className='p-2'>
-                  <Input inputLabel='Your Location' />
+                  <Input inputLabel='Your Location' value={''} />
                 </Wrapper>
                 <Wrapper className='p-2'>
                   <Select
@@ -116,8 +119,9 @@ export const About = (): JSX.Element => {
                 <Wrapper className='p-2'>
                   <Input
                     inputLabel='Email Id'
-                    value='venkat.godti3@gmail.com'
+                    value={user && user.email ? user.email : ''}
                     disabled={true}
+                    className='cursor-not-allowed'
                   />
                 </Wrapper>
                 <Wrapper className='p-2'>
