@@ -3,11 +3,13 @@ import { InputHTMLAttributes } from 'react';
 interface inputProps extends InputHTMLAttributes<HTMLInputElement> {
   inputLabel?: string;
   name?: string;
+  className?: string;
 }
 
 export const Input = ({
   inputLabel,
   name,
+  className,
   ...rest
 }: inputProps): JSX.Element => {
   return (
@@ -16,7 +18,7 @@ export const Input = ({
       <input
         type='text'
         name={name}
-        className='w-full rounded-md shadow-sm bg-gray-100 focus:border-indigo-500 focus:bg-white focus:ring-indigo-500'
+        className={`w-full rounded-md shadow-sm bg-gray-100 focus:border-indigo-500 focus:bg-white focus:ring-indigo-500 ${className}`}
         {...rest}
       />
     </div>
