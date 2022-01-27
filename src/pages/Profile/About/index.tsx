@@ -7,11 +7,20 @@ import {
   Typography,
   Divider,
 } from '../../../components';
+import { RootState } from '../../../store/rootReducer';
+import { useEffect } from 'react';
 import { auth } from '../../../utils/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { getResumeData } from '../../../store/actions';
 
 export const About = (): JSX.Element => {
   const [user] = useAuthState(auth);
+  const dispatch = useDispatch();
+  const resumeData = useSelector<RootState>((state) => state.resume);
+  useEffect(() => {
+    dispatch(getResumeData());
+  }, [dispatch]);
   const options = [
     {
       optionKey: '1',
@@ -40,6 +49,7 @@ export const About = (): JSX.Element => {
       optionValue: '3 Years',
     },
   ];
+  const { resumeDetails }: any = resumeData;
   return (
     <Wrapper className='flex flex-col w-full'>
       <>
@@ -74,7 +84,10 @@ export const About = (): JSX.Element => {
                   </>
                 </Wrapper>
                 <Wrapper className='p-2'>
-                  <Input inputLabel='Your Location' value={''} />
+                  <Input
+                    inputLabel='Your Location'
+                    value={resumeDetails.location}
+                  />
                 </Wrapper>
                 <Wrapper className='p-2'>
                   <Select
