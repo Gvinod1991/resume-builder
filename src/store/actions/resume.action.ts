@@ -16,7 +16,6 @@ export const getResumeData = (): AppThunk => async (dispatch) => {
     const resumeRef = collection(db, 'resume');
     const resumeDocRef = doc(resumeRef, 'YorB70a3zUcPui8au4SX');
     const resumeSnap = await getDoc(resumeDocRef);
-    console.log(resumeSnap.data());
     Notify({ title: 'Success', type: toastTypes.SUCCESS });
     dispatch({
       type: GET_RESUME_DATA_SUCCESS,
