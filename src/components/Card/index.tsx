@@ -1,6 +1,6 @@
 import { ReactChild, ReactChildren } from 'react';
 
-interface CardProps {
+interface ICard {
   children: ReactChild | ReactChildren;
   className?: string;
   title?: string;
@@ -12,7 +12,7 @@ export const Card = ({
   className,
   title,
   titleClassName,
-}: CardProps): JSX.Element => {
+}: ICard): JSX.Element => {
   return (
     <div
       className={`mx-auto bg-white rounded-md shadow-sm border-gray-200 border-2 ${className}`}

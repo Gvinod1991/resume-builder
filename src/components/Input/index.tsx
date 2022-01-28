@@ -1,6 +1,6 @@
 import { InputHTMLAttributes } from 'react';
 
-interface inputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface ITextInput extends InputHTMLAttributes<HTMLInputElement> {
   inputLabel?: string;
   name?: string;
   className?: string;
@@ -11,7 +11,7 @@ export const Input = ({
   name,
   className,
   ...rest
-}: inputProps): JSX.Element => {
+}: ITextInput): JSX.Element => {
   return (
     <div className='flex flex-col p-1'>
       <label>{inputLabel}</label>

@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { XIcon } from '@heroicons/react/solid';
 import { Button, Typography } from '..';
 
-interface ModalProps {
+interface IModal {
   children: ReactChild | ReactChildren;
   open: boolean;
   title: string;
@@ -18,7 +18,7 @@ export const Modal = ({
   title,
   className,
   onClose,
-}: ModalProps): JSX.Element | null => {
+}: IModal): JSX.Element | null => {
   if (!open) return null;
   return createPortal(
     <>

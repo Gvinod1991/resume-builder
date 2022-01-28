@@ -1,6 +1,6 @@
 import { ReactChild, ReactChildren, HTMLAttributes } from 'react';
 
-interface WrapperProps extends HTMLAttributes<HTMLDivElement> {
+interface IWrapper extends HTMLAttributes<HTMLDivElement> {
   className?: string;
   children?: ReactChild | ReactChildren;
 }
@@ -9,7 +9,7 @@ export const Wrapper = ({
   children,
   className,
   ...rest
-}: WrapperProps): JSX.Element => {
+}: IWrapper): JSX.Element => {
   return (
     <div className={`p-1 ${className}`} {...rest}>
       {children}

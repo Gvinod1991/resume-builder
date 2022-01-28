@@ -2,14 +2,14 @@ import { KeyboardEvent, useState } from 'react';
 import { Input } from '../index';
 import { XIcon } from '@heroicons/react/outline';
 
-interface TagsInputProps {
+interface ITagsInput {
   tagLabel: string;
   selectedTags: (tags: Array<string>) => void;
 }
 export const TagsInput = ({
   tagLabel,
   selectedTags,
-}: TagsInputProps): JSX.Element => {
+}: ITagsInput): JSX.Element => {
   const [tags, setTags] = useState<Array<string>>([]);
   const addTags = (e: KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter' && e.currentTarget.value !== '') {

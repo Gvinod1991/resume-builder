@@ -1,4 +1,4 @@
-interface selectProps {
+interface ISelect {
   label: string;
   handleChange: () => void;
   options: Array<any>;
@@ -6,7 +6,7 @@ interface selectProps {
   optionValue?: string;
 }
 
-interface optionType {
+interface IOption {
   optionKey: string;
   optionValue: string;
 }
@@ -15,7 +15,7 @@ export const Select = ({
   label,
   handleChange,
   options,
-}: selectProps): JSX.Element => {
+}: ISelect): JSX.Element => {
   return (
     <div className='flex flex-col p-1'>
       <label>{label}</label>
@@ -24,7 +24,7 @@ export const Select = ({
         placeholder={label}
         onChange={handleChange}
       >
-        {options.map((option: optionType) => (
+        {options.map((option: IOption) => (
           <option key={option.optionKey} value={option.optionKey}>
             {option.optionValue}
           </option>

@@ -1,10 +1,10 @@
 import { InputHTMLAttributes } from 'react';
 
-interface inputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface IInput extends InputHTMLAttributes<HTMLInputElement> {
   inputLabel?: string;
 }
 
-export const CheckBox = ({ inputLabel, ...rest }: inputProps): JSX.Element => {
+export const CheckBox = ({ inputLabel, ...rest }: IInput): JSX.Element => {
   return (
     <div className='flex flex-row-reverse justify-end p-1'>
       <label className='ml-1'>{inputLabel}</label>

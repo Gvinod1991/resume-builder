@@ -1,4 +1,4 @@
-interface TextAreaProps {
+interface ITextArea {
   textAreaValue: string;
   textAreLabel?: string;
   placeholder?: string;
@@ -11,7 +11,7 @@ export const TextArea = ({
   placeholder,
   rows,
   handleChange,
-}: TextAreaProps): JSX.Element => {
+}: ITextArea): JSX.Element => {
   return (
     <div className='flex flex-col p-1'>
       <label>{textAreLabel}</label>

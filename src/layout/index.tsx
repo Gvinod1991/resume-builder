@@ -1,13 +1,13 @@
 import React, { ReactChild, ReactChildren } from 'react';
 import { SideNav, TopNav } from '../components';
 
-export interface SideBarProps {
+export interface ISideBar {
   children: ReactChild | ReactChildren;
 }
 
-export const Layout: React.VFC<SideBarProps> = ({
+export const Layout: React.VFC<ISideBar> = ({
   children,
-}: SideBarProps): JSX.Element => {
+}: ISideBar): JSX.Element => {
   return (
     <div className='flex'>
       <SideNav />

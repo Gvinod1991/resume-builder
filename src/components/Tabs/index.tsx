@@ -3,14 +3,14 @@ import { DotsCircleHorizontalIcon } from '@heroicons/react/solid';
 import RcTabs, { TabPane } from 'rc-tabs';
 import './tabs.css';
 
-interface TabsProps {
+interface ITabs {
   children: ReactChild | ReactChildren;
   className: string;
 }
 
 export { TabPane };
 
-export const Tabs = ({ children, className }: TabsProps): JSX.Element => {
+export const Tabs = ({ children, className }: ITabs): JSX.Element => {
   const [activeKey, setActiveKey] = useState<string>('1');
   return (
     <RcTabs

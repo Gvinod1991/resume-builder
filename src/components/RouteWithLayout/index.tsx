@@ -1,15 +1,16 @@
 import React from 'react';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
-import { SideBarProps } from '../../layout/index';
+import { ISideBar } from '../../layout/index';
 import { auth } from '../../utils/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Loader } from '..';
 
-interface RouteWithLayoutProps {
+interface IRouteWithLayout {
   path: string;
   Component: React.FunctionComponent;
-  Layout?: React.FunctionComponent<SideBarProps>;
+  Layout?: React.FunctionComponent<ISideBar>;
 }
+
 function RequireAuth({ children }: { children: JSX.Element }): JSX.Element {
   let location = useLocation();
   const [user, loading] = useAuthState(auth);
@@ -26,7 +27,7 @@ export const RouteWithLayout = ({
   Component,
   Layout,
   ...rest
-}: RouteWithLayoutProps): JSX.Element => {
+}: IRouteWithLayout): JSX.Element => {
   return (
     <Routes>
       <Route
@@ -50,7 +51,7 @@ export const PrivateRouteWithLayout = ({
   Component,
   Layout,
   ...rest
-}: RouteWithLayoutProps): JSX.Element => {
+}: IRouteWithLayout): JSX.Element => {
   return (
     <Routes>
       <Route

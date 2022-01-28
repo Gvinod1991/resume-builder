@@ -1,6 +1,6 @@
 import { ReactNode, ButtonHTMLAttributes } from 'react';
 
-interface ButtonType extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   title: string;
   className?: string;
   leftIcon?: ReactNode;
@@ -13,7 +13,7 @@ export const Button = ({
   className,
   leftIcon,
   rightIcon,
-}: ButtonType): JSX.Element => {
+}: IButton): JSX.Element => {
   return (
     <button
       className={`${className} bg-indigo-700 text-white p-2 rounded-md border-0 hover:bg-indigo-800 focus:outline-none`}
