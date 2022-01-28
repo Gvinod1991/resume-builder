@@ -5,12 +5,15 @@ import {
   GET_RESUME_DATA_REQUEST,
 } from '../types';
 
-interface ResumeState {
+export interface IResumeState {
   resumeLoading: Boolean;
-  resumeDetails: Object;
+  resumeDetails: {
+    location?: string;
+    jobRole?: string;
+  };
 }
 
-const initialState: ResumeState = {
+const initialState: IResumeState = {
   resumeLoading: false,
   resumeDetails: {},
 };
@@ -18,7 +21,7 @@ const initialState: ResumeState = {
 export const ResumeReducer = (
   state = initialState,
   action: AnyAction
-): ResumeState => {
+): IResumeState => {
   switch (action.type) {
   case GET_RESUME_DATA_REQUEST: {
     return {

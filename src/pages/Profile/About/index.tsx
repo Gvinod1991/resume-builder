@@ -6,6 +6,7 @@ import {
   Wrapper,
   Typography,
   Divider,
+  Loader,
 } from '../../../components';
 import { RootState } from '../../../store/rootReducer';
 import { useEffect } from 'react';
@@ -13,11 +14,14 @@ import { auth } from '../../../utils/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { getResumeData } from '../../../store/actions';
+import { IResumeState } from '../../../store/reducer/resume.reducer';
 
 export const About = (): JSX.Element => {
   const [user] = useAuthState(auth);
   const dispatch = useDispatch();
-  const resumeData = useSelector<RootState>((state) => state.resume);
+  const { resumeDetails, resumeLoading }: IResumeState = useSelector(
+    (state: RootState) => state.resume
+  );
   useEffect(() => {
     dispatch(getResumeData());
   }, [dispatch]);
@@ -49,10 +53,11 @@ export const About = (): JSX.Element => {
       optionValue: '3 Years',
     },
   ];
-  const { resumeDetails }: any = resumeData;
+  const { location } = resumeDetails;
   return (
     <Wrapper className='flex flex-col w-full'>
       <>
+        {resumeLoading && <Loader />}
         <Wrapper className='flex flex-row flex-wrap sm:flex-nowrap'>
           <>
             <Typography
@@ -84,10 +89,7 @@ export const About = (): JSX.Element => {
                   </>
                 </Wrapper>
                 <Wrapper className='p-2'>
-                  <Input
-                    inputLabel='Your Location'
-                    value={resumeDetails.location}
-                  />
+                  <Input inputLabel='Your Location' value={location} />
                 </Wrapper>
                 <Wrapper className='p-2'>
                   <Select

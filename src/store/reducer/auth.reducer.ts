@@ -1,13 +1,13 @@
 import { AnyAction } from 'redux';
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILED } from '../types';
 
-interface AuthState {
+interface IAuthState {
   isLoggedIn: Boolean;
   isLoading: Boolean;
   userDetails: Object;
 }
 
-const initialState: AuthState = {
+const initialState: IAuthState = {
   isLoggedIn: true,
   isLoading: false,
   userDetails: {},
@@ -16,7 +16,7 @@ const initialState: AuthState = {
 export const AuthReducer = (
   state = initialState,
   action: AnyAction
-): AuthState => {
+): IAuthState => {
   switch (action.type) {
   case LOGIN_REQUEST: {
     return {
