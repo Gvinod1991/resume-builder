@@ -6,6 +6,8 @@ import {
 } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
 import { AppThunk } from '../rootReducer';
+import { addNewResumeData } from './resume.action';
+import { initResumeData } from '../../utils/initialResumeData';
 import { Notify, toastTypes } from '../../utils/toast';
 
 const getProviderInstance = (providerType: string): any => {
@@ -32,6 +34,7 @@ export const LoginRequest =
             window.localStorage.setItem('firebaseToken', token);
           }
           const user = result.user;
+          dispatch(addNewResumeData(initResumeData, user.uid));
           dispatch({
             type: LOGIN_SUCCESS,
             payload: user,
