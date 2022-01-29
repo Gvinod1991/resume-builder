@@ -82,14 +82,14 @@ export const About = (): JSX.Element => {
                 <Wrapper className='p-2'>
                   <Input
                     inputLabel='Your Location'
-                    onChange={() => {}}
+                    onChange={(): void => {}}
                     value={location ? location : ''}
                   />
                 </Wrapper>
                 <Wrapper className='p-2'>
                   <Input
                     inputLabel='Designation/Role'
-                    onChange={() => {}}
+                    onChange={(): void => {}}
                     value={jobRole ? jobRole : ''}
                   />
                 </Wrapper>
@@ -133,7 +133,7 @@ export const About = (): JSX.Element => {
                     inputLabel='Email Id'
                     value={user && user.email ? user.email : ''}
                     disabled={true}
-                    onChange={() => {}}
+                    onChange={(): void => {}}
                     className='cursor-not-allowed'
                   />
                 </Wrapper>
@@ -142,7 +142,7 @@ export const About = (): JSX.Element => {
                     value={phone ? phone : ''}
                     inputLabel='Contact Number'
                     placeholder='Contact Number(With country code)'
-                    onChange={() => {}}
+                    onChange={(): void => {}}
                   />
                 </Wrapper>
                 {profiles &&
@@ -153,7 +153,7 @@ export const About = (): JSX.Element => {
                         value={profile.url}
                         inputLabel={profile.network.toUpperCase()}
                         placeholder={profile.network}
-                        onChange={() => {}}
+                        onChange={(): void => {}}
                       />
                     </Wrapper>
                   ))}
