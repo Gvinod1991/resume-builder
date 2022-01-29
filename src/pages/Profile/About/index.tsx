@@ -9,32 +9,16 @@ import {
   Loader,
 } from '../../../components';
 import { RootState } from '../../../store/rootReducer';
-import { useEffect } from 'react';
 import { auth } from '../../../utils/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useDispatch, useSelector } from 'react-redux';
-import { getResumeData } from '../../../store/actions';
+import { useSelector } from 'react-redux';
 import { IResumeState } from '../../../store/reducer/resume.reducer';
 
 export const About = (): JSX.Element => {
   const [user] = useAuthState(auth);
-  const dispatch = useDispatch();
   const { resumeDetails, resumeLoading }: IResumeState = useSelector(
     (state: RootState) => state.resume
   );
-  useEffect(() => {
-    dispatch(getResumeData());
-  }, [dispatch]);
-  const options = [
-    {
-      optionKey: '1',
-      optionValue: 'FrontEnd Engineer',
-    },
-    {
-      optionKey: '2',
-      optionValue: 'Backend Engineer',
-    },
-  ];
   const yearOptions = [
     {
       optionKey: '1',
@@ -53,7 +37,14 @@ export const About = (): JSX.Element => {
       optionValue: '3 Years',
     },
   ];
-  const { location } = resumeDetails;
+  const {
+    location,
+    jobRole,
+    totalExperience,
+    resumeHighlights,
+    phone,
+    profiles,
+  } = resumeDetails;
   return (
     <Wrapper className='flex flex-col w-full'>
       <>
@@ -89,25 +80,31 @@ export const About = (): JSX.Element => {
                   </>
                 </Wrapper>
                 <Wrapper className='p-2'>
-                  <Input inputLabel='Your Location' value={location} />
+                  <Input
+                    inputLabel='Your Location'
+                    onChange={() => {}}
+                    value={location ? location : ''}
+                  />
                 </Wrapper>
                 <Wrapper className='p-2'>
-                  <Select
-                    label='Select Designation/Role'
-                    handleChange={(): void => {}}
-                    options={options}
+                  <Input
+                    inputLabel='Designation/Role'
+                    onChange={() => {}}
+                    value={jobRole ? jobRole : ''}
                   />
                 </Wrapper>
                 <Wrapper className='p-2'>
                   <Select
                     label='Years of Experience'
+                    optionValue={totalExperience}
+                    optionKey={'optionKey'}
                     handleChange={(): void => {}}
                     options={yearOptions}
                   />
                 </Wrapper>
                 <Wrapper className='p-2'>
                   <TextArea
-                    textAreaValue=''
+                    textAreaValue={resumeHighlights ? resumeHighlights : ''}
                     textAreLabel='Professional Intro'
                     handleChange={(): void => {}}
                   />
@@ -136,27 +133,30 @@ export const About = (): JSX.Element => {
                     inputLabel='Email Id'
                     value={user && user.email ? user.email : ''}
                     disabled={true}
+                    onChange={() => {}}
                     className='cursor-not-allowed'
                   />
                 </Wrapper>
                 <Wrapper className='p-2'>
                   <Input
+                    value={phone ? phone : ''}
                     inputLabel='Contact Number'
                     placeholder='Contact Number(With country code)'
+                    onChange={() => {}}
                   />
                 </Wrapper>
-                <Wrapper className='p-2'>
-                  <Input inputLabel='Website' placeholder='Website' />
-                </Wrapper>
-                <Wrapper className='p-2'>
-                  <Input inputLabel='LinkedIn' placeholder='LinkedIn' />
-                </Wrapper>
-                <Wrapper className='p-2'>
-                  <Input inputLabel='GitHub' placeholder='GitHub' />
-                </Wrapper>
-                <Wrapper className='p-2'>
-                  <Input inputLabel='Twitter' placeholder='Twitter' />
-                </Wrapper>
+                {profiles &&
+                  profiles.length > 0 &&
+                  profiles.map((profile) => (
+                    <Wrapper className='p-2' key={profile.network}>
+                      <Input
+                        value={profile.url}
+                        inputLabel={profile.network.toUpperCase()}
+                        placeholder={profile.network}
+                        onChange={() => {}}
+                      />
+                    </Wrapper>
+                  ))}
                 <Wrapper className='flex justify-end'>
                   <Button title='Save' className='w-fit'></Button>
                 </Wrapper>
