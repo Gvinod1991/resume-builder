@@ -5,12 +5,14 @@ import { XIcon } from '@heroicons/react/outline';
 interface ITagsInput {
   tagLabel: string;
   selectedTags: (tags: Array<string>) => void;
+  initTags: Array<string>;
 }
 export const TagsInput = ({
   tagLabel,
   selectedTags,
+  initTags,
 }: ITagsInput): JSX.Element => {
-  const [tags, setTags] = useState<Array<string>>([]);
+  const [tags, setTags] = useState<Array<string>>(initTags);
   const addTags = (e: KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter' && e.currentTarget.value !== '') {
       setTags([...tags, e.currentTarget.value]);
