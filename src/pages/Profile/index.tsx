@@ -20,7 +20,7 @@ export default function Profile(): JSX.Element {
     if (user?.uid) {
       dispatch(getResumeData(user?.uid));
     }
-  }, [dispatch]);
+  }, [dispatch, user]);
   return (
     <Tabs className='sm:block sm:ml-6'>
       <>

@@ -7,32 +7,45 @@ import {
   Divider,
 } from '../../../components';
 import {
-  GlobeAltIcon,
   PhoneIcon,
   MailIcon,
   LocationMarkerIcon,
   PrinterIcon,
   RefreshIcon,
 } from '@heroicons/react/outline';
+import { useSelector } from 'react-redux';
+import { IResumeState } from '../../../store/reducer';
+import { RootState } from '../../../store/rootReducer';
+import { printResume } from '../../../utils/print';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../../utils/firebase';
 
-const printResume = (): void => {
-  const data = document.getElementById('print-section')?.innerHTML;
-  let myWindow = window.open('Resume');
-  myWindow?.document.write('<html><head><title>Resume</title>');
-  myWindow?.document.write(
-    '<script src="https://cdn.tailwindcss.com"></script>'
-  );
-  myWindow?.document.write('</head><body >');
-  myWindow?.document.write(data ? data : '');
-  myWindow?.document.write('</body></html>');
-  myWindow?.document.close(); // necessary for IE >= 10
-  myWindow!.onload = (): void => {
-    myWindow?.focus();
-    myWindow?.print();
-    myWindow?.close();
-  };
+type socialProfileType = {
+  [key: string]: string;
 };
+
+const socialProfiles: socialProfileType = {
+  website: '/globe.jpg',
+  linkedin: '/linkedIcon.png',
+  twitter: '/twitter.png',
+  github: '/gitHub.png',
+};
+
 export const Preview = (): JSX.Element => {
+  const [user] = useAuthState(auth);
+  const { resumeDetails }: IResumeState = useSelector(
+    (state: RootState) => state.resume
+  );
+  const {
+    location,
+    phone,
+    resumeHighlights,
+    jobRole,
+    profileImage,
+    totalExperience,
+    profiles,
+  } = resumeDetails;
+  const { displayName, email } = user ? user : { displayName: '', email: '' };
   return (
     <>
       <Wrapper className='flex justify-end gap-6'>
@@ -59,7 +72,7 @@ export const Preview = (): JSX.Element => {
                     <>
                       <img
                         className='object-cover h-20 rounded-full mt-3'
-                        src='https://photos.angel.co/users/6513194-medium_jpg?1564405222'
+                        src={profileImage}
                         alt=''
                       />
                       <Wrapper className='flex-column'>
@@ -68,27 +81,26 @@ export const Preview = (): JSX.Element => {
                             variant='h2'
                             className='text-2xl text-indigo-500'
                           >
-                            Vinod Godti
+                            {displayName ? displayName : ''}
                           </Typography>
                           <Typography
                             variant='h2'
                             className='text-xl text-gray-500'
                           >
-                            Lead Frontend Developer
+                            {jobRole ? jobRole : ''}
                           </Typography>
                           <Typography
                             variant='p'
                             className='text-xl text-gray-500'
                           >
-                            6 Years of experience
+                            {`${totalExperience} Years of experience`}
                           </Typography>
                         </>
                       </Wrapper>
                     </>
                   </Wrapper>
                   <Typography variant='h1' className='text-gray-600'>
-                    Senior Frontend developer with 6+ years of experience in web
-                    & mobile app development using React Js and React Native.
+                    {resumeHighlights ? resumeHighlights : ''}
                   </Typography>
                 </>
               </Wrapper>
@@ -99,47 +111,33 @@ export const Preview = (): JSX.Element => {
                       <span className='flex'>
                         <MailIcon className='h-5 mt-1 text-indigo-500' />
                         <Typography variant='p' className='text-gray-500'>
-                          venkat.godti3@gmail.com
+                          {`${email}`}
                         </Typography>
                       </span>
                       <span className='flex'>
                         <PhoneIcon className='h-5 text-indigo-500' />
                         <Typography variant='p' className='text-gray-500'>
-                          +91-7008135892
+                          {phone ? phone : ''}
                         </Typography>
                       </span>
                       <span className='flex'>
                         <LocationMarkerIcon className='h-5 text-indigo-500' />
                         <Typography variant='p' className='text-gray-500'>
-                          Bengaluru, India
+                          {location ? location : ''}
                         </Typography>
                       </span>
                     </div>
                     <div className='flex flex-row mt-2'>
-                      <a href='https://gvinod-portfolio.herokuapp.com/'>
-                        <GlobeAltIcon className='h-8 opacity-60 m-1 cursor-pointer' />
-                      </a>
-                      <a href='https://www.linkedin.com/in/godti-vinod-37bb46a9/'>
-                        <img
-                          className='object-cover h-7 rounded-full opacity-60 m-1 cursor-pointer'
-                          src='/linkedIcon.png'
-                          alt=''
-                        />
-                      </a>
-                      <a href='https://twitter.com/GodtiVinod'>
-                        <img
-                          className='object-cover h-7 rounded-full opacity-60 m-1 cursor-pointer'
-                          src='/twitter.png'
-                          alt=''
-                        />
-                      </a>
-                      <a href='https://github.com/Gvinod1991'>
-                        <img
-                          className='object-cover h-7 rounded-full opacity-60 m-1 cursor-pointer'
-                          src='/gitHub.png'
-                          alt=''
-                        />
-                      </a>
+                      {profiles &&
+                        profiles.map(({ url, network }, index) => (
+                          <a key={`${url}${index}`} href={url}>
+                            <img
+                              className='object-cover h-7 rounded-full opacity-60 m-1 cursor-pointer'
+                              src={socialProfiles[network]}
+                              alt=''
+                            />
+                          </a>
+                        ))}
                     </div>
                   </>
                 </Wrapper>
