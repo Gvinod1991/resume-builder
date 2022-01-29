@@ -29,6 +29,12 @@ type EducationType = {
   startDate: string;
   endDate: string;
 };
+type ProjectType = {
+  title: string;
+  role: string;
+  description: string;
+  techStack: Array<string>;
+};
 export interface IResumeDetails {
   location?: string;
   jobRole?: string;
@@ -40,6 +46,7 @@ export interface IResumeDetails {
   achievements?: string;
   profiles?: Array<ProfileType>;
   skills?: {
+    genericSkills: Array<string>;
     languages: Array<SkillType>;
     frameworks: Array<SkillType>;
     libraries: Array<SkillType>;
@@ -47,6 +54,7 @@ export interface IResumeDetails {
     tools: Array<SkillType>;
   };
   work?: Array<WorkType>;
+  projects?: Array<ProjectType>;
   education?: Array<EducationType>;
 }
 

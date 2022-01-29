@@ -7,7 +7,7 @@ export const initResumeData = {
   phone: '+91 123456790',
   resumeHighlights:
     'I am a web developer having expertise in frontend development and exposure to back- end development. I design and develop web applications using the latest technologies to deliver the product with quality code.',
-  totalExp: '6 Years',
+  totalExperience: '6',
   profiles: [
     {
       network: 'linkedin',
@@ -27,66 +27,35 @@ export const initResumeData = {
     },
   ],
   skills: {
+    genericSkills: [],
     languages: [
       {
-        skillName: 'JavaScript',
-        level: 5,
-      },
-      {
-        skillName: 'HTML5',
-        level: 5,
-      },
-      {
-        skillName: 'CSS',
-        level: 5,
+        skillName: '',
+        level: 0,
       },
     ],
     frameworks: [
       {
-        skillName: 'React',
-        level: 4,
+        skillName: '',
+        level: 0,
       },
     ],
     libraries: [
       {
-        skillName: 'jQuery',
-        level: 3,
-      },
-      {
-        name: 'Redux',
-        level: 3,
+        skillName: '',
+        level: 0,
       },
     ],
     databases: [
       {
-        skillName: 'Firebase',
-        level: 3,
-      },
-      {
-        skillName: 'SQL',
-        level: 5,
+        skillName: '',
+        level: 0,
       },
     ],
     tools: [
       {
-        skillName: 'Git',
-        level: 3,
-      },
-      {
-        skillName: 'VS Code',
-        level: 3,
-      },
-      {
-        skillName: 'Jira',
-        level: 3,
-      },
-      {
-        skillName: 'Webpack',
-        level: 3,
-      },
-      {
-        skillName: 'Bitbucket',
-        level: 3,
+        skillName: '',
+        level: 0,
       },
     ],
   },
@@ -108,6 +77,14 @@ export const initResumeData = {
       fieldOfStudy: 'Cloud technology',
       startDate: '2014',
       endDate: '2016',
+    },
+  ],
+  projects: [
+    {
+      title: 'Test project',
+      role: 'Front End Developer',
+      techStack: ['ReactJS'],
+      description: 'Test project desc',
     },
   ],
   achievements:
