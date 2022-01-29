@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
   Card,
   Wrapper,
@@ -10,10 +12,14 @@ import {
 } from '../../../components';
 import { PlusIcon } from '@heroicons/react/solid';
 import { PencilAltIcon } from '@heroicons/react/outline';
-import { useState } from 'react';
+import { RootState } from '../../../store/rootReducer';
+import { IResumeState } from '../../../store/reducer';
 
 export const Education = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const {
+    resumeDetails: { education },
+  }: IResumeState = useSelector((state: RootState) => state.resume);
   return (
     <Wrapper className='flex flex-row flex-wrap sm:flex-nowrap'>
       <>
@@ -33,30 +39,43 @@ export const Education = (): JSX.Element => {
                 title='Add Education'
               />
             </Wrapper>
-            <Card className='w-full border'>
-              <Wrapper className='flex flex-col w-full'>
-                <>
-                  <Wrapper className='flex flex-row justify-between'>
-                    <>
-                      <Typography variant='h1' className='text-xl'>
-                        VSSUT Burla
-                      </Typography>
-                      <PencilAltIcon className='h-5 cursor-pointer text-gray-500' />
-                    </>
-                  </Wrapper>
-                  <Typography variant='h4' className='text-md text-gray-300'>
-                    Information Technology, B.tech
-                  </Typography>
-                  <Typography variant='h5' className='text-md text-gray-300'>
-                    8.22/10 GPA
-                  </Typography>
-                  <Typography variant='h5' className='text-md text-gray-300'>
-                    Apr 2010 to 2014
-                  </Typography>
-                </>
-              </Wrapper>
-            </Card>
-            <Divider className='border-8 border-white' />
+            {education &&
+              education.map(
+                (
+                  { institution, fieldOfStudy, endDate, startDate, studyType },
+                  index
+                ) => (
+                  <>
+                    <Card key={index} className='w-full border'>
+                      <Wrapper className='flex flex-col w-full'>
+                        <>
+                          <Wrapper className='flex flex-row justify-between'>
+                            <>
+                              <Typography variant='h1' className='text-xl'>
+                                {institution}
+                              </Typography>
+                              <PencilAltIcon className='h-5 cursor-pointer text-gray-500' />
+                            </>
+                          </Wrapper>
+                          <Typography
+                            variant='h4'
+                            className='text-md text-gray-300'
+                          >
+                            {`${fieldOfStudy}, ${studyType}`}
+                          </Typography>
+                          <Typography
+                            variant='h5'
+                            className='text-md text-gray-300'
+                          >
+                            {`${startDate} to ${endDate}`}
+                          </Typography>
+                        </>
+                      </Wrapper>
+                    </Card>
+                    <Divider className='border-8 border-white' />
+                  </>
+                )
+              )}
           </>
         </Wrapper>
         <Modal

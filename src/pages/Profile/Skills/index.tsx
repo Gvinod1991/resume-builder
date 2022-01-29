@@ -1,8 +1,16 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { TagsInput, Wrapper, Typography, Button } from '../../../components';
+import { RootState } from '../../../store/rootReducer';
+import { IResumeState } from '../../../store/reducer/resume.reducer';
 
 export const Skills = (): JSX.Element => {
-  const [, setSkillList] = useState<Array<string>>([]);
+  const {
+    resumeDetails: { skills },
+  }: IResumeState = useSelector((state: RootState) => state.resume);
+  const [skillSet, setSkillList] = useState<Array<string>>(
+    skills?.genericSkills ? skills?.genericSkills : []
+  );
   const selectedTags = (tags: Array<string>): void => {
     setSkillList(tags);
   };
@@ -17,6 +25,7 @@ export const Skills = (): JSX.Element => {
             <TagsInput
               tagLabel='Type and hit enter key to add your skills'
               selectedTags={selectedTags}
+              initTags={skillSet}
             />
           </Wrapper>
         </>

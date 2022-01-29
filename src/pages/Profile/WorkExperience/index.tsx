@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
   Card,
   Wrapper,
@@ -12,12 +14,15 @@ import {
 } from '../../../components';
 import { PlusIcon } from '@heroicons/react/solid';
 import { PencilAltIcon } from '@heroicons/react/outline';
-import { useState } from 'react';
+import { RootState } from '../../../store/rootReducer';
+import { IResumeState } from '../../../store/reducer';
 
 export const WorkExperience = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState<boolean>(false);
-  const workExperiences = [1, 2, 3];
+  const {
+    resumeDetails: { work },
+  }: IResumeState = useSelector((state: RootState) => state.resume);
   return (
     <Wrapper className='flex flex-row flex-wrap sm:flex-nowrap'>
       <>
@@ -37,45 +42,53 @@ export const WorkExperience = (): JSX.Element => {
                 title='Add work experience'
               />
             </Wrapper>
-            {workExperiences.map((exp) => (
-              <Wrapper key={exp}>
-                <>
-                  <Card key={exp} className='w-full border'>
-                    <Wrapper className='flex flex-col'>
-                      <>
-                        <Wrapper className='flex flex-row justify-between'>
+            {work &&
+              work.map(
+                (
+                  {
+                    companyName,
+                    endDate,
+                    location,
+                    position,
+                    startDate,
+                    summary,
+                  },
+                  index
+                ) => (
+                  <Wrapper key={companyName + index}>
+                    <>
+                      <Card className='w-full border'>
+                        <Wrapper className='flex flex-col'>
                           <>
-                            <Typography variant='h1' className='text-xl'>
-                              Lead FrontEnd Developer
+                            <Wrapper className='flex flex-row justify-between'>
+                              <>
+                                <Typography variant='h1' className='text-xl'>
+                                  {position}
+                                </Typography>
+                                <PencilAltIcon className='h-5 cursor-pointer text-gray-500' />
+                              </>
+                            </Wrapper>
+                            <Typography
+                              variant='h4'
+                              className='text-md text-gray-300'
+                            >
+                              {`${companyName},${location}`}
                             </Typography>
-                            <PencilAltIcon className='h-5 cursor-pointer text-gray-500' />
+                            <Typography
+                              variant='h5'
+                              className='text-md text-gray-300'
+                            >
+                              {`${startDate} to ${endDate}`}
+                            </Typography>
+                            <Typography variant='p'>{summary}</Typography>
                           </>
                         </Wrapper>
-                        <Typography
-                          variant='h4'
-                          className='text-md text-gray-300'
-                        >
-                          FROST
-                        </Typography>
-                        <Typography
-                          variant='h5'
-                          className='text-md text-gray-300'
-                        >
-                          Apr 2021 to Present
-                        </Typography>
-                        <Typography variant='p'>
-                          FROST is an ed-tech startup that provides recorded as
-                          well as live classes to engineering students who want
-                          to appear GATE exam and other engineering-related
-                          entrance tests for Engineering jobs.
-                        </Typography>
-                      </>
-                    </Wrapper>
-                  </Card>
-                  <Divider className='border-8 border-white' />
-                </>
-              </Wrapper>
-            ))}
+                      </Card>
+                      <Divider className='border-8 border-white' />
+                    </>
+                  </Wrapper>
+                )
+              )}
           </>
         </Wrapper>
         <Modal

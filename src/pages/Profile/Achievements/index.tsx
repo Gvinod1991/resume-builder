@@ -1,6 +1,12 @@
 import { TextArea, Wrapper, Typography, Button } from '../../../components';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/rootReducer';
+import { IResumeState } from '../../../store/reducer/resume.reducer';
 
 export const Achievements = (): JSX.Element => {
+  const {
+    resumeDetails: { achievements },
+  }: IResumeState = useSelector((state: RootState) => state.resume);
   return (
     <Wrapper className='flex flex-col w-full'>
       <>
@@ -14,7 +20,7 @@ export const Achievements = (): JSX.Element => {
             </Typography>
             <Wrapper className='flex flex-col ml-2 px-4 w-12/12 sm:w-8/12 '>
               <TextArea
-                textAreaValue=''
+                textAreaValue={achievements ? achievements : ''}
                 rows={8}
                 placeholder='Your Achievements'
                 handleChange={(): void => {}}
