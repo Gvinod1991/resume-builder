@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Tabs, TabPane } from '../../components';
 import { Preview } from './Preview';
 import { About } from './About';
@@ -7,8 +9,18 @@ import { Education } from './Education';
 import { Projects } from './Projects';
 import { Achievements } from './Achievements';
 import { Card } from '../../components';
+import { getResumeData } from '../../store/actions';
+import { auth } from '../../utils/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 export default function Profile(): JSX.Element {
+  const [user] = useAuthState(auth);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (user?.uid) {
+      dispatch(getResumeData(user?.uid));
+    }
+  }, [dispatch]);
   return (
     <Tabs className='sm:block sm:ml-6'>
       <>
