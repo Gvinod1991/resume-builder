@@ -23,41 +23,39 @@ export default function Profile(): JSX.Element {
   }, [dispatch, user]);
   return (
     <Tabs className='sm:block sm:ml-6'>
-      <>
-        <TabPane tab={'Overview'} key={1}>
-          <Preview />
-        </TabPane>
-        <TabPane tab={'About'} key={2}>
-          <Card>
-            <About />
-          </Card>
-        </TabPane>
-        <TabPane tab={'Skills'} key={3}>
-          <Card>
-            <Skills />
-          </Card>
-        </TabPane>
-        <TabPane tab={'Work Experience'} key={4}>
-          <Card>
-            <WorkExperience />
-          </Card>
-        </TabPane>
-        <TabPane tab={'Side Projects'} key={5}>
-          <Card>
-            <Projects />
-          </Card>
-        </TabPane>
-        <TabPane tab={'Achievements'} key={6}>
-          <Card>
-            <Achievements />
-          </Card>
-        </TabPane>
-        <TabPane tab={'Education'} key={7}>
-          <Card>
-            <Education />
-          </Card>
-        </TabPane>
-      </>
+      <TabPane tab={'Overview'} key={1}>
+        <Preview />
+      </TabPane>
+      <TabPane tab={'About'} key={2}>
+        <Card>
+          <About />
+        </Card>
+      </TabPane>
+      <TabPane tab={'Skills'} key={3}>
+        <Card>
+          <Skills />
+        </Card>
+      </TabPane>
+      <TabPane tab={'Work Experience'} key={4}>
+        <Card>
+          <WorkExperience />
+        </Card>
+      </TabPane>
+      <TabPane tab={'Side Projects'} key={5}>
+        <Card>
+          <Projects />
+        </Card>
+      </TabPane>
+      <TabPane tab={'Achievements'} key={6}>
+        <Card>
+          <Achievements />
+        </Card>
+      </TabPane>
+      <TabPane tab={'Education'} key={7}>
+        <Card>
+          <Education />
+        </Card>
+      </TabPane>
     </Tabs>
   );
 }
