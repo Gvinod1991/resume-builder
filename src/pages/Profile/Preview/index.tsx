@@ -44,6 +44,10 @@ export const Preview = (): JSX.Element => {
     profileImage,
     totalExperience,
     profiles,
+    work,
+    projects,
+    skills,
+    education,
   } = resumeDetails;
   const { displayName, email } = user ? user : { displayName: '', email: '' };
   return (
@@ -129,208 +133,93 @@ export const Preview = (): JSX.Element => {
               title='Experience'
               titleClassName='text-indigo-500'
             >
-              <Wrapper>
-                <Typography variant='h5' className='text-gray-600 text-xl'>
-                  Lead Frontend Developer
-                </Typography>
-                <Typography variant='h1' className='text-gray-800 text-lg'>
-                  ACE Online, Bengaluru, India
-                </Typography>
-                <Typography variant='h5' className='text-gray-800 text-md'>
-                  2021 - present (about 1 year)
-                </Typography>
-                <Typography variant='p' className='text-gray-500 text-sm'>
-                  ACE Online is an ed-tech startup that provides recorded as
-                  well as live classes to engineering students who want to
-                  appear GATE exam and other engineering-related entrance tests
-                  for Engineering jobs in india.
-                </Typography>
-                <ul className='p-2 ml-5'>
-                  <li className='list-disc text-sm p-1'>
-                    CMS to manage the subjects,units,chapters and attach videos
-                    for the course
-                  </li>
-                  <li className='list-disc text-sm p-1'>
-                    Student portal to browse the courses and subscribe it.
-                  </li>
-                  <li className='list-disc text-sm p-1'>
-                    Tech stack: ReactJs, Redux, Material UI
-                  </li>
-                </ul>
-              </Wrapper>
-              <Divider className='border-indigo-400 h mt-2 mb-2' />
-              <Wrapper>
-                <Typography variant='h5' className='text-gray-600 text-xl'>
-                  Sr.Frontend Developer
-                </Typography>
-                <Typography variant='h1' className='text-gray-800 text-lg'>
-                  Apnaklub, Bengaluru, India
-                </Typography>
-                <Typography variant='h5' className='text-gray-800 text-md'>
-                  2019 - 2021 (about 2 years)
-                </Typography>
-                <Typography variant='p' className='text-gray-500 text-sm'>
-                  Apnaklub provides a platform for resellers and traders to
-                  resell inventory of fashion, Kitchen, and daily essential
-                  goods.
-                </Typography>
-                <ul className='p-2 ml-5'>
-                  <li className='list-disc text-sm p-1'>
-                    Designed and developed the dashboard for the operations team
-                    to manage products, inventories, and order details.
-                    Operations team time saved by 40% when this application is
-                    used as compared to manually maintaining the excel sheets
-                    for inventory and purchase orders of products from vendors.
-                  </li>
-                  <li className='list-disc text-sm p-1'>
-                    Created CI/CD process for effective deployment using
-                    Bitbucket and AWS.
-                  </li>
-                  <li className='list-disc text-sm p-1'>
-                    Led a team of 2 engineers to build the Progressive Web App
-                    for the reseller to share and sell products to their
-                    customers. Responsible for the whole app architecture,
-                    planning, development, and deployment in AWS EC2
-                  </li>
-                  <li className='list-disc text-sm p-1'>
-                    Tech stack: ReactJs, Redux, AntD library, NodeJs, ExpressJs,
-                    and MongoDB
-                  </li>
-                </ul>
-              </Wrapper>
-              <Divider className='border-indigo-400 h mt-2 mb-2' />
-              <Wrapper>
-                <Typography variant='h5' className='text-gray-600 text-xl'>
-                  Full Stack Developer
-                </Typography>
-                <Typography variant='h1' className='text-gray-800 text-lg'>
-                  Bookingjini Labs, Bhubaneswar, India
-                </Typography>
-                <Typography variant='h5' className='text-gray-800 text-md'>
-                  2017 - 2019 (about 2 years)
-                </Typography>
-                <Typography variant='p' className='text-gray-500 text-sm'>
-                  Bookingjini Labs provides the dashboard, booking engine, and
-                  chatbot service tools to hoteliers to manage their properties
-                  which operate in India, Nepal, and Bhutan.
-                </Typography>
-                <ul className='p-2 ml-5'>
-                  <li className='list-disc text-sm p-1'>
-                    Built a portal to manage inventory of rooms and distribution
-                    to various online travel agents(OTA) like Booking.com and 7
-                    other OTA's which helped reduce overbooking by 5%.
-                  </li>
-                  <li className='list-disc text-sm p-1'>
-                    Built the Booking Engine Web application using ReactJs,
-                    Redux, NodeJs & ExpressJs with a team of 2 engineers.
-                    Revenue increased by 25% within the 1 month of the launch of
-                    this application.
-                  </li>
-                  <li className='list-disc text-sm p-1'>
-                    Built the mobile app (Android) to manage the inventory and
-                    pricing of the hotel rooms by hoteliers using React Native
-                    and Redux. Uploaded this application to the google play
-                    store. Clients for the company increased by 20%. Google Play
-                    Store Link.
-                  </li>
-                  <li className='list-disc text-sm p-1'>
-                    Tech stack- ReactJs, React Native, Redux, NodeJs, ExpressJs,
-                    and Mysql.
-                  </li>
-                </ul>
-              </Wrapper>
-              <Divider className='border-indigo-400 h mt-2 mb-2' />
-              <Wrapper>
-                <Typography variant='h5' className='text-gray-600 text-xl'>
-                  Technical Analyst
-                </Typography>
-                <Typography variant='h1' className='text-gray-800 text-lg'>
-                  Siddha Development and Research Consultancy, Bhubaneswar,
-                  India
-                </Typography>
-                <Typography variant='h5' className='text-gray-800 text-md'>
-                  2015 - 2017 (2 years)
-                </Typography>
-                <Typography variant='p' className='text-gray-500 text-sm'>
-                  SDRC provides web-based software applications to agencies like
-                  UNICEF and various other social welfare organizations as well
-                  as state governments in India.
-                </Typography>
-                <ul className='p-2 ml-5'>
-                  <li className='list-disc text-sm p-1'>
-                    Worked on the project called child labor tracking system
-                    (CLTS), which is an innovative web-based system to register
-                    child laborers and track their re-integration to the
-                    mainstream.
-                  </li>
-                  <li className='list-disc text-sm p-1'>
-                    Tech stack- PHP, Laravel , Jquery, HTML5, and CSS3
-                  </li>
-                </ul>
-              </Wrapper>
+              {work &&
+                work.map(
+                  (
+                    {
+                      position,
+                      companyName,
+                      location,
+                      startDate,
+                      endDate,
+                      summary,
+                    },
+                    index
+                  ) => (
+                    <>
+                      <Wrapper key={companyName + index}>
+                        <Typography
+                          variant='h5'
+                          className='text-gray-600 text-xl'
+                        >
+                          {position}
+                        </Typography>
+                        <Typography
+                          variant='h1'
+                          className='text-gray-800 text-lg'
+                        >
+                          {companyName}, {location}
+                        </Typography>
+                        <Typography
+                          variant='h5'
+                          className='text-gray-800 text-md'
+                        >
+                          {startDate} - {endDate} (about 1 year)
+                        </Typography>
+                        <Wrapper className='text-gray-500 text-sm'>
+                          {summary}
+                        </Wrapper>
+                      </Wrapper>
+                      <Divider className='border-indigo-400 h mt-2 mb-2' />
+                    </>
+                  )
+                )}
             </Card>
             <Card
               className='mt-2 border rounded-sm'
               title='Projects'
               titleClassName='text-indigo-500'
             >
-              <Wrapper>
-                <a
-                  className='text-indigo-400 active:text-indigo-800 text-2xl'
-                  href='https://vigorous-fermat-03ebb2.netlify.app/'
-                >
-                  Fast Fingers
-                </a>
-                <Typography variant='h5' className='text-gray-600 text-lg'>
-                  Sr.Frontend Developer
-                </Typography>
-                <Typography variant='p' className='text-gray-500 text-sm'>
-                  Speed typing game in which the user can play the game by
-                  typing the word displayed within the time frame. By playing
-                  this game typing speed of the user will be enhanced and also
-                  new words can be learned.
-                </Typography>
-                <Wrapper className='text-gray-500 text-sm flex flex-wrap gap-3'>
-                  <Typography
-                    variant='h5'
-                    className='text-gray-600 text-lg m-1'
-                  >
-                    Tech Stack
-                  </Typography>
-                  <Pill title='React JS' />
-                  <Pill title='SCSS' />
-                  <Pill title='Javascript' />
-                </Wrapper>
-              </Wrapper>
-              <Divider className='border-indigo-400 mt-2' />
-              <Wrapper>
-                <a
-                  className='text-indigo-400 active:text-indigo-800 text-2xl'
-                  href='https://keen-roentgen-c0e229.netlify.app/'
-                >
-                  Resume Builder{' '}
-                </a>
-                <Typography variant='h5' className='text-gray-600 text-lg'>
-                  Sr.Frontend Developer
-                </Typography>
-                <Typography variant='p' className='text-gray-500 text-sm'>
-                  Speed typing game in which the user can play the game by
-                  typing the word displayed within the time frame. By playing
-                  this game typing speed of the user will be enhanced and also
-                  new words can be learned.
-                </Typography>
-                <Wrapper className='text-gray-500 text-sm flex flex-wrap gap-3'>
-                  <Typography
-                    variant='h5'
-                    className='text-gray-600 text-lg m-1'
-                  >
-                    Tech Stack
-                  </Typography>
-                  <Pill title='React JS' />
-                  <Pill title='Tailwind CSS' />
-                  <Pill title='Javascript' />
-                </Wrapper>
-              </Wrapper>
+              {projects &&
+                projects.map(
+                  ({ title, role, techStack, description }, index) => (
+                    <>
+                      <Wrapper key={title + index}>
+                        <a
+                          className='text-indigo-400 active:text-indigo-800 text-2xl'
+                          href='https://vigorous-fermat-03ebb2.netlify.app/'
+                        >
+                          {title}
+                        </a>
+                        <Typography
+                          variant='h5'
+                          className='text-gray-600 text-lg'
+                        >
+                          {role}
+                        </Typography>
+                        <Typography
+                          variant='p'
+                          className='text-gray-500 text-sm'
+                        >
+                          {description}
+                        </Typography>
+                        <Wrapper className='text-gray-500 text-sm flex flex-wrap gap-3'>
+                          <Typography
+                            variant='h5'
+                            className='text-gray-600 text-lg m-1'
+                          >
+                            Tech Stack
+                          </Typography>
+                          {techStack &&
+                            techStack.map((stack, index) => (
+                              <Pill key={stack + index} title={stack} />
+                            ))}
+                        </Wrapper>
+                      </Wrapper>
+                      <Divider className='border-indigo-400 mt-2' />
+                    </>
+                  )
+                )}
             </Card>
           </div>
           <div className='w-12/12 sm:w-3/12'>
@@ -340,12 +229,10 @@ export const Preview = (): JSX.Element => {
               titleClassName='text-indigo-500'
             >
               <div className='flex gap-2 flex-wrap'>
-                <Pill title='React Js' />
-                <Pill title='Javascript' />
-                <Pill title='HTML' />
-                <Pill title='CSS' />
-                <Pill title='React Native' />
-                <Pill title='Node Js' />
+                {skills &&
+                  skills.genericSkills.map((skill, index) => (
+                    <Pill key={skill + index} title='React Js' />
+                  ))}
               </div>
             </Card>
             <Card
@@ -353,29 +240,34 @@ export const Preview = (): JSX.Element => {
               title='Education'
               titleClassName='text-indigo-500'
             >
-              <Wrapper>
-                <Typography variant='h1' className='text-gray-800'>
-                  Pesto Tech
-                </Typography>
-                <Typography variant='h2' className='text-gray-600'>
-                  Engineering Fellow
-                </Typography>
-                <Typography variant='h2' className='text-gray-600'>
-                  Oct 2020 - Feb 2021
-                </Typography>
-              </Wrapper>
-              <Divider className='border-indigo-400' />
-              <Wrapper>
-                <Typography variant='h1' className='text-gray-800'>
-                  VSSUT
-                </Typography>
-                <Typography variant='h2' className='text-gray-600'>
-                  Information Technology
-                </Typography>
-                <Typography variant='h3' className='text-gray-600'>
-                  Aug 2010 - May 2014
-                </Typography>
-              </Wrapper>
+              {education &&
+                education.map(
+                  (
+                    {
+                      institution,
+                      fieldOfStudy,
+                      studyType,
+                      startDate,
+                      endDate,
+                    },
+                    index
+                  ) => (
+                    <>
+                      <Wrapper key={institution + index}>
+                        <Typography variant='h1' className='text-gray-800'>
+                          {institution}
+                        </Typography>
+                        <Typography variant='h2' className='text-gray-600'>
+                          {fieldOfStudy},{studyType}
+                        </Typography>
+                        <Typography variant='h2' className='text-gray-600'>
+                          {startDate} - {endDate}
+                        </Typography>
+                      </Wrapper>
+                      <Divider className='border-indigo-400' />
+                    </>
+                  )
+                )}
             </Card>
           </div>
         </Wrapper>
