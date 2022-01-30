@@ -13,30 +13,43 @@ import { auth } from '../../../utils/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useSelector } from 'react-redux';
 import { IResumeState } from '../../../store/reducer/resume.reducer';
+const yearOptions = [
+  {
+    optionKey: '0',
+    optionValue: '<1 Year',
+  },
+  {
+    optionKey: '1',
+    optionValue: '1 Year',
+  },
+  {
+    optionKey: '2',
+    optionValue: '2 Years',
+  },
+  {
+    optionKey: '3',
+    optionValue: '3 Years',
+  },
+  {
+    optionKey: '4',
+    optionValue: '4 Years',
+  },
+  {
+    optionKey: '5',
+    optionValue: '5 Years',
+  },
+  {
+    optionKey: '6',
+    optionValue: '6 Years',
+  },
+];
 
 export const About = (): JSX.Element => {
   const [user] = useAuthState(auth);
   const { resumeDetails, resumeLoading }: IResumeState = useSelector(
     (state: RootState) => state.resume
   );
-  const yearOptions = [
-    {
-      optionKey: '1',
-      optionValue: '<1 Year',
-    },
-    {
-      optionKey: '2',
-      optionValue: '1 Year',
-    },
-    {
-      optionKey: '3',
-      optionValue: '2 Years',
-    },
-    {
-      optionKey: '4',
-      optionValue: '3 Years',
-    },
-  ];
+
   const {
     location,
     jobRole,
@@ -86,8 +99,7 @@ export const About = (): JSX.Element => {
           <Wrapper className='p-2'>
             <Select
               label='Years of Experience'
-              optionValue={totalExperience}
-              optionKey={'optionKey'}
+              selectedValue={totalExperience}
               handleChange={(): void => {}}
               options={yearOptions}
             />
