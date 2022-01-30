@@ -1,8 +1,8 @@
-import { ReactChild, ReactChildren, HTMLAttributes } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
 interface IWrapper extends HTMLAttributes<HTMLDivElement> {
   className?: string;
-  children?: ReactChild | ReactChildren;
+  children?: ReactNode;
 }
 
 export const Wrapper = ({

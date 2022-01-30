@@ -1,10 +1,10 @@
-import { ReactChild, ReactChildren } from 'react';
+import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { XIcon } from '@heroicons/react/solid';
 import { Button, Typography } from '..';
 
 interface IModal {
-  children: ReactChild | ReactChildren;
+  children: ReactNode;
   open: boolean;
   title: string;
   style?: object;

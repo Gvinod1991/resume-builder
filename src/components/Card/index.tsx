@@ -1,7 +1,7 @@
-import { ReactChild, ReactChildren } from 'react';
+import { ReactNode } from 'react';
 
 interface ICard {
-  children: ReactChild | ReactChildren;
+  children: ReactNode;
   className?: string;
   title?: string;
   titleClassName?: string;

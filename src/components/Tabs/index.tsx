@@ -1,10 +1,10 @@
-import { useState, ReactChild, ReactChildren } from 'react';
+import { useState, ReactNode } from 'react';
 import { DotsCircleHorizontalIcon } from '@heroicons/react/solid';
 import RcTabs, { TabPane } from 'rc-tabs';
 import './tabs.css';
 
 interface ITabs {
-  children: ReactChild | ReactChildren;
+  children: ReactNode;
   className: string;
 }
 
