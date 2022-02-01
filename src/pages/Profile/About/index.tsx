@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Input,
   Button,
@@ -8,11 +9,15 @@ import {
   Divider,
   Loader,
 } from '../../../components';
+import { useDispatch } from 'react-redux';
+import { UserCircleIcon } from '@heroicons/react/solid';
 import { RootState } from '../../../store/rootReducer';
 import { auth } from '../../../utils/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useSelector } from 'react-redux';
 import { IResumeState } from '../../../store/reducer/resume.reducer';
+import { updateResumeData } from '../../../store/actions';
+
 const yearOptions = [
   {
     optionKey: '0',
@@ -43,20 +48,42 @@ const yearOptions = [
     optionValue: '6 Years',
   },
 ];
-
+type AboutDetailsType = {
+  candidateName?: string;
+  location?: string;
+};
 export const About = (): JSX.Element => {
   const [user] = useAuthState(auth);
   const { resumeDetails, resumeLoading }: IResumeState = useSelector(
     (state: RootState) => state.resume
   );
-
+  const [aboutDetails, setAboutDetails] = useState<AboutDetailsType>({
+    candidateName: resumeDetails.candidateName,
+    location: resumeDetails.location,
+  });
+  const dispatch = useDispatch();
+  const updateResumeDetails = () => {
+    const updatedData = {
+      ...resumeDetails,
+      candidateName: aboutDetails.candidateName,
+      location: aboutDetails.location,
+    };
+    dispatch(updateResumeData(updatedData, resumeDetails?.userId));
+  };
+  const handleInputChange = ({ name, value }: any) => {
+    console;
+    setAboutDetails((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
   const {
-    location,
     jobRole,
     totalExperience,
     resumeHighlights,
     phone,
     profiles,
+    profileImage,
   } = resumeDetails;
   return (
     <Wrapper className='flex flex-col w-full'>
@@ -71,22 +98,35 @@ export const About = (): JSX.Element => {
         <Wrapper className='flex flex-col ml-2 px-4 w-12/12 sm:w-10/12'>
           <Wrapper className='p-2'>
             <Typography variant='h2' className='text-2xl'>
-              {user && user.displayName ? user?.displayName : ''}
+              {aboutDetails.candidateName}
             </Typography>
             <Wrapper className='flex flex-row flex-auto'>
-              <img
-                className='object-cover h-20 rounded-full'
-                src={user && user.photoURL ? user?.photoURL : ''}
-                alt=''
-              />
+              {profileImage !== '' ? (
+                <img
+                  className='object-cover h-20 rounded-full'
+                  src={profileImage}
+                  alt=''
+                />
+              ) : (
+                <UserCircleIcon className='h-8 w-8 rounded-full' />
+              )}
               <Button title='Change' className='m-5 h-10 align-middle'></Button>
             </Wrapper>
           </Wrapper>
           <Wrapper className='p-2'>
             <Input
-              inputLabel='Your Location'
-              onChange={(): void => {}}
-              value={location}
+              inputLabel='Your Name'
+              name='candidateName'
+              onChange={(e): void => handleInputChange(e.target)}
+              value={aboutDetails.candidateName}
+            />
+          </Wrapper>
+          <Wrapper className='p-2'>
+            <Input
+              name='location'
+              inputLabel='Current Location'
+              onChange={(e): void => handleInputChange(e.target)}
+              value={aboutDetails.location}
             />
           </Wrapper>
           <Wrapper className='p-2'>
@@ -112,7 +152,11 @@ export const About = (): JSX.Element => {
             />
           </Wrapper>
           <Wrapper className='flex justify-end'>
-            <Button title='Save' className='w-fit'></Button>
+            <Button
+              title='Save'
+              onClick={() => updateResumeDetails()}
+              className='w-fit'
+            ></Button>
           </Wrapper>
         </Wrapper>
         <Wrapper className='w-12/12 sm:w-2/12 '></Wrapper>
