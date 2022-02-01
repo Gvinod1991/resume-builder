@@ -3,6 +3,9 @@ import {
   GET_RESUME_DATA_FAILED,
   GET_RESUME_DATA_SUCCESS,
   GET_RESUME_DATA_REQUEST,
+  UPDATE_RESUME_DATA_FAILED,
+  UPDATE_RESUME_DATA_REQUEST,
+  UPDATE_RESUME_DATA_SUCCESS,
 } from '../types';
 
 type ProfileType = {
@@ -36,6 +39,8 @@ type ProjectType = {
   techStack: Array<string>;
 };
 export interface IResumeDetails {
+  userId?: string;
+  candidateName?: string;
   location?: string;
   jobRole?: string;
   profileImage?: string;
@@ -87,6 +92,24 @@ export const ResumeReducer = (
     };
   }
   case GET_RESUME_DATA_FAILED: {
+    return {
+      ...state,
+      resumeLoading: false,
+    };
+  }
+  case UPDATE_RESUME_DATA_REQUEST: {
+    return {
+      ...state,
+      resumeLoading: true,
+    };
+  }
+  case UPDATE_RESUME_DATA_SUCCESS: {
+    return {
+      ...state,
+      resumeLoading: false,
+    };
+  }
+  case UPDATE_RESUME_DATA_FAILED: {
     return {
       ...state,
       resumeLoading: false,

@@ -5,8 +5,19 @@ import {
   SAVE_RESUME_DATA_FAILED,
   SAVE_RESUME_DATA_REQUEST,
   SAVE_RESUME_DATA_SUCCESS,
+  UPDATE_RESUME_DATA_FAILED,
+  UPDATE_RESUME_DATA_REQUEST,
+  UPDATE_RESUME_DATA_SUCCESS,
 } from '../types';
-import { collection, getDocs, addDoc, where, query } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  addDoc,
+  doc,
+  where,
+  query,
+  updateDoc,
+} from 'firebase/firestore';
 import { AppThunk } from '../rootReducer';
 import { db } from '../../utils/firebase';
 import { IResumeDetails } from '../reducer/resume.reducer';
@@ -71,6 +82,47 @@ export const addNewResumeData =
       } catch (e) {
         dispatch({
           type: SAVE_RESUME_DATA_FAILED,
+        });
+      }
+    };
+
+export const updateResumeData =
+  (resumeData: IResumeDetails, uId: any): AppThunk =>
+    async (dispatch) => {
+      const resumeDataToSave = {
+        ...resumeData,
+      };
+      dispatch({
+        type: UPDATE_RESUME_DATA_REQUEST,
+      });
+      try {
+        const q = query(collection(db, 'resume'), where('userId', '==', uId));
+        const querySnapshot = await getDocs(q);
+        let docId;
+        querySnapshot.forEach((queryData) => {
+          if (queryData.id) {
+            docId = queryData.id;
+          }
+        });
+
+        if (docId) {
+          const docRef = doc(db, 'resume', docId);
+          await updateDoc(docRef, resumeDataToSave);
+          Notify({
+            title: 'Resume data update successful!',
+            type: toastTypes.SUCCESS,
+          });
+          dispatch({
+            type: UPDATE_RESUME_DATA_SUCCESS,
+          });
+        } else {
+          dispatch({
+            type: UPDATE_RESUME_DATA_FAILED,
+          });
+        }
+      } catch (e) {
+        dispatch({
+          type: UPDATE_RESUME_DATA_FAILED,
         });
       }
     };
