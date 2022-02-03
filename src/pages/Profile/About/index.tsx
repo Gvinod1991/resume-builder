@@ -15,7 +15,10 @@ import { RootState } from '../../../store/rootReducer';
 import { auth } from '../../../utils/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useSelector } from 'react-redux';
-import { IResumeState } from '../../../store/reducer/resume.reducer';
+import {
+  IResumeState,
+  ProfileType,
+} from '../../../store/reducer/resume.reducer';
 import { updateResumeData } from '../../../store/actions';
 
 const yearOptions = [
@@ -51,6 +54,11 @@ const yearOptions = [
 type AboutDetailsType = {
   candidateName?: string;
   location?: string;
+  jobRole?: string;
+  totalExperience?: string;
+  resumeHighlights?: string;
+  phone?: string;
+  profiles: Array<ProfileType>;
 };
 export const About = (): JSX.Element => {
   const [user] = useAuthState(auth);
@@ -60,31 +68,56 @@ export const About = (): JSX.Element => {
   const [aboutDetails, setAboutDetails] = useState<AboutDetailsType>({
     candidateName: resumeDetails.candidateName,
     location: resumeDetails.location,
+    jobRole: resumeDetails.jobRole,
+    totalExperience: resumeDetails.totalExperience,
+    resumeHighlights: resumeDetails.resumeHighlights,
+    phone: resumeDetails.phone,
+    profiles: resumeDetails.profiles ? resumeDetails.profiles : [],
   });
   const dispatch = useDispatch();
-  const updateResumeDetails = () => {
+
+  const updateResumeDetails = (): void => {
     const updatedData = {
       ...resumeDetails,
       candidateName: aboutDetails.candidateName,
       location: aboutDetails.location,
+      jobRole: aboutDetails.jobRole,
+      totalExperience: aboutDetails.totalExperience,
+      resumeHighlights: aboutDetails.resumeHighlights,
+      profiles: aboutDetails.profiles,
+      phone: aboutDetails.phone,
     };
     dispatch(updateResumeData(updatedData, resumeDetails?.userId));
   };
-  const handleInputChange = ({ name, value }: any) => {
-    console;
+
+  const handleInputChange = ({ name, value }: any): void => {
     setAboutDetails((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
+  const handleProfileChange = (
+    eventTarget: any,
+    profileIndex: number
+  ): void => {
+    const { name, value } = eventTarget;
+    const oldProfileData = [...profiles];
+    oldProfileData[profileIndex] = { network: name, url: value };
+    setAboutDetails((prevState) => ({
+      ...prevState,
+      profiles: oldProfileData,
+    }));
+  };
+  const { profileImage } = resumeDetails;
   const {
+    candidateName,
+    location,
     jobRole,
     totalExperience,
     resumeHighlights,
     phone,
     profiles,
-    profileImage,
-  } = resumeDetails;
+  } = aboutDetails;
   return (
     <Wrapper className='flex flex-col w-full'>
       {resumeLoading && <Loader />}
@@ -98,7 +131,7 @@ export const About = (): JSX.Element => {
         <Wrapper className='flex flex-col ml-2 px-4 w-12/12 sm:w-10/12'>
           <Wrapper className='p-2'>
             <Typography variant='h2' className='text-2xl'>
-              {aboutDetails.candidateName}
+              {candidateName}
             </Typography>
             <Wrapper className='flex flex-row flex-auto'>
               {profileImage !== '' ? (
@@ -118,7 +151,7 @@ export const About = (): JSX.Element => {
               inputLabel='Your Name'
               name='candidateName'
               onChange={(e): void => handleInputChange(e.target)}
-              value={aboutDetails.candidateName}
+              value={candidateName}
             />
           </Wrapper>
           <Wrapper className='p-2'>
@@ -126,13 +159,14 @@ export const About = (): JSX.Element => {
               name='location'
               inputLabel='Current Location'
               onChange={(e): void => handleInputChange(e.target)}
-              value={aboutDetails.location}
+              value={location}
             />
           </Wrapper>
           <Wrapper className='p-2'>
             <Input
               inputLabel='Designation/Role'
-              onChange={(): void => {}}
+              name='jobRole'
+              onChange={(e): void => handleInputChange(e.target)}
               value={jobRole}
             />
           </Wrapper>
@@ -140,7 +174,8 @@ export const About = (): JSX.Element => {
             <Select
               label='Years of Experience'
               selectedValue={totalExperience}
-              handleChange={(): void => {}}
+              name='totalExperience'
+              handleChange={(e): void => handleInputChange(e.target)}
               options={yearOptions}
             />
           </Wrapper>
@@ -148,13 +183,14 @@ export const About = (): JSX.Element => {
             <TextArea
               textAreaValue={resumeHighlights}
               textAreLabel='Professional Intro'
-              handleChange={(): void => {}}
+              name='resumeHighlights'
+              handleChange={(e: any): void => handleInputChange(e.target)}
             />
           </Wrapper>
           <Wrapper className='flex justify-end'>
             <Button
               title='Save'
-              onClick={() => updateResumeDetails()}
+              onClick={(): void => updateResumeDetails()}
               className='w-fit'
             ></Button>
           </Wrapper>
@@ -184,23 +220,29 @@ export const About = (): JSX.Element => {
               value={phone}
               inputLabel='Contact Number'
               placeholder='Contact Number(With country code)'
-              onChange={(): void => {}}
+              name='phone'
+              onChange={(e): void => handleInputChange(e.target)}
             />
           </Wrapper>
           {profiles &&
             profiles.length > 0 &&
-            profiles.map((profile) => (
-              <Wrapper className='p-2' key={profile.network}>
+            profiles.map(({ url, network }, index) => (
+              <Wrapper className='p-2' key={index + network}>
                 <Input
-                  value={profile.url}
-                  inputLabel={profile.network.toUpperCase()}
-                  placeholder={profile.network}
-                  onChange={(): void => {}}
+                  value={url}
+                  inputLabel={network}
+                  placeholder={network}
+                  name={network}
+                  onChange={(e): void => handleProfileChange(e.target, index)}
                 />
               </Wrapper>
             ))}
           <Wrapper className='flex justify-end'>
-            <Button title='Save' className='w-fit'></Button>
+            <Button
+              title='Save'
+              className='w-fit'
+              onClick={(): void => updateResumeDetails()}
+            ></Button>
           </Wrapper>
         </Wrapper>
         <Wrapper className='w-12/12 sm:w-2/12'></Wrapper>

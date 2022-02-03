@@ -8,7 +8,7 @@ import {
   UPDATE_RESUME_DATA_SUCCESS,
 } from '../types';
 
-type ProfileType = {
+export type ProfileType = {
   network: string;
   url: string;
 };
