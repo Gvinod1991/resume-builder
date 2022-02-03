@@ -1,9 +1,12 @@
-interface ITextArea {
+
+import { InputHTMLAttributes } from 'react';
+
+interface ITextArea extends InputHTMLAttributes<HTMLTextAreaElement> {
   textAreaValue?: string;
   textAreLabel?: string;
   placeholder?: string;
   rows?: number;
-  handleChange: () => void;
+  handleChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 export const TextArea = ({
   textAreaValue,
@@ -11,6 +14,7 @@ export const TextArea = ({
   placeholder,
   rows,
   handleChange,
+  ...rest
 }: ITextArea): JSX.Element => {
   return (
     <div className='flex flex-col p-1'>
@@ -21,6 +25,7 @@ export const TextArea = ({
         placeholder={placeholder}
         rows={rows ? rows : 3}
         value={textAreaValue ? textAreaValue : ''}
+        {...rest}
       />
     </div>
   );

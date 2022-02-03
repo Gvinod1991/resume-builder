@@ -1,6 +1,8 @@
-interface ISelect {
+import { SelectHTMLAttributes } from 'react';
+
+interface ISelect extends SelectHTMLAttributes<HTMLSelectElement> {
   label: string;
-  handleChange: () => void;
+  handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   options: Array<any>;
   optionKey?: string;
   optionValue?: string;
@@ -17,6 +19,7 @@ export const Select = ({
   handleChange,
   options,
   selectedValue,
+  ...rest
 }: ISelect): JSX.Element => {
   return (
     <div className='flex flex-col p-1'>
@@ -26,6 +29,7 @@ export const Select = ({
         placeholder={label}
         onChange={handleChange}
         value={selectedValue}
+        {...rest}
       >
         {options.map((option: IOption) => (
           <option key={option.optionKey} value={option.optionKey}>
