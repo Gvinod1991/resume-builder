@@ -15,3 +15,4 @@ export { CustomDatePicker } from './DatePicker';
 export { CheckBox } from './CheckBox';
 export { Pill } from './Pill';
 export { Loader } from './Loader';
+export { Upload } from './Upload';
