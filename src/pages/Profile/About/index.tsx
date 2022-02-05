@@ -8,6 +8,7 @@ import {
   Typography,
   Divider,
   Loader,
+  Upload,
 } from '../../../components';
 import { useDispatch } from 'react-redux';
 import { UserCircleIcon } from '@heroicons/react/solid';
@@ -59,6 +60,7 @@ type AboutDetailsType = {
   resumeHighlights?: string;
   phone?: string;
   profiles: Array<ProfileType>;
+  profileImage?: string;
 };
 export const About = (): JSX.Element => {
   const [user] = useAuthState(auth);
@@ -73,6 +75,7 @@ export const About = (): JSX.Element => {
     resumeHighlights: resumeDetails.resumeHighlights,
     phone: resumeDetails.phone,
     profiles: resumeDetails.profiles ? resumeDetails.profiles : [],
+    profileImage: resumeDetails.profileImage,
   });
   const dispatch = useDispatch();
 
@@ -86,6 +89,7 @@ export const About = (): JSX.Element => {
       resumeHighlights: aboutDetails.resumeHighlights,
       profiles: aboutDetails.profiles,
       phone: aboutDetails.phone,
+      profileImage: aboutDetails.profileImage,
     };
     dispatch(updateResumeData(updatedData, resumeDetails?.userId));
   };
@@ -108,7 +112,6 @@ export const About = (): JSX.Element => {
       profiles: oldProfileData,
     }));
   };
-  const { profileImage } = resumeDetails;
   const {
     candidateName,
     location,
@@ -117,6 +120,7 @@ export const About = (): JSX.Element => {
     resumeHighlights,
     phone,
     profiles,
+    profileImage,
   } = aboutDetails;
   return (
     <Wrapper className='flex flex-col w-full'>
@@ -136,14 +140,21 @@ export const About = (): JSX.Element => {
             <Wrapper className='flex flex-row flex-auto'>
               {profileImage !== '' ? (
                 <img
-                  className='object-cover h-20 rounded-full'
+                  className='object-cover h-20 w-20 rounded-full'
                   src={profileImage}
                   alt=''
                 />
               ) : (
                 <UserCircleIcon className='h-8 w-8 rounded-full' />
               )}
-              <Button title='Change' className='m-5 h-10 align-middle'></Button>
+              <Upload
+                onFileUploadSuccess={(url: string): void =>
+                  handleInputChange({ name: 'profileImage', value: url })
+                }
+                onFileUploadError={(): void =>
+                  handleInputChange({ name: 'profileImage', value: '' })
+                }
+              />
             </Wrapper>
           </Wrapper>
           <Wrapper className='p-2'>
