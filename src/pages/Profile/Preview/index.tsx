@@ -70,7 +70,7 @@ export const Preview = (): JSX.Element => {
             <Wrapper className='flex flex-col'>
               <Wrapper className='flex flex-row'>
                 <img
-                  className='object-cover h-20 rounded-full mt-3'
+                  className='object-cover h-20 w-20 rounded-full mt-3'
                   src={profileImage}
                   alt=''
                 />

@@ -64,15 +64,7 @@ export const TopNav = (): JSX.Element => {
                   {user?.displayName}
                 </span>
               )}
-              {user?.photoURL ? (
-                <img
-                  src={user?.photoURL}
-                  className='h-8 w-8 rounded-full'
-                  alt=''
-                />
-              ) : (
-                <UserCircleIcon className='h-8 w-8 rounded-full' />
-              )}
+              <UserCircleIcon className='h-8 w-8 rounded-full' />
             </button>
             {menuOpen ? (
               <div
