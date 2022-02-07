@@ -51,12 +51,12 @@ export interface IResumeDetails {
   achievements?: string;
   profiles?: Array<ProfileType>;
   skills?: {
-    genericSkills: Array<string>;
-    languages: Array<SkillType>;
-    frameworks: Array<SkillType>;
-    libraries: Array<SkillType>;
-    databases: Array<SkillType>;
-    tools: Array<SkillType>;
+    genericSkills?: Array<string>;
+    languages?: Array<SkillType>;
+    frameworks?: Array<SkillType>;
+    libraries?: Array<SkillType>;
+    databases?: Array<SkillType>;
+    tools?: Array<SkillType>;
   };
   work?: Array<WorkType>;
   projects?: Array<ProjectType>;
