@@ -12,12 +12,14 @@ export const TagsInput = ({
   selectedTags,
   initTags,
 }: ITagsInput): JSX.Element => {
+  const [inputValue, setInputValue] = useState<string>('');
   const [tags, setTags] = useState<Array<string>>(initTags);
   const addTags = (e: KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter' && e.currentTarget.value !== '') {
       setTags([...tags, e.currentTarget.value]);
       selectedTags([...tags, e.currentTarget.value]);
       e.currentTarget.value = '';
+      setInputValue('');
     }
   };
   const removeTags = (index: Number): void => {
@@ -37,7 +39,12 @@ export const TagsInput = ({
           />
         </li>
       ))}
-      <Input placeholder={tagLabel} onKeyUp={addTags} />
+      <Input
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        placeholder={tagLabel}
+        onKeyUp={addTags}
+      />
     </div>
   );
 };
