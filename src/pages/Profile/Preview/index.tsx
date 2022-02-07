@@ -112,16 +112,15 @@ export const Preview = (): JSX.Element => {
                 </span>
               </Wrapper>
               <Wrapper className='flex flex-row mt-2'>
-                {profiles &&
-                  profiles.map(({ url, network }, index) => (
-                    <a key={`${url}${index}`} href={url}>
-                      <img
-                        className='object-cover h-7 rounded-full opacity-60 m-1 cursor-pointer'
-                        src={socialProfiles[network]}
-                        alt=''
-                      />
-                    </a>
-                  ))}
+                {profiles?.map(({ url, network }, index) => (
+                  <a key={`${url}${index}`} href={url}>
+                    <img
+                      className='object-cover h-7 rounded-full opacity-60 m-1 cursor-pointer'
+                      src={socialProfiles[network]}
+                      alt=''
+                    />
+                  </a>
+                ))}
               </Wrapper>
             </Wrapper>
           </Wrapper>
@@ -133,47 +132,46 @@ export const Preview = (): JSX.Element => {
               title='Experience'
               titleClassName='text-indigo-500'
             >
-              {work &&
-                work.map(
-                  (
-                    {
-                      position,
-                      companyName,
-                      location,
-                      startDate,
-                      endDate,
-                      summary,
-                    },
-                    index
-                  ) => (
-                    <>
-                      <Wrapper key={companyName + index}>
-                        <Typography
-                          variant='h5'
-                          className='text-gray-600 text-xl'
-                        >
-                          {position}
-                        </Typography>
-                        <Typography
-                          variant='h1'
-                          className='text-gray-800 text-lg'
-                        >
-                          {companyName}, {location}
-                        </Typography>
-                        <Typography
-                          variant='h5'
-                          className='text-gray-800 text-md'
-                        >
-                          {startDate} - {endDate} (about 1 year)
-                        </Typography>
-                        <Wrapper className='text-gray-500 text-sm'>
-                          {summary}
-                        </Wrapper>
+              {work?.map(
+                (
+                  {
+                    position,
+                    companyName,
+                    location,
+                    startDate,
+                    endDate,
+                    summary,
+                  },
+                  index
+                ) => (
+                  <>
+                    <Wrapper key={companyName + index}>
+                      <Typography
+                        variant='h5'
+                        className='text-gray-600 text-xl'
+                      >
+                        {position}
+                      </Typography>
+                      <Typography
+                        variant='h1'
+                        className='text-gray-800 text-lg'
+                      >
+                        {companyName}, {location}
+                      </Typography>
+                      <Typography
+                        variant='h5'
+                        className='text-gray-800 text-md'
+                      >
+                        {startDate} - {endDate} (about 1 year)
+                      </Typography>
+                      <Wrapper className='text-gray-500 text-sm'>
+                        {summary}
                       </Wrapper>
-                      <Divider className='border-indigo-400 h mt-2 mb-2' />
-                    </>
-                  )
-                )}
+                    </Wrapper>
+                    <Divider className='border-indigo-400 h mt-2 mb-2' />
+                  </>
+                )
+              )}
             </Card>
             <Card
               className='mt-2 border rounded-sm'
@@ -210,10 +208,9 @@ export const Preview = (): JSX.Element => {
                           >
                             Tech Stack
                           </Typography>
-                          {techStack &&
-                            techStack.map((stack, index) => (
-                              <Pill key={stack + index} title={stack} />
-                            ))}
+                          {techStack?.map((stack, index) => (
+                            <Pill key={stack + index} title={stack} />
+                          ))}
                         </Wrapper>
                       </Wrapper>
                       <Divider className='border-indigo-400 mt-2' />
@@ -229,10 +226,9 @@ export const Preview = (): JSX.Element => {
               titleClassName='text-indigo-500'
             >
               <div className='flex gap-2 flex-wrap'>
-                {skills &&
-                  skills.genericSkills.map((skill, index) => (
-                    <Pill key={skill + index} title='React Js' />
-                  ))}
+                {skills?.genericSkills?.map((skill, index) => (
+                  <Pill key={skill + index} title={skill} />
+                ))}
               </div>
             </Card>
             <Card
@@ -240,34 +236,27 @@ export const Preview = (): JSX.Element => {
               title='Education'
               titleClassName='text-indigo-500'
             >
-              {education &&
-                education.map(
-                  (
-                    {
-                      institution,
-                      fieldOfStudy,
-                      studyType,
-                      startDate,
-                      endDate,
-                    },
-                    index
-                  ) => (
-                    <>
-                      <Wrapper key={institution + index}>
-                        <Typography variant='h1' className='text-gray-800'>
-                          {institution}
-                        </Typography>
-                        <Typography variant='h2' className='text-gray-600'>
-                          {fieldOfStudy},{studyType}
-                        </Typography>
-                        <Typography variant='h2' className='text-gray-600'>
-                          {startDate} - {endDate}
-                        </Typography>
-                      </Wrapper>
-                      <Divider className='border-indigo-400' />
-                    </>
-                  )
-                )}
+              {education?.map(
+                (
+                  { institution, fieldOfStudy, studyType, startDate, endDate },
+                  index
+                ) => (
+                  <>
+                    <Wrapper key={institution + index}>
+                      <Typography variant='h1' className='text-gray-800'>
+                        {institution}
+                      </Typography>
+                      <Typography variant='h2' className='text-gray-600'>
+                        {fieldOfStudy},{studyType}
+                      </Typography>
+                      <Typography variant='h2' className='text-gray-600'>
+                        {startDate} - {endDate}
+                      </Typography>
+                    </Wrapper>
+                    <Divider className='border-indigo-400' />
+                  </>
+                )
+              )}
             </Card>
           </div>
         </Wrapper>
