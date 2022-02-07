@@ -3,20 +3,37 @@ import { useSelector } from 'react-redux';
 import { TagsInput, Wrapper, Typography, Button } from '../../../components';
 import { RootState } from '../../../store/rootReducer';
 import { IResumeState } from '../../../store/reducer/resume.reducer';
+import { useDispatch } from 'react-redux';
+import { updateResumeData } from '../../../store/actions';
+import { Loader } from '../../../components';
 
 export const Skills = (): JSX.Element => {
-  const {
-    resumeDetails: { skills },
-  }: IResumeState = useSelector((state: RootState) => state.resume);
+  const { resumeDetails, resumeLoading }: IResumeState = useSelector(
+    (state: RootState) => state.resume
+  );
+  const dispatch = useDispatch();
   const [skillSet, setSkillList] = useState<Array<string>>(
-    skills?.genericSkills ? skills?.genericSkills : []
+    resumeDetails?.skills?.genericSkills
+      ? resumeDetails?.skills?.genericSkills
+      : []
   );
   const selectedTags = (tags: Array<string>): void => {
     setSkillList(tags);
   };
+  const updateResumeDetails = (): void => {
+    const updatedData = {
+      ...resumeDetails,
+      skills: {
+        ...resumeDetails.skills,
+        genericSkills: skillSet,
+      },
+    };
+    dispatch(updateResumeData(updatedData, resumeDetails?.userId));
+  };
   return (
     <>
       <Wrapper className='flex flex-row w-full'>
+        {resumeLoading && <Loader />}
         <Typography variant='h2' className='w-2/12 text-lg text-gray-600'>
           Your skills
         </Typography>
@@ -29,7 +46,11 @@ export const Skills = (): JSX.Element => {
         </Wrapper>
       </Wrapper>
       <Wrapper className='flex justify-end'>
-        <Button title='Save' className='w-fit'></Button>
+        <Button
+          title='Save'
+          onClick={() => updateResumeDetails()}
+          className='w-fit'
+        ></Button>
       </Wrapper>
     </>
   );
