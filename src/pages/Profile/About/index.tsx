@@ -195,7 +195,7 @@ export const About = (): JSX.Element => {
               textAreaValue={resumeHighlights}
               textAreLabel='Professional Intro'
               name='resumeHighlights'
-              handleChange={(e: any): void => handleInputChange(e.target)}
+              handleChange={(e): void => handleInputChange(e.target)}
             />
           </Wrapper>
           <Wrapper className='flex justify-end'>
