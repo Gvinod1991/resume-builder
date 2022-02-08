@@ -48,7 +48,7 @@ export const Skills = (): JSX.Element => {
       <Wrapper className='flex justify-end'>
         <Button
           title='Save'
-          onClick={() => updateResumeDetails()}
+          onClick={(): void => updateResumeDetails()}
           className='w-fit'
         ></Button>
       </Wrapper>
