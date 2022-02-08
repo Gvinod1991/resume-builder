@@ -1,7 +1,5 @@
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     screens: {
       sm: '480px',
@@ -9,12 +7,11 @@ module.exports = {
       lg: '976px',
       xl: '1440px',
     },
-    fontFamily: {
-    },
-    extend: {
-    }
+    fontFamily: {},
+    extend: {},
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-  ],
-}
+  plugins: [require('@tailwindcss/forms'), require('tailwind-scrollbar')],
+  variants: {
+    scrollbar: ['rounded'],
+  },
+};

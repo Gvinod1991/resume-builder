@@ -9,7 +9,9 @@ interface IModal {
   title: string;
   style?: object;
   className?: string;
+  saveBtnTitle?: string;
   onClose: () => void;
+  onSave?: () => void;
 }
 
 export const Modal = ({
@@ -17,14 +19,17 @@ export const Modal = ({
   children,
   title,
   className,
+  saveBtnTitle,
   onClose,
+  onSave,
 }: IModal): JSX.Element | null => {
   if (!open) return null;
   return createPortal(
     <>
       <div className='fixed top-0 left-0 right-0 bottom-0 bg-gray-800 opacity-70 z-50' />
       <div
-        className={`fixed rounded-md p-5 z-50 bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${className}`}
+        className={`fixed rounded-md p-5 z-50 bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-4/5 overflow-y-scroll 
+        scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-thumb-rounded ${className}`}
       >
         <div className='flex flex-row justify-between'>
           <Typography variant='h2' className='text-xl'>
@@ -34,7 +39,11 @@ export const Modal = ({
         </div>
         <div>{children}</div>
         <div className='flex flex-row justify-end'>
-          <Button onClick={onClose} className='m-1' title='Ok'></Button>
+          <Button
+            onClick={onSave}
+            className='m-1'
+            title={saveBtnTitle ? saveBtnTitle : 'Ok'}
+          ></Button>
           <Button onClick={onClose} className='m-1' title='Cancel'></Button>
         </div>
       </div>
