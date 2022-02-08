@@ -17,7 +17,7 @@ type SkillType = {
   skillName?: string;
   level?: number;
 };
-type WorkType = {
+export type WorkType = {
   companyName: string;
   position: string;
   startDate: string;
@@ -25,14 +25,14 @@ type WorkType = {
   location: string;
   summary: string;
 };
-type EducationType = {
+export type EducationType = {
   institution: string;
   studyType: string;
   fieldOfStudy: string;
   startDate: string;
   endDate: string;
 };
-type ProjectType = {
+export type ProjectType = {
   title: string;
   role: string;
   description: string;
