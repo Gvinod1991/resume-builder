@@ -41,7 +41,7 @@ export const TagsInput = ({
       ))}
       <Input
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={(e): void => setInputValue(e.target.value)}
         placeholder={tagLabel}
         onKeyUp={addTags}
       />
