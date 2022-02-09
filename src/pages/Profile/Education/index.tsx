@@ -87,10 +87,18 @@ export const Education = (): JSX.Element => {
           />
         </Wrapper>
         <Wrapper className='p-2'>
-          <CustomDatePicker pickerLabel='Stat Date' />
+          <CustomDatePicker
+            onDateChange={(date) => console.log(date)}
+            selectedDate=''
+            pickerLabel='Stat Date'
+          />
         </Wrapper>
         <Wrapper className='p-2'>
-          <CustomDatePicker pickerLabel='End Date' />
+          <CustomDatePicker
+            onDateChange={(date) => console.log(date)}
+            selectedDate=''
+            pickerLabel='End Date'
+          />
         </Wrapper>
       </Modal>
     </Wrapper>

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Card,
   Wrapper,
@@ -11,11 +11,13 @@ import {
   CustomDatePicker,
   CheckBox,
   TextEditor,
+  Loader,
 } from '../../../components';
 import { PlusIcon } from '@heroicons/react/solid';
 import { PencilAltIcon } from '@heroicons/react/outline';
 import { RootState } from '../../../store/rootReducer';
 import { IResumeState, WorkType } from '../../../store/reducer';
+import { updateResumeData } from '../../../store/actions';
 
 const initialWorkDetails = {
   companyName: '',
@@ -28,9 +30,10 @@ const initialWorkDetails = {
 export const WorkExperience = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState<boolean>(false);
-  const {
-    resumeDetails: { work },
-  }: IResumeState = useSelector((state: RootState) => state.resume);
+  const dispatch = useDispatch();
+  const { resumeDetails, resumeLoading }: IResumeState = useSelector(
+    (state: RootState) => state.resume
+  );
   const [workDetails, setWorkDetails] = useState<WorkType>(initialWorkDetails);
 
   const handleInputChange = ({ name, value }: any): void => {
@@ -40,9 +43,26 @@ export const WorkExperience = (): JSX.Element => {
     }));
   };
 
-  const { companyName, location, position, summary } = workDetails;
+  useEffect(() => {
+    setWorkDetails((prevState) => ({
+      ...prevState,
+      endDate: isChecked ? 'present' : prevState.endDate,
+    }));
+  }, [isChecked]);
+
+  const handleSubmit = (): void => {
+    const updatedData = {
+      ...resumeDetails,
+      work: [...resumeDetails.work, workDetails],
+    };
+    dispatch(updateResumeData(updatedData, resumeDetails?.userId));
+    setIsOpen(false);
+  };
+  const { companyName, location, position, summary, startDate, endDate } =
+    workDetails;
   return (
     <Wrapper className='flex flex-row flex-wrap sm:flex-nowrap'>
+      {resumeLoading && <Loader />}
       <Typography
         variant='h2'
         className='w-12/12 sm:w-3/12 text-lg text-gray-600'
@@ -58,7 +78,7 @@ export const WorkExperience = (): JSX.Element => {
             title='Add work experience'
           />
         </Wrapper>
-        {work?.map(
+        {resumeDetails?.work?.map(
           (
             { companyName, endDate, location, position, startDate, summary },
             index
@@ -93,6 +113,8 @@ export const WorkExperience = (): JSX.Element => {
         className='w-10/12 sm:w-6/12 m-1'
         open={isOpen}
         onClose={(): void => setIsOpen(false)}
+        onSave={handleSubmit}
+        saveBtnTitle='Save'
       >
         <>
           <Wrapper className='p-2'>
@@ -124,7 +146,13 @@ export const WorkExperience = (): JSX.Element => {
           </Wrapper>
           <Wrapper className='p-2'>
             <>
-              <CustomDatePicker pickerLabel='Stat Date' />
+              <CustomDatePicker
+                onDateChange={(date): void =>
+                  handleInputChange({ name: 'startDate', value: date })
+                }
+                selectedDate={startDate}
+                pickerLabel='Stat Date'
+              />
               <CheckBox
                 onChange={(): void => setIsChecked(!isChecked)}
                 inputLabel='Currently works here'
@@ -133,7 +161,13 @@ export const WorkExperience = (): JSX.Element => {
           </Wrapper>
           {!isChecked && (
             <Wrapper className='p-2'>
-              <CustomDatePicker pickerLabel='End Date' />
+              <CustomDatePicker
+                onDateChange={(date): void =>
+                  handleInputChange({ name: 'endDate', value: date })
+                }
+                selectedDate={endDate}
+                pickerLabel='End Date'
+              />
             </Wrapper>
           )}
           <Wrapper className='p-2'>
