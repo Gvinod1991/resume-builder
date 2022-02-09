@@ -1,5 +1,5 @@
 import { Editor } from '@tinymce/tinymce-react';
-
+const TINY_MCE_API_KEY = process.env.REACT_APP_TINY_MCE_API_KEY;
 export const TextEditor = ({
   textEditorValue,
   handleEditorChange,
@@ -7,7 +7,7 @@ export const TextEditor = ({
   return (
     <div className='border m-1 rounded-md bg-gray-200 border-gray-500 hover:border-indigo-500 hover:cursor-text hover:bg-white'>
       <Editor
-        apiKey='qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc'
+        apiKey={TINY_MCE_API_KEY}
         value={textEditorValue}
         init={{
           skin: 'snow',
