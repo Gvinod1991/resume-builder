@@ -74,6 +74,7 @@ export const addNewResumeData =
             type: SAVE_RESUME_DATA_SUCCESS,
             payload: docRef.id,
           });
+          dispatch(getResumeData(uId));
         } else {
           dispatch({
             type: SAVE_RESUME_DATA_FAILED,
@@ -112,6 +113,7 @@ export const updateResumeData =
             title: 'Resume data update successful!',
             type: toastTypes.SUCCESS,
           });
+          dispatch(getResumeData(uId));
           dispatch({
             type: UPDATE_RESUME_DATA_SUCCESS,
           });

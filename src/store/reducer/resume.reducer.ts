@@ -58,9 +58,9 @@ export interface IResumeDetails {
     databases?: Array<SkillType>;
     tools?: Array<SkillType>;
   };
-  work?: Array<WorkType>;
-  projects?: Array<ProjectType>;
-  education?: Array<EducationType>;
+  work: Array<WorkType>;
+  projects: Array<ProjectType>;
+  education: Array<EducationType>;
 }
 
 export interface IResumeState {
@@ -70,7 +70,7 @@ export interface IResumeState {
 
 const initialState: IResumeState = {
   resumeLoading: false,
-  resumeDetails: {},
+  resumeDetails: { work: [], projects: [], education: [] },
 };
 
 export const ResumeReducer = (
