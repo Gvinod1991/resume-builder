@@ -196,12 +196,10 @@ export const Preview = (): JSX.Element => {
                         >
                           {role}
                         </Typography>
-                        <Typography
-                          variant='p'
+                        <Wrapper
                           className='text-gray-500 text-sm'
-                        >
-                          {description}
-                        </Typography>
+                          dangerouslySetInnerHTML={{ __html: description }}
+                        ></Wrapper>
                         <Wrapper className='text-gray-500 text-sm flex flex-wrap gap-3'>
                           <Typography
                             variant='h5'
