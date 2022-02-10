@@ -163,7 +163,7 @@ export const WorkExperience = (): JSX.Element => {
         open={isOpen}
         onClose={(): void => setIsOpen(false)}
         onSave={handleSubmit}
-        saveBtnTitle='Save'
+        saveBtnTitle={workIndex !== null ? 'Update' : 'Save'}
       >
         <>
           <Wrapper className='p-2'>
