@@ -100,7 +100,11 @@ export const WorkExperience = (): JSX.Element => {
       <Wrapper className='flex flex-col ml-2 px-4 w-12/12 sm:w-8/12'>
         <Wrapper className='flex flex-row justify-end z-0'>
           <Button
-            onClick={(): void => setIsOpen(true)}
+            onClick={(): void => {
+              setIsOpen(true);
+              setWorkDetails(initialWorkDetails);
+              setWorkIndex(null);
+            }}
             leftIcon={<PlusIcon className='h-5' />}
             className='w-fit'
             title='Add work experience'
