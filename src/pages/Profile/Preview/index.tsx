@@ -164,9 +164,10 @@ export const Preview = (): JSX.Element => {
                       >
                         {startDate} - {endDate} (about 1 year)
                       </Typography>
-                      <Wrapper className='text-gray-500 text-sm'>
-                        {summary}
-                      </Wrapper>
+                      <Wrapper
+                        className='text-gray-500 text-sm'
+                        dangerouslySetInnerHTML={{ __html: summary }}
+                      ></Wrapper>
                     </Wrapper>
                     <Divider className='border-indigo-400 h mt-2 mb-2' />
                   </>

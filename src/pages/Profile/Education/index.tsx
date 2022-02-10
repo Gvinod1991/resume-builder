@@ -88,14 +88,18 @@ export const Education = (): JSX.Element => {
         </Wrapper>
         <Wrapper className='p-2'>
           <CustomDatePicker
-            onDateChange={(date) => console.log(date)}
+            onDateChange={(date): void => {
+              date;
+            }}
             selectedDate=''
             pickerLabel='Stat Date'
           />
         </Wrapper>
         <Wrapper className='p-2'>
           <CustomDatePicker
-            onDateChange={(date) => console.log(date)}
+            onDateChange={(date): void => {
+              date;
+            }}
             selectedDate=''
             pickerLabel='End Date'
           />

@@ -14,7 +14,7 @@ import {
   Loader,
 } from '../../../components';
 import { PlusIcon } from '@heroicons/react/solid';
-import { PencilAltIcon } from '@heroicons/react/outline';
+import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline';
 import { RootState } from '../../../store/rootReducer';
 import { IResumeState, WorkType } from '../../../store/reducer';
 import { updateResumeData } from '../../../store/actions';
@@ -30,6 +30,7 @@ const initialWorkDetails = {
 export const WorkExperience = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [workIndex, setWorkIndex] = useState<number | null>(null);
   const dispatch = useDispatch();
   const { resumeDetails, resumeLoading }: IResumeState = useSelector(
     (state: RootState) => state.resume
@@ -51,12 +52,39 @@ export const WorkExperience = (): JSX.Element => {
   }, [isChecked]);
 
   const handleSubmit = (): void => {
-    const updatedData = {
-      ...resumeDetails,
-      work: [...resumeDetails.work, workDetails],
-    };
+    let updatedData;
+    if (workIndex !== null) {
+      const oldWorkData = [...resumeDetails.work];
+      oldWorkData[workIndex] = workDetails;
+      updatedData = {
+        ...resumeDetails,
+        work: oldWorkData,
+      };
+    } else {
+      updatedData = {
+        ...resumeDetails,
+        work: [...resumeDetails.work, workDetails],
+      };
+    }
     dispatch(updateResumeData(updatedData, resumeDetails?.userId));
     setIsOpen(false);
+    setWorkIndex(null);
+    setWorkDetails(initialWorkDetails);
+  };
+  const handleEdit = (workData: WorkType, index: number): void => {
+    if (workData.endDate === 'present') {
+      setIsChecked(true);
+    }
+    setWorkDetails(workData);
+    setIsOpen(true);
+    setWorkIndex(index);
+  };
+  const handleRemove = (workIndex: number): void => {
+    const updatedResumeDate = {
+      ...resumeDetails,
+      work: [...resumeDetails.work.filter((_, i) => i !== workIndex)],
+    };
+    dispatch(updateResumeData(updatedResumeDate, resumeDetails?.userId));
   };
   const { companyName, location, position, summary, startDate, endDate } =
     workDetails;
@@ -91,7 +119,28 @@ export const WorkExperience = (): JSX.Element => {
                       <Typography variant='h1' className='text-xl'>
                         {position}
                       </Typography>
-                      <PencilAltIcon className='h-5 cursor-pointer text-gray-500' />
+                      <Wrapper className='flex'>
+                        <PencilAltIcon
+                          onClick={(): void =>
+                            handleEdit(
+                              {
+                                companyName,
+                                endDate,
+                                location,
+                                position,
+                                startDate,
+                                summary,
+                              },
+                              index
+                            )
+                          }
+                          className='h-5 cursor-pointer text-gray-500'
+                        />
+                        <TrashIcon
+                          onClick={(): void => handleRemove(index)}
+                          className='h-5 cursor-pointer text-gray-500'
+                        />
+                      </Wrapper>
                     </>
                   </Wrapper>
                   <Typography variant='h4' className='text-md text-gray-300'>
@@ -100,7 +149,7 @@ export const WorkExperience = (): JSX.Element => {
                   <Typography variant='h5' className='text-md text-gray-300'>
                     {`${startDate} to ${endDate}`}
                   </Typography>
-                  <Typography variant='p'>{summary}</Typography>
+                  <div dangerouslySetInnerHTML={{ __html: summary }}></div>
                 </Wrapper>
               </Card>
               <Divider className='border-8 border-white' />
@@ -154,7 +203,11 @@ export const WorkExperience = (): JSX.Element => {
                 pickerLabel='Stat Date'
               />
               <CheckBox
-                onChange={(): void => setIsChecked(!isChecked)}
+                checked={isChecked}
+                onChange={(): void => {
+                  setIsChecked(!isChecked);
+                  handleInputChange({ name: 'endDate', value: '' });
+                }}
                 inputLabel='Currently works here'
               />
             </>
