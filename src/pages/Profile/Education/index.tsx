@@ -109,7 +109,7 @@ export const Education = (): JSX.Element => {
             <>
               <Card key={index} className='w-full border'>
                 <Wrapper className='flex flex-col w-full'>
-                  <Wrapper className='flex flex-row justify-between'>
+                  <Wrapper className='flex flex-row justify-between p-0'>
                     <Typography variant='h1' className='text-xl'>
                       {institution}
                     </Typography>

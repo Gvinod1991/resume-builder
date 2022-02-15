@@ -1,11 +1,15 @@
 import { Editor } from '@tinymce/tinymce-react';
+import { useState } from 'react';
 const TINY_MCE_API_KEY = process.env.REACT_APP_TINY_MCE_API_KEY;
+import { Loader } from '..';
 export const TextEditor = ({
   textEditorValue,
   handleEditorChange,
 }: any): JSX.Element => {
+  const [loading, setLoading] = useState(true);
   return (
     <div className='border m-1 rounded-md bg-gray-200 border-gray-500 hover:border-indigo-500 hover:cursor-text hover:bg-white'>
+      {loading && <Loader />}
       <Editor
         apiKey={TINY_MCE_API_KEY}
         value={textEditorValue}
@@ -30,6 +34,9 @@ export const TextEditor = ({
         }}
         onEditorChange={handleEditorChange}
         outputFormat='html'
+        onInit={() => {
+          setLoading(false);
+        }}
       />
     </div>
   );
