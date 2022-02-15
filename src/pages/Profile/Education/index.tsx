@@ -84,7 +84,7 @@ export const Education = (): JSX.Element => {
       {resumeLoading && <Loader />}
       <Typography
         variant='h2'
-        className='w-12/12 sm:w-3/12 text-lg text-gray-600'
+        className='w-12/12 sm:w-3/12 text-lg text-gray-500'
       >
         Education
       </Typography>

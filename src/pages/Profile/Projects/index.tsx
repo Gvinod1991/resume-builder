@@ -89,7 +89,7 @@ export const Projects = (): JSX.Element => {
       {resumeLoading && <Loader />}
       <Typography
         variant='h2'
-        className='w-12/12 sm:w-3/12 text-lg text-gray-600'
+        className='w-12/12 sm:w-3/12 text-lg text-gray-500'
       >
         Side Projects
       </Typography>
@@ -113,8 +113,11 @@ export const Projects = (): JSX.Element => {
                 <Card className='w-full border'>
                   <Wrapper className='flex flex-col'>
                     <>
-                      <Wrapper className='flex flex-row justify-between'>
-                        <Typography variant='h1' className='text-xl'>
+                      <Wrapper className='flex flex-row justify-between p-0'>
+                        <Typography
+                          variant='h1'
+                          className='text-xl text-gray-600'
+                        >
                           {title}
                         </Typography>
                         <Wrapper className='flex'>
@@ -135,13 +138,17 @@ export const Projects = (): JSX.Element => {
                       </Wrapper>
                       <Typography
                         variant='h4'
-                        className='text-md text-gray-300'
+                        className='text-md text-gray-400'
                       >
                         {role}
                       </Typography>
+                      <Wrapper
+                        className='p-1 text-gray-500 text-sm custom-list'
+                        dangerouslySetInnerHTML={{ __html: description }}
+                      ></Wrapper>
                       <Typography
                         variant='h5'
-                        className='text-md text-gray-300'
+                        className='text-md text-gray-400'
                       >
                         Tech Stack
                         <Wrapper className='flex gap-2'>
@@ -150,9 +157,6 @@ export const Projects = (): JSX.Element => {
                           ))}
                         </Wrapper>
                       </Typography>
-                      <Wrapper
-                        dangerouslySetInnerHTML={{ __html: description }}
-                      ></Wrapper>
                     </>
                   </Wrapper>
                 </Card>

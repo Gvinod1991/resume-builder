@@ -53,8 +53,8 @@ export const Preview = (): JSX.Element => {
   const { displayName, email } = user ? user : { displayName: '', email: '' };
   return (
     <>
+      {resumeLoading && <Loader />}
       <Wrapper className='flex justify-end gap-6'>
-        {resumeLoading && <Loader />}
         <Button
           leftIcon={<PrinterIcon className='h-5 mr-1' />}
           title='Print'
@@ -66,7 +66,7 @@ export const Preview = (): JSX.Element => {
           onClick={(): void => printResume()}
         ></Button>
       </Wrapper>
-      <div id='print-section'>
+      <Wrapper id='print-section'>
         <Card className='rounded-sm border'>
           <Wrapper className='flex flex-row justify-between flex-wrap sm:flex-nowrap print:flex-nowrap'>
             <Wrapper className='flex flex-col'>
@@ -128,7 +128,7 @@ export const Preview = (): JSX.Element => {
           </Wrapper>
         </Card>
         <Wrapper className='flex flex-wrap sm:flex-nowrap justify-between gap-3 p-0 print:flex-nowrap'>
-          <div className='w-12/12 lg:w-9/12'>
+          <Wrapper className='w-12/12 lg:w-9/12'>
             <Card
               className='mt-2 border rounded-sm'
               title='Experience'
@@ -146,8 +146,8 @@ export const Preview = (): JSX.Element => {
                   },
                   index
                 ) => (
-                  <>
-                    <Wrapper key={companyName + index}>
+                  <Wrapper key={`${companyName}${index}`}>
+                    <Wrapper>
                       <Typography
                         variant='h5'
                         className='text-gray-600 text-xl'
@@ -164,15 +164,15 @@ export const Preview = (): JSX.Element => {
                         variant='h5'
                         className='text-gray-800 text-md'
                       >
-                        {startDate} - {endDate} (about 1 year)
+                        {startDate} - {endDate}
                       </Typography>
                       <Wrapper
-                        className='text-gray-500 text-sm'
+                        className='text-gray-500 text-sm custom-list'
                         dangerouslySetInnerHTML={{ __html: summary }}
                       ></Wrapper>
                     </Wrapper>
                     <Divider className='border-indigo-400 h mt-2 mb-2' />
-                  </>
+                  </Wrapper>
                 )
               )}
             </Card>
@@ -181,56 +181,55 @@ export const Preview = (): JSX.Element => {
               title='Projects'
               titleClassName='text-indigo-500'
             >
-              {projects &&
-                projects.map(
-                  ({ title, role, techStack, description }, index) => (
-                    <>
-                      <Wrapper key={title + index}>
-                        <a
-                          className='text-indigo-400 active:text-indigo-800 text-2xl'
-                          href='https://vigorous-fermat-03ebb2.netlify.app/'
-                        >
-                          {title}
-                        </a>
+              {projects?.map(
+                ({ title, role, techStack, description }, index) => (
+                  <Wrapper key={`${title}${index}`}>
+                    <Wrapper>
+                      <a
+                        className='text-indigo-400 active:text-indigo-800 text-2xl'
+                        href='https://vigorous-fermat-03ebb2.netlify.app/'
+                      >
+                        {title}
+                      </a>
+                      <Typography
+                        variant='h5'
+                        className='text-gray-600 text-lg'
+                      >
+                        {role}
+                      </Typography>
+                      <Wrapper
+                        className='text-gray-500 text-sm custom-list'
+                        dangerouslySetInnerHTML={{ __html: description }}
+                      ></Wrapper>
+                      <Wrapper className='text-gray-500 text-sm flex flex-wrap gap-3'>
                         <Typography
                           variant='h5'
-                          className='text-gray-600 text-lg'
+                          className='text-gray-600 text-lg m-1'
                         >
-                          {role}
+                          Tech Stack
                         </Typography>
-                        <Wrapper
-                          className='text-gray-500 text-sm'
-                          dangerouslySetInnerHTML={{ __html: description }}
-                        ></Wrapper>
-                        <Wrapper className='text-gray-500 text-sm flex flex-wrap gap-3'>
-                          <Typography
-                            variant='h5'
-                            className='text-gray-600 text-lg m-1'
-                          >
-                            Tech Stack
-                          </Typography>
-                          {techStack?.map((stack, index) => (
-                            <Pill key={stack + index} title={stack} />
-                          ))}
-                        </Wrapper>
+                        {techStack?.map((stack, index) => (
+                          <Pill key={`${stack}${index}`} title={stack} />
+                        ))}
                       </Wrapper>
-                      <Divider className='border-indigo-400 mt-2' />
-                    </>
-                  )
-                )}
+                    </Wrapper>
+                    <Divider className='border-indigo-400 mt-2' />
+                  </Wrapper>
+                )
+              )}
             </Card>
-          </div>
-          <div className='w-12/12 sm:w-3/12'>
+          </Wrapper>
+          <Wrapper className='w-12/12 sm:w-3/12'>
             <Card
               className='mt-2 border rounded-sm'
               title='Skills'
               titleClassName='text-indigo-500'
             >
-              <div className='flex gap-2 flex-wrap'>
+              <Wrapper className='flex gap-2 flex-wrap'>
                 {skills?.genericSkills?.map((skill, index) => (
-                  <Pill key={skill + index} title={skill} />
+                  <Pill key={`${skill}${index}`} title={skill} />
                 ))}
-              </div>
+              </Wrapper>
             </Card>
             <Card
               className='mt-2 border rounded-sm'
@@ -242,8 +241,8 @@ export const Preview = (): JSX.Element => {
                   { institution, fieldOfStudy, studyType, startDate, endDate },
                   index
                 ) => (
-                  <>
-                    <Wrapper key={institution + index}>
+                  <Wrapper key={`${institution}${index}`}>
+                    <Wrapper>
                       <Typography variant='h1' className='text-gray-800'>
                         {institution}
                       </Typography>
@@ -255,13 +254,13 @@ export const Preview = (): JSX.Element => {
                       </Typography>
                     </Wrapper>
                     <Divider className='border-indigo-400' />
-                  </>
+                  </Wrapper>
                 )
               )}
             </Card>
-          </div>
+          </Wrapper>
         </Wrapper>
-      </div>
+      </Wrapper>
     </>
   );
 };

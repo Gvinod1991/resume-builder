@@ -34,7 +34,7 @@ export const Skills = (): JSX.Element => {
     <>
       <Wrapper className='flex flex-row w-full'>
         {resumeLoading && <Loader />}
-        <Typography variant='h2' className='w-2/12 text-lg text-gray-600'>
+        <Typography variant='h2' className='w-2/12 text-lg text-gray-500'>
           Your skills
         </Typography>
         <Wrapper className='flex flex-col ml-2 px-4 w-10/12'>

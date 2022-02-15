@@ -93,7 +93,7 @@ export const WorkExperience = (): JSX.Element => {
       {resumeLoading && <Loader />}
       <Typography
         variant='h2'
-        className='w-12/12 sm:w-3/12 text-lg text-gray-600'
+        className='w-12/12 sm:w-3/12 text-lg text-gray-500'
       >
         Your work experience
       </Typography>
@@ -118,42 +118,43 @@ export const WorkExperience = (): JSX.Element => {
             <Wrapper key={companyName + index}>
               <Card className='w-full border'>
                 <Wrapper className='flex flex-col'>
-                  <Wrapper className='flex flex-row justify-between'>
-                    <>
-                      <Typography variant='h1' className='text-xl'>
-                        {position}
-                      </Typography>
-                      <Wrapper className='flex'>
-                        <PencilAltIcon
-                          onClick={(): void =>
-                            handleEdit(
-                              {
-                                companyName,
-                                endDate,
-                                location,
-                                position,
-                                startDate,
-                                summary,
-                              },
-                              index
-                            )
-                          }
-                          className='h-5 cursor-pointer text-gray-500'
-                        />
-                        <TrashIcon
-                          onClick={(): void => handleRemove(index)}
-                          className='h-5 cursor-pointer text-gray-500'
-                        />
-                      </Wrapper>
-                    </>
+                  <Wrapper className='flex flex-row justify-between p-0'>
+                    <Typography variant='h1' className='text-xl text-gray-600'>
+                      {position}
+                    </Typography>
+                    <Wrapper className='flex'>
+                      <PencilAltIcon
+                        onClick={(): void =>
+                          handleEdit(
+                            {
+                              companyName,
+                              endDate,
+                              location,
+                              position,
+                              startDate,
+                              summary,
+                            },
+                            index
+                          )
+                        }
+                        className='h-5 cursor-pointer text-gray-500'
+                      />
+                      <TrashIcon
+                        onClick={(): void => handleRemove(index)}
+                        className='h-5 cursor-pointer text-gray-500'
+                      />
+                    </Wrapper>
                   </Wrapper>
-                  <Typography variant='h4' className='text-md text-gray-300'>
+                  <Typography variant='h4' className='text-md text-gray-400'>
                     {`${companyName},${location}`}
                   </Typography>
-                  <Typography variant='h5' className='text-md text-gray-300'>
+                  <Typography variant='h5' className='text-md text-gray-400'>
                     {`${startDate} to ${endDate}`}
                   </Typography>
-                  <div dangerouslySetInnerHTML={{ __html: summary }}></div>
+                  <Wrapper
+                    className='p-1 text-gray-500 text-sm custom-list'
+                    dangerouslySetInnerHTML={{ __html: summary }}
+                  ></Wrapper>
                 </Wrapper>
               </Card>
               <Divider className='border-8 border-white' />
