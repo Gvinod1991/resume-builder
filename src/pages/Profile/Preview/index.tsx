@@ -5,6 +5,7 @@ import {
   Button,
   Pill,
   Divider,
+  Loader,
 } from '../../../components';
 import {
   PhoneIcon,
@@ -33,7 +34,7 @@ const socialProfiles: socialProfileType = {
 
 export const Preview = (): JSX.Element => {
   const [user] = useAuthState(auth);
-  const { resumeDetails }: IResumeState = useSelector(
+  const { resumeDetails, resumeLoading }: IResumeState = useSelector(
     (state: RootState) => state.resume
   );
   const {
@@ -53,6 +54,7 @@ export const Preview = (): JSX.Element => {
   return (
     <>
       <Wrapper className='flex justify-end gap-6'>
+        {resumeLoading && <Loader />}
         <Button
           leftIcon={<PrinterIcon className='h-5 mr-1' />}
           title='Print'

@@ -37,7 +37,6 @@ export const getResumeData =
         querySnapshot.forEach((queryData) => {
           resumeData = queryData.data();
         });
-        Notify({ title: 'Success', type: toastTypes.SUCCESS });
         dispatch({
           type: GET_RESUME_DATA_SUCCESS,
           payload: resumeData,
