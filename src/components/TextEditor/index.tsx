@@ -34,7 +34,7 @@ export const TextEditor = ({
         }}
         onEditorChange={handleEditorChange}
         outputFormat='html'
-        onInit={() => {
+        onInit={(): void => {
           setLoading(false);
         }}
       />
