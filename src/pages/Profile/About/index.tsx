@@ -147,14 +147,16 @@ export const About = (): JSX.Element => {
               ) : (
                 <UserCircleIcon className='h-8 w-8 rounded-full' />
               )}
-              <Upload
-                onFileUploadSuccess={(url: string): void =>
-                  handleInputChange({ name: 'profileImage', value: url })
-                }
-                onFileUploadError={(): void =>
-                  handleInputChange({ name: 'profileImage', value: '' })
-                }
-              />
+              <Wrapper className='m-3'>
+                <Upload
+                  onFileUploadSuccess={(url: string): void =>
+                    handleInputChange({ name: 'profileImage', value: url })
+                  }
+                  onFileUploadError={(): void =>
+                    handleInputChange({ name: 'profileImage', value: '' })
+                  }
+                />
+              </Wrapper>
             </Wrapper>
           </Wrapper>
           <Wrapper className='p-2'>
