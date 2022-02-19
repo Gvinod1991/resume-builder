@@ -16,6 +16,7 @@ import { RootState } from '../../../store/rootReducer';
 import { auth } from '../../../utils/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useSelector } from 'react-redux';
+import { validate } from '../../../utils/validate';
 import {
   IResumeState,
   ProfileType,
@@ -64,6 +65,7 @@ type AboutDetailsType = {
 };
 export const About = (): JSX.Element => {
   const [user] = useAuthState(auth);
+  const [errorData, setErrorData] = useState<any>(null);
   const { resumeDetails, resumeLoading }: IResumeState = useSelector(
     (state: RootState) => state.resume
   );
@@ -80,6 +82,38 @@ export const About = (): JSX.Element => {
   const dispatch = useDispatch();
 
   const updateResumeDetails = (): void => {
+    const rules = {
+      candidateName: {
+        presence: true,
+        message: 'Your name required!',
+      },
+      location: {
+        presence: true,
+        message: 'Your current location required!',
+      },
+      jobRole: {
+        presence: true,
+        message: 'Your current current job role required!',
+      },
+      totalExperience: {
+        presence: true,
+        message: 'Your total years of experience required!',
+      },
+      resumeHighlights: {
+        presence: true,
+        message: 'Your professional introduction required!',
+      },
+      phone: {
+        presence: true,
+        message: 'Your contact number required!',
+      },
+      profiles: {
+        presence: true,
+        message: 'Social profiles required!',
+      },
+    };
+    const { isValid, errors } = validate({ data: aboutDetails, rules });
+    setErrorData(errors);
     const updatedData = {
       ...resumeDetails,
       candidateName: aboutDetails.candidateName,
@@ -91,7 +125,9 @@ export const About = (): JSX.Element => {
       phone: aboutDetails.phone,
       profileImage: aboutDetails.profileImage,
     };
-    dispatch(updateResumeData(updatedData, resumeDetails?.userId));
+    if (isValid) {
+      dispatch(updateResumeData(updatedData, resumeDetails?.userId));
+    }
   };
 
   const handleInputChange = ({ name, value }: any): void => {
@@ -166,6 +202,11 @@ export const About = (): JSX.Element => {
               onChange={(e): void => handleInputChange(e.target)}
               value={candidateName}
             />
+            {errorData?.candidateName && (
+              <Typography variant='p' className='text-red-500'>
+                {errorData?.candidateName}
+              </Typography>
+            )}
           </Wrapper>
           <Wrapper className='p-2'>
             <Input
@@ -174,6 +215,11 @@ export const About = (): JSX.Element => {
               onChange={(e): void => handleInputChange(e.target)}
               value={location}
             />
+            {errorData?.location && (
+              <Typography variant='p' className='text-red-500'>
+                {errorData?.location}
+              </Typography>
+            )}
           </Wrapper>
           <Wrapper className='p-2'>
             <Input
@@ -182,6 +228,11 @@ export const About = (): JSX.Element => {
               onChange={(e): void => handleInputChange(e.target)}
               value={jobRole}
             />
+            {errorData?.jobRole && (
+              <Typography variant='p' className='text-red-500'>
+                {errorData?.jobRole}
+              </Typography>
+            )}
           </Wrapper>
           <Wrapper className='p-2'>
             <Select
@@ -191,6 +242,11 @@ export const About = (): JSX.Element => {
               handleChange={(e): void => handleInputChange(e.target)}
               options={yearOptions}
             />
+            {errorData?.totalExperience && (
+              <Typography variant='p' className='text-red-500'>
+                {errorData?.totalExperience}
+              </Typography>
+            )}
           </Wrapper>
           <Wrapper className='p-2'>
             <TextArea
@@ -199,13 +255,11 @@ export const About = (): JSX.Element => {
               name='resumeHighlights'
               handleChange={(e): void => handleInputChange(e.target)}
             />
-          </Wrapper>
-          <Wrapper className='flex justify-end'>
-            <Button
-              title='Save'
-              onClick={(): void => updateResumeDetails()}
-              className='w-fit'
-            ></Button>
+            {errorData?.resumeHighlights && (
+              <Typography variant='p' className='text-red-500'>
+                {errorData?.resumeHighlights}
+              </Typography>
+            )}
           </Wrapper>
         </Wrapper>
         <Wrapper className='w-12/12 sm:w-2/12 '></Wrapper>
@@ -236,6 +290,11 @@ export const About = (): JSX.Element => {
               name='phone'
               onChange={(e): void => handleInputChange(e.target)}
             />
+            {errorData?.phone && (
+              <Typography variant='p' className='text-red-500'>
+                {errorData?.phone}
+              </Typography>
+            )}
           </Wrapper>
           {profiles &&
             profiles.length > 0 &&
@@ -250,6 +309,11 @@ export const About = (): JSX.Element => {
                 />
               </Wrapper>
             ))}
+          {errorData?.profiles && (
+            <Typography variant='p' className='text-red-500'>
+              {errorData?.profiles}
+            </Typography>
+          )}
           <Wrapper className='flex justify-end'>
             <Button
               title='Save'
