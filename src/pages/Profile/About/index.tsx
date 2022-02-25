@@ -302,8 +302,12 @@ export const About = (): JSX.Element => {
               <Wrapper className='p-2' key={index + network}>
                 <Input
                   value={url}
-                  inputLabel={network}
-                  placeholder={network}
+                  inputLabel={`${network
+                    .charAt(0)
+                    .toUpperCase()}${network.substring(1)}`}
+                  placeholder={`${network
+                    .charAt(0)
+                    .toUpperCase()}${network.substring(1)}`}
                   name={network}
                   onChange={(e): void => handleProfileChange(e.target, index)}
                 />

@@ -114,15 +114,17 @@ export const Preview = (): JSX.Element => {
                 </span>
               </Wrapper>
               <Wrapper className='flex flex-row mt-2'>
-                {profiles?.map(({ url, network }, index) => (
-                  <a key={`${url}${index}`} href={url}>
-                    <img
-                      className='object-cover h-7 rounded-full opacity-60 m-1 cursor-pointer'
-                      src={socialProfiles[network]}
-                      alt=''
-                    />
-                  </a>
-                ))}
+                {profiles?.map(({ url, network }, index) =>
+                  url ? (
+                    <a key={`${url}${index}`} href={url}>
+                      <img
+                        className='object-cover h-7 rounded-full opacity-60 m-1 cursor-pointer'
+                        src={socialProfiles[network]}
+                        alt=''
+                      />
+                    </a>
+                  ) : null
+                )}
               </Wrapper>
             </Wrapper>
           </Wrapper>
