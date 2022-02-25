@@ -18,6 +18,7 @@ import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline';
 import { RootState } from '../../../store/rootReducer';
 import { IResumeState, WorkType } from '../../../store/reducer';
 import { updateResumeData } from '../../../store/actions';
+import { validate } from '../../../utils/validate';
 
 const initialWorkDetails = {
   companyName: '',
@@ -27,10 +28,37 @@ const initialWorkDetails = {
   position: '',
   summary: '',
 };
+const rules = {
+  position: {
+    presence: true,
+    message: 'Position/job role required!',
+  },
+  companyName: {
+    presence: true,
+    message: 'Company name required!',
+  },
+  startDate: {
+    presence: true,
+    message: 'Start month and year required!',
+  },
+  endDate: {
+    presence: true,
+    message: 'End month and year required!',
+  },
+  location: {
+    presence: true,
+    message: 'Job location required!',
+  },
+  summary: {
+    presence: true,
+    message: 'Your work summary required!',
+  },
+};
 export const WorkExperience = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [workIndex, setWorkIndex] = useState<number | null>(null);
+  const [errorData, setErrorData] = useState<any>(null);
   const dispatch = useDispatch();
   const { resumeDetails, resumeLoading }: IResumeState = useSelector(
     (state: RootState) => state.resume
@@ -52,6 +80,11 @@ export const WorkExperience = (): JSX.Element => {
   }, [isChecked]);
 
   const handleSubmit = (): void => {
+    const { isValid, errors } = validate({ data: workDetails, rules });
+    setErrorData(errors);
+    if (!isValid) {
+      return;
+    }
     let updatedData;
     if (workIndex !== null) {
       const oldWorkData = [...resumeDetails.work];
@@ -179,6 +212,11 @@ export const WorkExperience = (): JSX.Element => {
               onChange={(e): void => handleInputChange(e.target)}
               placeholder='Ex: FrontEnd Engineer'
             />
+            {errorData?.position && (
+              <Typography variant='p' className='text-red-400'>
+                {errorData?.position}
+              </Typography>
+            )}
           </Wrapper>
           <Wrapper className='p-2'>
             <Input
@@ -188,6 +226,11 @@ export const WorkExperience = (): JSX.Element => {
               onChange={(e): void => handleInputChange(e.target)}
               placeholder='Ex: Infosys'
             />
+            {errorData?.companyName && (
+              <Typography variant='p' className='text-red-400'>
+                {errorData?.companyName}
+              </Typography>
+            )}
           </Wrapper>
           <Wrapper className='p-2'>
             <Input
@@ -197,6 +240,11 @@ export const WorkExperience = (): JSX.Element => {
               onChange={(e): void => handleInputChange(e.target)}
               placeholder='Ex: Bengaluru,India'
             />
+            {errorData?.location && (
+              <Typography variant='p' className='text-red-400'>
+                {errorData?.location}
+              </Typography>
+            )}
           </Wrapper>
           <Wrapper className='p-2'>
             <>
@@ -215,6 +263,11 @@ export const WorkExperience = (): JSX.Element => {
                 }}
                 inputLabel='Currently works here'
               />
+              {errorData?.startDate && (
+                <Typography variant='p' className='text-red-400'>
+                  {errorData?.startDate}
+                </Typography>
+              )}
             </>
           </Wrapper>
           {!isChecked && (
@@ -226,6 +279,11 @@ export const WorkExperience = (): JSX.Element => {
                 selectedDate={endDate}
                 pickerLabel='End Date'
               />
+              {errorData?.endDate && (
+                <Typography variant='p' className='text-red-400'>
+                  {errorData?.endDate}
+                </Typography>
+              )}
             </Wrapper>
           )}
           <Wrapper className='p-2'>
@@ -235,6 +293,11 @@ export const WorkExperience = (): JSX.Element => {
                 handleInputChange({ name: 'summary', value: content })
               }
             />
+            {errorData?.summary && (
+              <Typography variant='p' className='text-red-400'>
+                {errorData?.summary}
+              </Typography>
+            )}
           </Wrapper>
         </>
       </Modal>

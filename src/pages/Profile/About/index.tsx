@@ -22,7 +22,36 @@ import {
   ProfileType,
 } from '../../../store/reducer/resume.reducer';
 import { updateResumeData } from '../../../store/actions';
-
+const rules = {
+  candidateName: {
+    presence: true,
+    message: 'Your name required!',
+  },
+  location: {
+    presence: true,
+    message: 'Your current location required!',
+  },
+  jobRole: {
+    presence: true,
+    message: 'Your current current job role required!',
+  },
+  totalExperience: {
+    presence: true,
+    message: 'Your total years of experience required!',
+  },
+  resumeHighlights: {
+    presence: true,
+    message: 'Your professional introduction required!',
+  },
+  phone: {
+    presence: true,
+    message: 'Your contact number required!',
+  },
+  profiles: {
+    presence: true,
+    message: 'Social profiles required!',
+  },
+};
 const yearOptions = [
   {
     optionKey: '0',
@@ -82,36 +111,6 @@ export const About = (): JSX.Element => {
   const dispatch = useDispatch();
 
   const updateResumeDetails = (): void => {
-    const rules = {
-      candidateName: {
-        presence: true,
-        message: 'Your name required!',
-      },
-      location: {
-        presence: true,
-        message: 'Your current location required!',
-      },
-      jobRole: {
-        presence: true,
-        message: 'Your current current job role required!',
-      },
-      totalExperience: {
-        presence: true,
-        message: 'Your total years of experience required!',
-      },
-      resumeHighlights: {
-        presence: true,
-        message: 'Your professional introduction required!',
-      },
-      phone: {
-        presence: true,
-        message: 'Your contact number required!',
-      },
-      profiles: {
-        presence: true,
-        message: 'Social profiles required!',
-      },
-    };
     const { isValid, errors } = validate({ data: aboutDetails, rules });
     setErrorData(errors);
     const updatedData = {
