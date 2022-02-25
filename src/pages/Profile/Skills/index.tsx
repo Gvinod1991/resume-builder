@@ -8,6 +8,7 @@ import { updateResumeData } from '../../../store/actions';
 import { Loader } from '../../../components';
 
 export const Skills = (): JSX.Element => {
+  const [errData, setErrData] = useState<string>('');
   const { resumeDetails, resumeLoading }: IResumeState = useSelector(
     (state: RootState) => state.resume
   );
@@ -21,6 +22,11 @@ export const Skills = (): JSX.Element => {
     setSkillList(tags);
   };
   const updateResumeDetails = (): void => {
+    setErrData('');
+    if (skillSet.length === 0) {
+      setErrData('At least one skill required!');
+      return;
+    }
     const updatedData = {
       ...resumeDetails,
       skills: {
@@ -45,6 +51,11 @@ export const Skills = (): JSX.Element => {
           />
         </Wrapper>
       </Wrapper>
+      {errData && (
+        <Typography variant='p' className='text-red-400 text-center'>
+          {errData}
+        </Typography>
+      )}
       <Wrapper className='flex justify-end'>
         <Button
           title='Save'
