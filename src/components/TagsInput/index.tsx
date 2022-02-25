@@ -22,8 +22,9 @@ export const TagsInput = ({
       setInputValue('');
     }
   };
-  const removeTags = (index: Number): void => {
-    setTags([...tags.filter((tag) => tags.indexOf(tag) !== index)]);
+  const removeTags = (tag: string): void => {
+    setTags([...tags.filter((tagName) => tagName !== tag)]);
+    selectedTags([...tags.filter((tagName) => tagName !== tag)]);
   };
   return (
     <div>
@@ -35,7 +36,7 @@ export const TagsInput = ({
           <span>{tag}</span>
           <XIcon
             className='inline h-6 w-5 text-white cursor-pointer'
-            onClick={(): void => removeTags(index)}
+            onClick={(): void => removeTags(tag)}
           />
         </li>
       ))}
