@@ -131,135 +131,150 @@ export const Preview = (): JSX.Element => {
         </Card>
         <Wrapper className='flex flex-wrap sm:flex-nowrap justify-between gap-3 p-0 print:flex-nowrap'>
           <Wrapper className='w-12/12 lg:w-9/12'>
-            <Card
-              className='mt-2 border rounded-sm'
-              title='Experience'
-              titleClassName='text-indigo-500'
-            >
-              {work?.map(
-                (
-                  {
-                    position,
-                    companyName,
-                    location,
-                    startDate,
-                    endDate,
-                    summary,
-                  },
-                  index
-                ) => (
-                  <Wrapper key={`${companyName}${index}`}>
-                    <Wrapper>
-                      <Typography
-                        variant='h5'
-                        className='text-gray-600 text-xl'
-                      >
-                        {position}
-                      </Typography>
-                      <Typography
-                        variant='h1'
-                        className='text-gray-800 text-lg'
-                      >
-                        {companyName}, {location}
-                      </Typography>
-                      <Typography
-                        variant='h5'
-                        className='text-gray-800 text-md'
-                      >
-                        {startDate} - {endDate}
-                      </Typography>
-                      <Wrapper
-                        className='text-gray-500 text-sm custom-list'
-                        dangerouslySetInnerHTML={{ __html: summary }}
-                      ></Wrapper>
-                    </Wrapper>
-                    <Divider className='border-indigo-400 h mt-2 mb-2' />
-                  </Wrapper>
-                )
-              )}
-            </Card>
-            <Card
-              className='mt-2 border rounded-sm'
-              title='Projects'
-              titleClassName='text-indigo-500'
-            >
-              {projects?.map(
-                ({ title, role, techStack, description }, index) => (
-                  <Wrapper key={`${title}${index}`}>
-                    <Wrapper>
-                      <a
-                        className='text-indigo-400 active:text-indigo-800 text-2xl'
-                        href='https://vigorous-fermat-03ebb2.netlify.app/'
-                      >
-                        {title}
-                      </a>
-                      <Typography
-                        variant='h5'
-                        className='text-gray-600 text-lg'
-                      >
-                        {role}
-                      </Typography>
-                      <Wrapper
-                        className='text-gray-500 text-sm custom-list'
-                        dangerouslySetInnerHTML={{ __html: description }}
-                      ></Wrapper>
-                      <Wrapper className='text-gray-500 text-sm flex flex-wrap gap-3'>
+            {work && work.length > 0 && (
+              <Card
+                className='mt-2 border rounded-sm'
+                title='Experience'
+                titleClassName='text-indigo-500'
+              >
+                {work?.map(
+                  (
+                    {
+                      position,
+                      companyName,
+                      location,
+                      startDate,
+                      endDate,
+                      summary,
+                    },
+                    index
+                  ) => (
+                    <Wrapper key={`${companyName}${index}`}>
+                      <Wrapper>
                         <Typography
                           variant='h5'
-                          className='text-gray-600 text-lg m-1'
+                          className='text-gray-600 text-xl'
                         >
-                          Tech Stack
+                          {position}
                         </Typography>
-                        {techStack?.map((stack, index) => (
-                          <Pill key={`${stack}${index}`} title={stack} />
-                        ))}
+                        <Typography
+                          variant='h1'
+                          className='text-gray-800 text-lg'
+                        >
+                          {companyName}, {location}
+                        </Typography>
+                        <Typography
+                          variant='h5'
+                          className='text-gray-800 text-md'
+                        >
+                          {startDate} - {endDate}
+                        </Typography>
+                        <Wrapper
+                          className='text-gray-500 text-sm custom-list'
+                          dangerouslySetInnerHTML={{ __html: summary }}
+                        ></Wrapper>
                       </Wrapper>
+                      <Divider className='border-indigo-400 h mt-2 mb-2' />
                     </Wrapper>
-                    <Divider className='border-indigo-400 mt-2' />
-                  </Wrapper>
-                )
-              )}
-            </Card>
+                  )
+                )}
+              </Card>
+            )}
+            {projects && projects.length > 0 && (
+              <Card
+                className='mt-2 border rounded-sm'
+                title='Projects'
+                titleClassName='text-indigo-500'
+              >
+                {projects?.map(
+                  ({ title, role, techStack, description }, index) => (
+                    <Wrapper key={`${title}${index}`}>
+                      <Wrapper>
+                        <a
+                          className='text-indigo-400 active:text-indigo-800 text-2xl'
+                          href='https://vigorous-fermat-03ebb2.netlify.app/'
+                        >
+                          {title}
+                        </a>
+                        <Typography
+                          variant='h5'
+                          className='text-gray-600 text-lg'
+                        >
+                          {role}
+                        </Typography>
+                        <Wrapper
+                          className='text-gray-500 text-sm custom-list'
+                          dangerouslySetInnerHTML={{ __html: description }}
+                        ></Wrapper>
+                        <Wrapper className='text-gray-500 text-sm flex flex-wrap gap-3'>
+                          <Typography
+                            variant='h5'
+                            className='text-gray-600 text-lg m-1'
+                          >
+                            Tech Stack
+                          </Typography>
+                          {techStack?.map((stack, index) => (
+                            <Pill key={`${stack}${index}`} title={stack} />
+                          ))}
+                        </Wrapper>
+                      </Wrapper>
+                      <Divider className='border-indigo-400 mt-2' />
+                    </Wrapper>
+                  )
+                )}
+              </Card>
+            )}
           </Wrapper>
+
           <Wrapper className='w-12/12 sm:w-3/12'>
-            <Card
-              className='mt-2 border rounded-sm'
-              title='Skills'
-              titleClassName='text-indigo-500'
-            >
-              <Wrapper className='flex gap-2 flex-wrap'>
-                {skills?.genericSkills?.map((skill, index) => (
-                  <Pill key={`${skill}${index}`} title={skill} />
-                ))}
-              </Wrapper>
-            </Card>
-            <Card
-              className='mt-2 border rounded-sm'
-              title='Education'
-              titleClassName='text-indigo-500'
-            >
-              {education?.map(
-                (
-                  { institution, fieldOfStudy, studyType, startDate, endDate },
-                  index
-                ) => (
-                  <Wrapper key={`${institution}${index}`}>
-                    <Wrapper>
-                      <Typography variant='h1' className='text-gray-800'>
-                        {institution}
-                      </Typography>
-                      <Typography variant='h2' className='text-gray-600'>
-                        {fieldOfStudy},{studyType}
-                      </Typography>
-                      <Typography variant='h2' className='text-gray-600'>
-                        {startDate} - {endDate}
-                      </Typography>
+            {skills && skills.genericSkills && skills.genericSkills.length > 0 && (
+              <Card
+                className='mt-2 border rounded-sm'
+                title='Skills'
+                titleClassName='text-indigo-500'
+              >
+                <Wrapper className='flex gap-2 flex-wrap'>
+                  {skills?.genericSkills?.map((skill, index) => (
+                    <Pill key={`${skill}${index}`} title={skill} />
+                  ))}
+                </Wrapper>
+              </Card>
+            )}
+            {education && education.length > 0 && (
+              <Card
+                className='mt-2 border rounded-sm'
+                title='Education'
+                titleClassName='text-indigo-500'
+              >
+                {education?.map(
+                  (
+                    {
+                      institution,
+                      fieldOfStudy,
+                      studyType,
+                      startDate,
+                      endDate,
+                    },
+                    index
+                  ) => (
+                    <Wrapper key={`${institution}${index}`}>
+                      <Wrapper>
+                        <Typography variant='h1' className='text-gray-800'>
+                          {institution}
+                        </Typography>
+                        <Typography variant='h2' className='text-gray-600'>
+                          {fieldOfStudy},{studyType}
+                        </Typography>
+                        <Typography variant='h2' className='text-gray-600'>
+                          {startDate} - {endDate}
+                        </Typography>
+                      </Wrapper>
+                      <Divider className='border-indigo-400' />
                     </Wrapper>
-                    <Divider className='border-indigo-400' />
-                  </Wrapper>
-                )
-              )}
-            </Card>
+                  )
+                )}
+              </Card>
+            )}
           </Wrapper>
         </Wrapper>
       </Wrapper>
