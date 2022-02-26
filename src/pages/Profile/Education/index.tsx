@@ -16,6 +16,7 @@ import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline';
 import { RootState } from '../../../store/rootReducer';
 import { IResumeState, EducationType } from '../../../store/reducer';
 import { updateResumeData } from '../../../store/actions';
+import { validate } from '../../../utils/validate';
 
 const initialEducationData = {
   institution: '',
@@ -24,8 +25,32 @@ const initialEducationData = {
   startDate: '',
   studyType: '',
 };
+const rules = {
+  institution: {
+    presence: true,
+    message: 'Institution name required!',
+  },
+  fieldOfStudy: {
+    presence: true,
+    message: 'Field of study required!',
+  },
+  startDate: {
+    presence: true,
+    message: 'Start month and year required!',
+  },
+  endDate: {
+    presence: true,
+    message: 'End month and year required!',
+  },
+  studyType: {
+    presence: true,
+    message: 'Study type required!',
+  },
+};
 export const Education = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [confirmModal, setConfirmModal] = useState<boolean>(false);
+  const [errorData, setErrorData] = useState<any>(null);
   const [educationData, setEducationData] =
     useState<EducationType>(initialEducationData);
   const [educationIndex, setEducationIndex] = useState<number | null>(null);
@@ -42,6 +67,11 @@ export const Education = (): JSX.Element => {
   };
 
   const handleSubmit = (): void => {
+    const { isValid, errors } = validate({ data: educationData, rules });
+    setErrorData(errors);
+    if (!isValid) {
+      return;
+    }
     let updatedData;
     if (educationIndex !== null) {
       const oldEducationData = [...resumeDetails.education];
@@ -68,14 +98,20 @@ export const Education = (): JSX.Element => {
     setEducationIndex(index);
   };
 
-  const handleRemove = (projectIndex: number): void => {
+  const handleRemove = (educationIndex: number): void => {
+    setEducationIndex(educationIndex);
+    setConfirmModal(true);
+  };
+  const deleteConfirm = (): void => {
     const updatedResumeDate = {
       ...resumeDetails,
-      projects: [
-        ...resumeDetails.projects.filter((_, i) => i !== projectIndex),
+      education: [
+        ...resumeDetails.education.filter((_, i) => i !== educationIndex),
       ],
     };
     dispatch(updateResumeData(updatedResumeDate, resumeDetails?.userId));
+    setEducationIndex(null);
+    setConfirmModal(false);
   };
   const { institution, fieldOfStudy, endDate, startDate, studyType } =
     educationData;
@@ -164,6 +200,11 @@ export const Education = (): JSX.Element => {
             name='institution'
             onChange={(e): void => handleInputChange(e.target)}
           />
+          {errorData?.institution && (
+            <Typography variant='p' className='text-red-400'>
+              {errorData?.institution}
+            </Typography>
+          )}
         </Wrapper>
         <Wrapper className='p-2'>
           <Input
@@ -173,6 +214,11 @@ export const Education = (): JSX.Element => {
             name='studyType'
             onChange={(e): void => handleInputChange(e.target)}
           />
+          {errorData?.studyType && (
+            <Typography variant='p' className='text-red-400'>
+              {errorData?.studyType}
+            </Typography>
+          )}
         </Wrapper>
         <Wrapper className='p-2'>
           <Input
@@ -182,6 +228,11 @@ export const Education = (): JSX.Element => {
             name='fieldOfStudy'
             onChange={(e): void => handleInputChange(e.target)}
           />
+          {errorData?.fieldOfStudy && (
+            <Typography variant='p' className='text-red-400'>
+              {errorData?.fieldOfStudy}
+            </Typography>
+          )}
         </Wrapper>
         <Wrapper className='p-2'>
           <CustomDatePicker
@@ -191,6 +242,11 @@ export const Education = (): JSX.Element => {
             selectedDate={startDate}
             pickerLabel='Stat Date'
           />
+          {errorData?.startDate && (
+            <Typography variant='p' className='text-red-400'>
+              {errorData?.startDate}
+            </Typography>
+          )}
         </Wrapper>
         <Wrapper className='p-2'>
           <CustomDatePicker
@@ -200,7 +256,22 @@ export const Education = (): JSX.Element => {
             selectedDate={endDate}
             pickerLabel='End Date'
           />
+          {errorData?.endDate && (
+            <Typography variant='p' className='text-red-400'>
+              {errorData?.endDate}
+            </Typography>
+          )}
         </Wrapper>
+      </Modal>
+      <Modal
+        title='Are you sure?'
+        className='w-3/12 sm:w-6/12 m-1 h-1/4'
+        open={confirmModal}
+        onClose={(): void => setConfirmModal(false)}
+        onSave={deleteConfirm}
+        saveBtnTitle='Confirm'
+      >
+        <p>Want to delete the education details</p>
       </Modal>
     </Wrapper>
   );

@@ -269,7 +269,7 @@ export const Projects = (): JSX.Element => {
         onSave={deleteConfirm}
         saveBtnTitle='Confirm'
       >
-        <p>Want to delete the work experience</p>
+        <p>Want to delete the project details</p>
       </Modal>
     </Wrapper>
   );
