@@ -58,6 +58,7 @@ export const WorkExperience = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [workIndex, setWorkIndex] = useState<number | null>(null);
+  const [confirmModal, setConfirmModal] = useState<boolean>(false);
   const [errorData, setErrorData] = useState<any>(null);
   const dispatch = useDispatch();
   const { resumeDetails, resumeLoading }: IResumeState = useSelector(
@@ -113,11 +114,17 @@ export const WorkExperience = (): JSX.Element => {
     setWorkIndex(index);
   };
   const handleRemove = (workIndex: number): void => {
+    setWorkIndex(workIndex);
+    setConfirmModal(true);
+  };
+  const deleteConfirm = (): void => {
     const updatedResumeDate = {
       ...resumeDetails,
       work: [...resumeDetails.work.filter((_, i) => i !== workIndex)],
     };
     dispatch(updateResumeData(updatedResumeDate, resumeDetails?.userId));
+    setConfirmModal(false);
+    setWorkIndex(null);
   };
   const { companyName, location, position, summary, startDate, endDate } =
     workDetails;
@@ -300,6 +307,16 @@ export const WorkExperience = (): JSX.Element => {
             )}
           </Wrapper>
         </>
+      </Modal>
+      <Modal
+        title='Are you sure?'
+        className='w-3/12 sm:w-6/12 m-1 h-1/4'
+        open={confirmModal}
+        onClose={(): void => setConfirmModal(false)}
+        onSave={deleteConfirm}
+        saveBtnTitle='Confirm'
+      >
+        <p>Want to delete the work experience</p>
       </Modal>
     </Wrapper>
   );
