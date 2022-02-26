@@ -9,8 +9,8 @@ import { Loader } from '../components';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorFallback } from '../components/ErrorFallback';
 const Profile = lazy(() => import('../pages/Profile'));
-const Resume = lazy(() => import('../pages/Resume'));
 const Login = lazy(() => import('../pages/Login'));
+const Landing = lazy(() => import('../pages/Landing'));
 
 export const AppRoutes = (): JSX.Element => {
   return (
@@ -23,16 +23,12 @@ export const AppRoutes = (): JSX.Element => {
       >
         <Suspense fallback={<Loader />}>
           <PrivateRouteWithLayout
-            path='/'
+            path='/resume'
             Component={Profile}
             Layout={Layout}
           />
-          <PrivateRouteWithLayout
-            path='/resume'
-            Component={Resume}
-            Layout={Layout}
-          />
           <RouteWithLayout path='/login' Component={Login} />
+          <RouteWithLayout path='/' Component={Landing} />
         </Suspense>
       </ErrorBoundary>
     </BrowserRouter>

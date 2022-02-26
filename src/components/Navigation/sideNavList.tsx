@@ -2,10 +2,9 @@ import { Link, useLocation } from 'react-router-dom';
 
 export const SideNavList = (): JSX.Element => {
   const navList = [
-    { key: 1, path: '/', navName: 'Profile' },
-    { key: 2, path: '/resume', navName: 'Resume' },
-    { key: 3, path: '/interviews', navName: 'Interviews' },
-    { key: 4, path: '/notes', navName: 'Notes' },
+    { key: 1, path: '/resume', navName: 'Resume' },
+    // { key: 3, path: '/interviews', navName: 'Interviews' },
+    // { key: 4, path: '/notes', navName: 'Notes' },
   ];
   const location = useLocation();
   const pathName = location.pathname;

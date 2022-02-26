@@ -12,7 +12,7 @@ export default function Login(): JSX.Element {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/';
+  const from = location.state?.from?.pathname || '/resume';
   const [user, loading] = useAuthState(auth);
 
   useEffect(() => {
