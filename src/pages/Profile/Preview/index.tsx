@@ -49,6 +49,7 @@ export const Preview = (): JSX.Element => {
     projects,
     skills,
     education,
+    achievements,
   } = resumeDetails;
   const { displayName, email } = user ? user : { displayName: '', email: '' };
   return (
@@ -273,6 +274,18 @@ export const Preview = (): JSX.Element => {
                     </Wrapper>
                   )
                 )}
+              </Card>
+            )}
+            {achievements && (
+              <Card
+                className='mt-2 border rounded-sm'
+                title='Achievements'
+                titleClassName='text-indigo-500'
+              >
+                <Wrapper
+                  className='text-gray-500 text-sm custom-list'
+                  dangerouslySetInnerHTML={{ __html: achievements }}
+                ></Wrapper>
               </Card>
             )}
           </Wrapper>
