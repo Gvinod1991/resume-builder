@@ -21,6 +21,7 @@ import {
   ProjectType,
 } from '../../../store/reducer/resume.reducer';
 import { updateResumeData } from '../../../store/actions';
+import { validate } from '../../../utils/validate';
 
 const initialProjectDetails = {
   title: '',
@@ -28,9 +29,29 @@ const initialProjectDetails = {
   techStack: [],
   description: '',
 };
+const rules = {
+  title: {
+    presence: true,
+    message: 'Project title required!',
+  },
+  role: {
+    presence: true,
+    message: 'Your role in project required!',
+  },
+  techStack: {
+    presence: true,
+    message: 'Tech stack required!',
+  },
+  description: {
+    presence: true,
+    message: 'Project description required!',
+  },
+};
 
 export const Projects = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [confirmModal, setConfirmModal] = useState<boolean>(false);
+  const [errorData, setErrorData] = useState<any>(null);
   const [projectData, setProjectData] = useState<ProjectType>(
     initialProjectDetails
   );
@@ -39,7 +60,6 @@ export const Projects = (): JSX.Element => {
   const { resumeDetails, resumeLoading }: IResumeState = useSelector(
     (state: RootState) => state.resume
   );
-
   const handleInputChange = ({ name, value }: any): void => {
     setProjectData((prevState) => ({
       ...prevState,
@@ -48,6 +68,11 @@ export const Projects = (): JSX.Element => {
   };
 
   const handleSubmit = (): void => {
+    const { isValid, errors } = validate({ data: projectData, rules });
+    setErrorData(errors);
+    if (!isValid) {
+      return;
+    }
     let updatedData;
     if (projectIndex !== null) {
       const oldProjectData = [...resumeDetails.projects];
@@ -75,6 +100,10 @@ export const Projects = (): JSX.Element => {
   };
 
   const handleRemove = (projectIndex: number): void => {
+    setProjectIndex(projectIndex);
+    setConfirmModal(true);
+  };
+  const deleteConfirm = (): void => {
     const updatedResumeDate = {
       ...resumeDetails,
       projects: [
@@ -82,6 +111,8 @@ export const Projects = (): JSX.Element => {
       ],
     };
     dispatch(updateResumeData(updatedResumeDate, resumeDetails?.userId));
+    setProjectIndex(null);
+    setConfirmModal(false);
   };
   const { title, description, role, techStack } = projectData;
   return (
@@ -182,6 +213,11 @@ export const Projects = (): JSX.Element => {
             onChange={(e): void => handleInputChange(e.target)}
             placeholder=''
           />
+          {errorData?.title && (
+            <Typography variant='p' className='text-red-400'>
+              {errorData?.title}
+            </Typography>
+          )}
         </Wrapper>
         <Wrapper className='p-2'>
           <Input
@@ -191,6 +227,11 @@ export const Projects = (): JSX.Element => {
             value={role}
             onChange={(e): void => handleInputChange(e.target)}
           />
+          {errorData?.role && (
+            <Typography variant='p' className='text-red-400'>
+              {errorData?.role}
+            </Typography>
+          )}
         </Wrapper>
         <Wrapper className='p-2'>
           <TextEditor
@@ -199,6 +240,11 @@ export const Projects = (): JSX.Element => {
               handleInputChange({ name: 'description', value: content })
             }
           />
+          {errorData?.description && (
+            <Typography variant='p' className='text-red-400'>
+              {errorData?.description}
+            </Typography>
+          )}
         </Wrapper>
         <Wrapper className='flex flex-col w-full'>
           <TagsInput
@@ -208,7 +254,22 @@ export const Projects = (): JSX.Element => {
             }
             initTags={techStack}
           />
+          {errorData?.techStack && (
+            <Typography variant='p' className='text-red-400'>
+              {errorData?.techStack}
+            </Typography>
+          )}
         </Wrapper>
+      </Modal>
+      <Modal
+        title='Are you sure?'
+        className='w-3/12 sm:w-6/12 m-1 h-1/4'
+        open={confirmModal}
+        onClose={(): void => setConfirmModal(false)}
+        onSave={deleteConfirm}
+        saveBtnTitle='Confirm'
+      >
+        <p>Want to delete the work experience</p>
       </Modal>
     </Wrapper>
   );
