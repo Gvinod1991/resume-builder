@@ -12,10 +12,9 @@ export const TopNav = (): JSX.Element => {
   const location = useLocation();
   const pathName = location.pathname;
   const navList = [
-    { key: 1, path: '/', navName: 'Profile' },
-    { key: 2, path: '/resume', navName: 'Resume' },
-    { key: 3, path: '/interviews', navName: 'Interviews' },
-    { key: 4, path: '/notes', navName: 'Notes' },
+    { key: 1, path: '/resume', navName: 'Resume' },
+    // { key: 3, path: '/interviews', navName: 'Interviews' },
+    // { key: 4, path: '/notes', navName: 'Notes' },
   ];
   return (
     <nav className='bg-slate-100'>
@@ -73,14 +72,6 @@ export const TopNav = (): JSX.Element => {
                 aria-orientation='vertical'
                 aria-labelledby='user-menu-button'
               >
-                <Link
-                  to='/settings'
-                  className='block px-4 py-2 text-sm text-gray-700'
-                  role='menuitem'
-                  id='user-menu-item-1'
-                >
-                  Settings
-                </Link>
                 <button
                   onClick={(): Promise<void> => signOut(auth)}
                   className='block px-4 py-2 text-sm text-gray-700 focus:outline-none'
