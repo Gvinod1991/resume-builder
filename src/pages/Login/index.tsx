@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Card, Wrapper, Typography, Button } from '../../components';
+import { Wrapper, Button } from '../../components';
 import { useDispatch } from 'react-redux';
 import { LoginRequest } from '../../store/actions';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -20,28 +20,21 @@ export default function Login(): JSX.Element {
   }, [user, from, navigate]);
   if (loading) return <Loader />;
   return (
-    <Card
-      className={
-        'fixed bg-gray-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-fit'
-      }
-    >
-      <Typography variant='h2' className='text-xl text-indigo-500'>
-        Login Here
-      </Typography>
-      <Wrapper className='flex flex-row justify-end'>
+    <>
+      <Wrapper className='flex flex-row justify-center'>
         <Button
           onClick={(): AppThunk<void> => dispatch(LoginRequest('google'))}
-          className='m-1'
+          className='m-2 px-10 py-5'
           title='Login with google'
         ></Button>
       </Wrapper>
-      <Wrapper className='flex flex-row justify-end'>
+      <Wrapper className='flex flex-row justify-center'>
         <Button
           onClick={(): AppThunk<void> => dispatch(LoginRequest('github'))}
-          className='m-1'
+          className='m-2 px-10 py-5'
           title='Login with Github'
         ></Button>
       </Wrapper>
-    </Card>
+    </>
   );
 }

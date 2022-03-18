@@ -18,7 +18,7 @@ function RequireAuth({ children }: { children: JSX.Element }): JSX.Element {
     return <Loader />;
   }
   if (!user) {
-    return <Navigate to='/login' state={{ from: location }} replace />;
+    return <Navigate to='/' state={{ from: location }} replace />;
   }
   return children;
 }
