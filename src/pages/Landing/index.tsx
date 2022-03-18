@@ -62,7 +62,7 @@ export default function Landing(): JSX.Element {
       <Modal
         title='Login Here'
         titleStyle='text-indigo-400'
-        className='w-3/12 sm:w-3/12 m-1 h-auto bg-gray-50'
+        className='w-10/12 md:w-5/12 lg:w-3/12 sm:h-auto m-1 h-auto bg-gray-50'
         open={isModalVisible}
         onClose={(): void => setIsModalVisible(false)}
         hideCancelBtn={true}
