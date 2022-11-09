@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { PencilAltIcon } from '@heroicons/react/solid';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Button, Loader, Modal } from '../../components';
+import { Button, Loader, Modal,Wrapper } from '../../components';
 import { auth } from '../../utils/firebase';
 import Login from '../Login';
 import './landing.css';
@@ -30,7 +30,7 @@ export default function Landing(): JSX.Element {
           <span className='relative top-1 font-bold text-lg'>ResumeSmith</span>
         </a>
       </header>
-      <main className='main'>
+      <Wrapper className='main'>
         <section id='card'>
           <ul>
             <li>
@@ -58,7 +58,7 @@ export default function Landing(): JSX.Element {
             onClick={(): void => setIsModalVisible(true)}
           ></Button>
         </section>
-      </main>
+      </Wrapper>
       <Modal
         title='Login Here'
         titleStyle='text-indigo-400'
